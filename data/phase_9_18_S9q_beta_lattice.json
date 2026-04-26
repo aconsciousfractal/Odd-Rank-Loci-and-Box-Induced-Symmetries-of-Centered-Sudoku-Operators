@@ -1,0 +1,122 @@
+{
+  "phase": "9.18.S9q-\u03b2-lattice (lattice characterization)",
+  "M_rep": [
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1
+  ],
+  "O6_rep": [
+    -2,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    2
+  ],
+  "orb_sizes": {
+    "M": 756,
+    "O_6": 3024
+  },
+  "Lambda_M": {
+    "rank": 8,
+    "elementary_divisors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "saturates_V_std": true
+  },
+  "Lambda_O6": {
+    "rank": 8,
+    "elementary_divisors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "saturates_V_std": true
+  },
+  "A8_reference": {
+    "rank": 8,
+    "elementary_divisors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "inclusion_O6_in_LambdaM": true,
+  "index_LambdaM_over_LambdaO6": 1,
+  "three_term_witness": {
+    "A": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      1,
+      0,
+      1,
+      0
+    ],
+    "B": [
+      0,
+      0,
+      -1,
+      1,
+      1,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "C": [
+      0,
+      1,
+      -1,
+      1,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "U8": [
+      0,
+      0,
+      2,
+      -2,
+      1,
+      -1,
+      0,
+      0,
+      0
+    ],
+    "A_in_orbM": true,
+    "B_in_orbM": true,
+    "C_in_orbM": true,
+    "sum_equals_minus_U8": true
+  }
+}

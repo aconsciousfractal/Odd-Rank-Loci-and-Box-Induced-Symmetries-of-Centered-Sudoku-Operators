@@ -1,0 +1,204 @@
+{
+  "claim": "Exhaustive S_9 audit of the laboratory base M_{19} yields exactly 100 rank-7 (=odd-rank) relabelings out of 9! = 362880; this rank locus Gamma_rank(M_{19}) of size 100 contains a distinguished Hessian-class subset Gamma_star(M_{19}) of size 72 (the relabelings whose centered kernel collapses to the shared direction u9*), with residue of size 100 - 72 = 28. The Hessian-class subset Gamma_star(M_{19}) is a single left K_L-coset and a single right K_R-coset (left/right coset tests PASS), with K_L, K_R subgroups of S_9 of order 72 each, conjugate via pi_0 and intersecting trivially. The number 4320 is the order of the ambient coordinate stabilizer Stab_{S_9}(u9*) = S_3 x S_6 (since u9* has value-multiplicities {-2: 3, 1: 6}); 4320 is NOT the cardinality of the rank locus, NOT the cardinality of the Hessian class, and NOT an orbit of K_L x K_R.",
+  "inputs": {
+    "M19_grid": [
+      [
+        2,
+        6,
+        3,
+        8,
+        1,
+        5,
+        4,
+        7,
+        9
+      ],
+      [
+        4,
+        9,
+        8,
+        3,
+        6,
+        7,
+        2,
+        5,
+        1
+      ],
+      [
+        7,
+        5,
+        1,
+        4,
+        9,
+        2,
+        3,
+        6,
+        8
+      ],
+      [
+        8,
+        2,
+        5,
+        1,
+        3,
+        9,
+        6,
+        4,
+        7
+      ],
+      [
+        6,
+        4,
+        7,
+        5,
+        2,
+        8,
+        1,
+        9,
+        3
+      ],
+      [
+        3,
+        1,
+        9,
+        6,
+        7,
+        4,
+        5,
+        8,
+        2
+      ],
+      [
+        5,
+        7,
+        4,
+        2,
+        8,
+        1,
+        9,
+        3,
+        6
+      ],
+      [
+        9,
+        3,
+        2,
+        7,
+        5,
+        6,
+        8,
+        1,
+        4
+      ],
+      [
+        1,
+        8,
+        6,
+        9,
+        4,
+        3,
+        7,
+        2,
+        5
+      ]
+    ],
+    "n": 9,
+    "n_total": 362880,
+    "scan_space": "all of S_9"
+  },
+  "outputs": {
+    "Gamma_rank_size": 100,
+    "Gamma_star_is_subset_of_Gamma_rank": true,
+    "Gamma_star_residue_size_check": 28,
+    "Gamma_star_size": 72,
+    "K_L_conjugate_to_K_R_via_pi0": true,
+    "K_L_eq_K_R": false,
+    "K_L_inter_K_R_size": 1,
+    "K_L_size": 72,
+    "K_R_size": 72,
+    "ambient_coordinate_stabilizer_S_9_of_u9_star_size": 4320,
+    "ambient_stab_iso": "S_3 x S_6",
+    "ambient_stab_order_factorization": "3! * 6! = 6 * 720 = 4320",
+    "double_coset_intersection_size": 72,
+    "double_coset_size_K_L_gamma0_K_R": 72,
+    "left_coset_test_PASS": true,
+    "n_certs_M19": 100,
+    "n_orbits_M19": 15,
+    "rank7_perms_count": 100,
+    "rank_distribution": {
+      "7": 100,
+      "8": 362780
+    },
+    "residue_size": 28,
+    "right_coset_test_PASS": true,
+    "u9_star": [
+      -2,
+      -2,
+      -2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "value_multiplicities": {
+      "-2": 3,
+      "1": 6
+    }
+  },
+  "paper_label": "Proposition P3",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "M19_audit",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/phase_9_18_S9x.py",
+      "sha256": "ee8ee2c1fe304bcc19905e60b4942901e1d1046548c9746200e80429817201f5"
+    },
+    {
+      "path": "certified/recover_M19_100_perms.py",
+      "sha256": "18a63d96ecd1b0d52592140fa2925beaf616a023326c5f9e46bf9f5361803e71"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "M19_grid",
+        "n_certs_M19",
+        "n_orbits_M19",
+        "stab_size",
+        "K_L_size",
+        "K_R_size",
+        "K_L_eq_K_R",
+        "left_coset_test",
+        "right_coset_test",
+        "u9_star",
+        "value_multiplicities",
+        "residue_size",
+        "Gamma_star_perms"
+      ],
+      "file": "data/phase_9_18_S9x_results.json",
+      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+    },
+    {
+      "extracted_keys": [
+        "K_L_inter_K_R_size",
+        "Y2_conjugate_via_pi0"
+      ],
+      "file": "data/phase_9_18_S9x_bis_results.json",
+      "sha256": "7b5aba6435e41f34749285505b1dc3c4371fd5f0ea0cb821113a4592f6d00df9"
+    },
+    {
+      "extracted_keys": [
+        "rank7_perms",
+        "rank_distribution"
+      ],
+      "file": "certified/M19_100_perms_recovered.json",
+      "note": "Recovered via certified/recover_M19_100_perms.py; two-stage exhaustive scan (NumPy float + Sympy exact rank).",
+      "sha256": "39a3d466fefe23cc7ead8802107275ab5c87a8d6d56a9c3c57736cd88d6ddc15"
+    }
+  ],
+  "tier": "EXHAUSTIVE"
+}

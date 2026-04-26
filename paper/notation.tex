@@ -1,0 +1,111 @@
+% notation.tex --- Core notation for
+% "Odd-Rank Loci and Box-Induced Symmetries of Centered Sudoku Operators".
+%
+% This snippet is self-contained and is \input by every section that
+% needs the symbols. It is consistent with the sibling paper
+% "Determinant Divisibility of Centered Latin Squares".
+%
+% -----------------------------------------------------------------------
+% Macros
+% -----------------------------------------------------------------------
+\providecommand{\one}{\mathbf{1}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\rank}{\operatorname{rank}}
+\providecommand{\Aut}{\operatorname{Aut}}
+\providecommand{\Stab}{\operatorname{Stab}}
+\providecommand{\SNF}{\operatorname{SNF}}
+
+% -----------------------------------------------------------------------
+% Setup
+% -----------------------------------------------------------------------
+% Let $L$ be a Latin square of order $n$. In the main Sudoku case
+% $n = 9$ and $L$ is a Sudoku grid (i.e.\ a Latin square also satisfying
+% the $3 \times 3$ box constraint). A \emph{symbol relabeling} is a
+% permutation $\gamma \in S_n$, applied entrywise to $L$ to produce
+% $\gamma(L)$.
+
+% Centering scalar and centered operator:
+% \[
+%   m_n \;:=\; \frac{n+1}{2},
+%   \qquad
+%   E_{\gamma,L} \;:=\; \gamma(L) - m_n\, J_n,
+% \]
+% where $J_n$ is the $n \times n$ all-ones matrix. When $L$ is fixed
+% we write $E_\gamma$. For $n = 9$, $m_n = 5$, hence
+% $E_\gamma = \gamma(L) - 5J$.
+
+% -----------------------------------------------------------------------
+% Standard hyperplane and root lattice
+% -----------------------------------------------------------------------
+% Standard hyperplane (\emph{vector space}, not a lattice):
+% \[
+%   V_{\mathrm{std},n} \;:=\; \{\, x \in \Q^n \;:\; \one^\top x = 0 \,\}.
+% \]
+% Root lattice (the integer points of $V_{\mathrm{std},n}$):
+% \[
+%   A_{n-1} \;:=\; V_{\mathrm{std},n} \cap \Z^n.
+% \]
+% In particular, for $n = 9$, $A_8 = V_{\mathrm{std},9} \cap \Z^9$.
+
+% -----------------------------------------------------------------------
+% Rank, restriction, and Gram-projected representative
+% -----------------------------------------------------------------------
+% Since $E_{\gamma,L}\,\one = \mathbf{0}$ and $\one^\top E_{\gamma,L} = \mathbf{0}$,
+% the operator $E_{\gamma,L}$ restricts to an endomorphism of
+% $V_{\mathrm{std},n}$. Consequently
+% \[
+%   \rank(E_{\gamma,L})
+%   \;=\; \rank\bigl(E_{\gamma,L}\bigr|_{V_{\mathrm{std},n}}\bigr).
+% \]
+% For SNF (Smith normal form) statements we use the Gram-projected
+% representative in the standard basis $P_n = (e_i - e_n)_{i=1}^{n-1}$,
+% \[
+%   \widehat{E}_{\gamma,L} \;:=\; P_n^{\top}\, E_{\gamma,L}\, P_n,
+% \]
+% as in the sibling paper. \textbf{Convention.} Rank statements may be
+% read on $E_{\gamma,L}$, on its restriction to $V_{\mathrm{std},n}$, or
+% on $\widehat{E}_{\gamma,L}$; SNF statements default to
+% $\widehat{E}_{\gamma,L}$ unless explicitly stated otherwise.
+
+% -----------------------------------------------------------------------
+% Odd-rank locus
+% -----------------------------------------------------------------------
+% General order:
+% \[
+%   \Gamma_L^{\mathrm{odd}}
+%   \;:=\; \{\, \gamma \in S_n \;:\; \rank(E_{\gamma,L}) \text{ is odd} \,\}.
+% \]
+% Sudoku case ($n = 9$, where the maximal rank on $V_{\mathrm{std},9}$
+% is $8$):
+% \[
+%   \Gamma_L^{*}
+%   \;:=\; \{\, \gamma \in S_9 \;:\; \rank(E_{\gamma,L}) = 7 \,\}
+%   \;\subseteq\; \Gamma_L^{\mathrm{odd}}.
+% \]
+
+% -----------------------------------------------------------------------
+% Kernel certificates
+% -----------------------------------------------------------------------
+% A \emph{kernel certificate} for $(L, \gamma)$ is a vector
+% $u \in A_{n-1}$ with $E_{\gamma,L}\,u = \mathbf{0}$ (right certificate)
+% or $u^\top E_{\gamma,L} = \mathbf{0}$ (left certificate). For the
+% laboratory base $L = L_{M_{19}}$ at $n = 9$, $u_L^* \in A_8$ denotes
+% the dominant shared certificate in the sense of Section~\ref{sec:M19}.
+
+% -----------------------------------------------------------------------
+% Hessian symmetry, autotopisms, template closure
+% -----------------------------------------------------------------------
+% The groups $K_L, K_R$ are the \emph{left and right Hessian symmetry
+% groups of the bilateral coset structure of $\Gamma^*_{M_{19}}$}
+% (cf.\ Theorems in Section~\ref{sec:M19}); they are \textbf{not}
+% defined as literal stabilizers of $u_L^*$, and they are
+% \textbf{not} Latin-square autotopism groups of $L$.
+%
+% $\Aut(L)$ denotes the (Latin-square) autotopism group of $L$;
+% paratopisms are excluded unless explicitly stated.
+%
+% $G^*$ denotes the corrected closed group acting on certificate
+% templates after the S9w-audit, with side labels (left/right) tracked
+% separately.

@@ -1,0 +1,90 @@
+{
+  "claim": "Lift Lemma: for every gamma in S_9 and every w in V_std, E_gamma(L) w = 0 if and only if gamma(L) w = 0 (and dually for left kernels). Verified on all 22 base1 rank-7 relabelings and on all 100 M_{19} rank-7 relabelings (the full rank-locus, not just the 72-element Hessian-class subset).",
+  "inputs": {
+    "M19_hessian_class_perms_subset": 72,
+    "M19_rank7_perms_total": 100,
+    "base1_perms": 22,
+    "n": 9
+  },
+  "outputs": {
+    "M19": {
+      "kernel_dim_full_histogram": {
+        "2": 100
+      },
+      "kernel_dim_in_V_std_histogram": {
+        "1": 100
+      },
+      "lift_lemma_holds_on_all_checked": true,
+      "n_full_lift_check": 100,
+      "n_perms": 100
+    },
+    "M19_hessian_class_72": {
+      "kernel_dim_full_histogram": {
+        "2": 72
+      },
+      "kernel_dim_in_V_std_histogram": {
+        "1": 72
+      },
+      "lift_lemma_holds_on_all_checked": true,
+      "n_full_lift_check": 72,
+      "n_perms": 72
+    },
+    "base1": {
+      "kernel_dim_full_histogram": {
+        "2": 22
+      },
+      "kernel_dim_in_V_std_histogram": {
+        "1": 22
+      },
+      "lift_lemma_holds_on_all_checked": true,
+      "n_full_lift_check": 22,
+      "n_perms": 22
+    }
+  },
+  "paper_label": "Theorem C",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "lift_lemma_evidence",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/phase_9_18_S9c.py",
+      "sha256": "940bae8fb99fde54688b40253aa1492e5eeaf8f6d5bf279776332c85598fb1b9"
+    },
+    {
+      "path": "certified/build_certified.py",
+      "sha256": "self"
+    },
+    {
+      "path": "certified/recover_M19_100_perms.py",
+      "sha256": "18a63d96ecd1b0d52592140fa2925beaf616a023326c5f9e46bf9f5361803e71"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "phase_9_13_c.odd_examples"
+      ],
+      "file": "data/phase_9_13_results.json",
+      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+    },
+    {
+      "extracted_keys": [
+        "Gamma_star_perms",
+        "M19_grid"
+      ],
+      "file": "data/phase_9_18_S9x_results.json",
+      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+    },
+    {
+      "extracted_keys": [
+        "rank7_perms",
+        "M19_grid"
+      ],
+      "file": "certified/M19_100_perms_recovered.json",
+      "note": "Recovered via certified/recover_M19_100_perms.py; exhaustive S_9 rescan of M_{19} (~16s) followed by Sympy exact rank verification on every candidate.",
+      "sha256": "39a3d466fefe23cc7ead8802107275ab5c87a8d6d56a9c3c57736cd88d6ddc15"
+    }
+  ],
+  "tier": "THEOREM"
+}

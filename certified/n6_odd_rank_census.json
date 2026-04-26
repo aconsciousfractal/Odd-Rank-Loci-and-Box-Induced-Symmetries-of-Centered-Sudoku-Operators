@@ -1,0 +1,63 @@
+{
+  "claim": "Exhaustive enumeration of all order-6 Sudoku grids (n=39168, first-row fixed) and order-6 Latin squares (n=1128960, first-row fixed) shows full-rank-over-F_2 (rank n-1 = 5) incidence 6.6177% vs 6.1224%; two-proportion z-test (pooled) gives z = 4.013706 and exact two-sided p = erfc(|z|/sqrt 2) = 5.9773e-05.  At n=6 this is the rank-parity proxy (`full_rank_count` over F_2), NOT the odd-rank locus (rank n-2) used at n in {7, 9, 11}; the box constraint nevertheless yields a small but significant enhancement.",
+  "inputs": {
+    "first_row_fixed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ls6_n_total": 1128960,
+    "n": 6,
+    "rank_parity_proxy": "F_2 full-rank (rank == n-1 == 5 over F_2)",
+    "sudoku6_n_total": 39168
+  },
+  "outputs": {
+    "ls6_full_rank_F2_count": 69120,
+    "ls6_full_rank_F2_pct": 6.122448979591836,
+    "ls6_rank_dist": {
+      "1": 5760,
+      "2": 51840,
+      "3": 587520,
+      "4": 414720,
+      "5": 69120
+    },
+    "sudoku6_full_rank_F2_count": 2592,
+    "sudoku6_full_rank_F2_pct": 6.617647058823529,
+    "sudoku6_rank_dist": {
+      "1": 64,
+      "2": 1344,
+      "3": 23680,
+      "4": 11488,
+      "5": 2592
+    },
+    "two_proportion_pvalue_decimal_string": "5.977282e-05",
+    "two_proportion_pvalue_exact": 5.977282073558851e-05,
+    "two_proportion_pvalue_formula": "erfc(|z| / sqrt(2))",
+    "two_proportion_z": 4.013705876038688
+  },
+  "paper_label": "Proposition P2",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "n6_odd_rank_census",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/phase_9_14.py",
+      "sha256": "fafdf2ed9f03588420ebd85ec418779e6dde8928f97fa93ca9da6988f0be19eb"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "sudoku6_firstrow_fixed",
+        "ls6_firstrow_fixed"
+      ],
+      "file": "data/phase_9_14_results.json",
+      "sha256": "8dc095aecb5f34b74c66f4ff06b97a2a1bf66d77a8a4e0127f62224c006f729a"
+    }
+  ],
+  "tier": "EXHAUSTIVE"
+}

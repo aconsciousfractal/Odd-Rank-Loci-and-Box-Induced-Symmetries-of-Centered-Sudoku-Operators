@@ -1,0 +1,108 @@
+{
+  "claim": "For every Sudoku grid L of order 9, the row-band/column-stack projection P_rb^T E P_cs of E = L - 5J vanishes identically. The identity fails for generic Latin squares; the cyclic LS-9 is exhibited as an explicit counterexample.",
+  "inputs": {
+    "centering_scalar": 5,
+    "n": 9
+  },
+  "outputs": {
+    "non_sudoku_LS_cyclic_counterexample": {
+      "M_rb_cs": [
+        [
+          -18,
+          9,
+          9
+        ],
+        [
+          9,
+          9,
+          -18
+        ],
+        [
+          9,
+          -18,
+          9
+        ]
+      ],
+      "frobenius_norm_sq": 1458,
+      "is_zero": false
+    },
+    "sudoku_M19": {
+      "M_rb_cs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "frobenius_norm_sq": 0,
+      "is_zero": true
+    },
+    "sudoku_base1": {
+      "M_rb_cs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "frobenius_norm_sq": 0,
+      "is_zero": true
+    }
+  },
+  "paper_label": "Theorem A",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "box_band_lemma_witness",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/task_9_10c_box_subspace.py",
+      "sha256": "6409c3e0eda654b2fb93d47e4d5384f8e761a9b2d342700e0cdcf588130a3664"
+    },
+    {
+      "path": "scripts/legacy/phase_9_13.py",
+      "sha256": "b51e1a025de3db49ec12a9099363daeec885cc063249a1ef0d7989627095d421"
+    },
+    {
+      "path": "certified/build_certified.py",
+      "sha256": "self"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "phase_9_13_c.base_grid"
+      ],
+      "file": "data/phase_9_13_results.json",
+      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+    },
+    {
+      "extracted_keys": [
+        "M19_grid"
+      ],
+      "file": "data/phase_9_18_S9x_results.json",
+      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+    }
+  ],
+  "tier": "THEOREM"
+}

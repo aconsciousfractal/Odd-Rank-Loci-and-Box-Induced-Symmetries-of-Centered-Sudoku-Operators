@@ -1,0 +1,990 @@
+{
+  "phase": "9.18.S9q-\u03b3-1",
+  "n_range": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "results": [
+    {
+      "n": 5,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 8,
+        "stab_O": 2,
+        "orb_M": 30,
+        "orb_O": 120
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 4,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 4,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          -1,
+          1,
+          0,
+          1
+        ],
+        "b": [
+          -1,
+          0,
+          -1,
+          1,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 6,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 16,
+        "stab_O": 4,
+        "orb_M": 90,
+        "orb_O": 360
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 5,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 5,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          -1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "b": [
+          -1,
+          0,
+          -1,
+          0,
+          1,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 7,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 48,
+        "stab_O": 12,
+        "orb_M": 210,
+        "orb_O": 840
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 6,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 6,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          -1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "b": [
+          -1,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 8,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 192,
+        "stab_O": 48,
+        "orb_M": 420,
+        "orb_O": 1680
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 7,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 7,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "b": [
+          -1,
+          -1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 9,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 960,
+        "stab_O": 240,
+        "orb_M": 756,
+        "orb_O": 3024
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 8,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 8,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          -1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "b": [
+          -1,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 10,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 5760,
+        "stab_O": 1440,
+        "orb_M": 1260,
+        "orb_O": 5040
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 9,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 9,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "b": [
+          -1,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 11,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 40320,
+        "stab_O": 10080,
+        "orb_M": 1980,
+        "orb_O": 7920
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 10,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 10,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "b": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 12,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 322560,
+        "stab_O": 80640,
+        "orb_M": 2970,
+        "orb_O": 11880
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 11,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 11,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          1,
+          1
+        ],
+        "b": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    },
+    {
+      "n": 13,
+      "M_rep": [
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "O_rep": [
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "predicted": {
+        "stab_M": 2903040,
+        "stab_O": 725760,
+        "orb_M": 4290,
+        "orb_O": 17160
+      },
+      "checks": {
+        "stab_M": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        },
+        "stab_O": {
+          "size_ok": true,
+          "split_ok": true,
+          "kernel_orders_ok": true
+        }
+      },
+      "Lambda_M": {
+        "rank": 12,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "Lambda_O": {
+        "rank": 12,
+        "elementary_divisors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "saturates": true
+      },
+      "depth": 2,
+      "depth_witness": {
+        "a": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "b": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bridges": {
+        "stab_M_size": true,
+        "stab_O_size": true,
+        "stab_M_D4xS": true,
+        "stab_O_C2xS": true,
+        "orb_M_size": true,
+        "orb_O_size": true,
+        "Lambda_M_saturates": true,
+        "Lambda_O_saturates": true,
+        "depth_eq_2": true
+      },
+      "all_pass": true
+    }
+  ],
+  "universal_pass": true,
+  "elapsed_sec": 31.012577295303345
+}

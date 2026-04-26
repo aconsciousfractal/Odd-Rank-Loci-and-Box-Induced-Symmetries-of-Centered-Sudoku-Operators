@@ -1,0 +1,8 @@
+# Frozen seeds for the reproducibility package
+#
+# Format: <key> <integer-seed>
+# Used by any script that requires a non-deterministic input.
+# Keep this file APPEND-ONLY: never modify a seed once published.
+
+n6_random_LS_baseline 20260426
+n9_sample_sudoku_corpus_400 20260426

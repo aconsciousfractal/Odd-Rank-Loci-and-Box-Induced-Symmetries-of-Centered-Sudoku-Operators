@@ -1,0 +1,9 @@
+# Runtime dependencies for Odd-Rank Loci and Box-Induced Symmetries of
+# Centered Sudoku Operators.
+# Lower bounds reflect the APIs actually used; upper bounds are a
+# conservative ceiling on the family tested for the 2026-04-26 release.
+# Tested with Python 3.11/3.12/3.14 on Windows 10/11 and Ubuntu 22.04.
+
+numpy>=1.24,<3.0        # array algebra, exhaustive S_9 / B_3 scans
+sympy>=1.12,<2.0        # exact rational rank, integer SNF, Gauss-Jordan over Z
+scipy>=1.10,<2.0        # erfc (two-proportion p-value), optional helpers

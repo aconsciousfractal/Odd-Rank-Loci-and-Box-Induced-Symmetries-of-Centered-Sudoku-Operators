@@ -1,0 +1,449 @@
+{
+  "claim": "For n in {7, 9, 11}, the canonical sparse-low template representatives M_n and O_n have stabilizers Stab(M_n) cong D_4 x S_{n-4} and Stab(O_n) cong C_2 x S_{n-4}, integer hulls Lambda_{M_n} = Lambda_{O_n} = A_{n-1}, and depth d_{M_n}(orb(O_n)) = 2.  The abstract isomorphisms are certified by (a) semidirect split |Stab| = |im psi| * |ker psi| with |im psi| = (n-4)!, and (b) kernel order-multiset matching the D_4 (resp. C_2) fingerprint, which uniquely separates D_4 from all other groups of order 8.",
+  "inputs": {
+    "n_values": [
+      7,
+      9,
+      11
+    ]
+  },
+  "outputs": {
+    "per_n": [
+      {
+        "Lambda_M": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 6,
+          "saturates": true
+        },
+        "Lambda_O": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 6,
+          "saturates": true
+        },
+        "M_rep": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "O_rep": [
+          -2,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "abstract_identification": {
+          "abstract_iso_certified": true,
+          "stab_M_iso": "D_4 x S_3",
+          "stab_M_witness": {
+            "D_4_order_multiset_reference": {
+              "1": 1,
+              "2": 5,
+              "4": 2
+            },
+            "alternatives_excluded_by_order_multiset": [
+              "Q_8",
+              "Z/8",
+              "Z/4 x Z/2",
+              "(Z/2)^3"
+            ],
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_D4": true,
+            "split_holds": true
+          },
+          "stab_O_iso": "C_2 x S_3",
+          "stab_O_witness": {
+            "C_2_order_multiset_reference": {
+              "1": 1,
+              "2": 1
+            },
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_C2": true,
+            "split_holds": true
+          }
+        },
+        "all_pass": true,
+        "bridges": {
+          "Lambda_M_saturates": true,
+          "Lambda_O_saturates": true,
+          "depth_eq_2": true,
+          "orb_M_size": true,
+          "orb_O_size": true,
+          "stab_M_D4xS": true,
+          "stab_M_size": true,
+          "stab_O_C2xS": true,
+          "stab_O_size": true
+        },
+        "checks": {
+          "stab_M": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          },
+          "stab_O": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          }
+        },
+        "depth": 2,
+        "depth_witness": {
+          "a": [
+            -1,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "b": [
+            -1,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "n": 7,
+        "predicted": {
+          "orb_M": 210,
+          "orb_O": 840,
+          "stab_M": 48,
+          "stab_O": 12
+        }
+      },
+      {
+        "Lambda_M": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 8,
+          "saturates": true
+        },
+        "Lambda_O": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 8,
+          "saturates": true
+        },
+        "M_rep": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "O_rep": [
+          -2,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "abstract_identification": {
+          "abstract_iso_certified": true,
+          "stab_M_iso": "D_4 x S_5",
+          "stab_M_witness": {
+            "D_4_order_multiset_reference": {
+              "1": 1,
+              "2": 5,
+              "4": 2
+            },
+            "alternatives_excluded_by_order_multiset": [
+              "Q_8",
+              "Z/8",
+              "Z/4 x Z/2",
+              "(Z/2)^3"
+            ],
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_D4": true,
+            "split_holds": true
+          },
+          "stab_O_iso": "C_2 x S_5",
+          "stab_O_witness": {
+            "C_2_order_multiset_reference": {
+              "1": 1,
+              "2": 1
+            },
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_C2": true,
+            "split_holds": true
+          }
+        },
+        "all_pass": true,
+        "bridges": {
+          "Lambda_M_saturates": true,
+          "Lambda_O_saturates": true,
+          "depth_eq_2": true,
+          "orb_M_size": true,
+          "orb_O_size": true,
+          "stab_M_D4xS": true,
+          "stab_M_size": true,
+          "stab_O_C2xS": true,
+          "stab_O_size": true
+        },
+        "checks": {
+          "stab_M": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          },
+          "stab_O": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          }
+        },
+        "depth": 2,
+        "depth_witness": {
+          "a": [
+            -1,
+            -1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "b": [
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "n": 9,
+        "predicted": {
+          "orb_M": 756,
+          "orb_O": 3024,
+          "stab_M": 960,
+          "stab_O": 240
+        }
+      },
+      {
+        "Lambda_M": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 10,
+          "saturates": true
+        },
+        "Lambda_O": {
+          "elementary_divisors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "rank": 10,
+          "saturates": true
+        },
+        "M_rep": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "O_rep": [
+          -2,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "abstract_identification": {
+          "abstract_iso_certified": true,
+          "stab_M_iso": "D_4 x S_7",
+          "stab_M_witness": {
+            "D_4_order_multiset_reference": {
+              "1": 1,
+              "2": 5,
+              "4": 2
+            },
+            "alternatives_excluded_by_order_multiset": [
+              "Q_8",
+              "Z/8",
+              "Z/4 x Z/2",
+              "(Z/2)^3"
+            ],
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_D4": true,
+            "split_holds": true
+          },
+          "stab_O_iso": "C_2 x S_7",
+          "stab_O_witness": {
+            "C_2_order_multiset_reference": {
+              "1": 1,
+              "2": 1
+            },
+            "image_order_eq_factorial_n_minus_4": true,
+            "kernel_order_multiset_matches_C2": true,
+            "split_holds": true
+          }
+        },
+        "all_pass": true,
+        "bridges": {
+          "Lambda_M_saturates": true,
+          "Lambda_O_saturates": true,
+          "depth_eq_2": true,
+          "orb_M_size": true,
+          "orb_O_size": true,
+          "stab_M_D4xS": true,
+          "stab_M_size": true,
+          "stab_O_C2xS": true,
+          "stab_O_size": true
+        },
+        "checks": {
+          "stab_M": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          },
+          "stab_O": {
+            "kernel_orders_ok": true,
+            "size_ok": true,
+            "split_ok": true
+          }
+        },
+        "depth": 2,
+        "depth_witness": {
+          "a": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ],
+          "b": [
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "n": 11,
+        "predicted": {
+          "orb_M": 1980,
+          "orb_O": 7920,
+          "stab_M": 40320,
+          "stab_O": 10080
+        }
+      }
+    ]
+  },
+  "paper_label": "Theorem F",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "dichotomy_n7_n9_n11",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/phase_9_18_S9q_gamma1.py",
+      "sha256": "161902567e2d80d7ec51f958daa610ed1eebe1c392b0c39c82f3965991460c3d"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "results[n in {7,9,11}]"
+      ],
+      "file": "data/phase_9_18_S9q_gamma1.json",
+      "sha256": "64c3f45158e0491f469a6dcf9602b90f7d722d454a8740d25923da78c1c69751"
+    }
+  ],
+  "tier": "THEOREM"
+}

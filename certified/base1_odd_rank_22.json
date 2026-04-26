@@ -1,0 +1,1595 @@
+{
+  "claim": "Exhaustive scan of the 9! = 362880 symbol relabelings gamma in S_9 of the canonical Sudoku base 'base1' yields rank distribution {8: 362858, 7: 22}; the 22 odd-rank relabelings each admit a four-way exact certificate consisting of (i) integer rank = 7, (ii) a primitive integer kernel vector in V_std (sum = 0), (iii) the integer Smith Normal Form, and (iv) the F_2 Smith Normal Form.  All four are computed exactly via Sympy on every one of the 22 perms.",
+  "inputs": {
+    "base_grid": [
+      [
+        5,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        1,
+        2
+      ],
+      [
+        6,
+        7,
+        2,
+        1,
+        9,
+        5,
+        3,
+        4,
+        8
+      ],
+      [
+        1,
+        9,
+        8,
+        3,
+        4,
+        2,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        5,
+        9,
+        7,
+        6,
+        1,
+        4,
+        2,
+        3
+      ],
+      [
+        4,
+        2,
+        6,
+        8,
+        5,
+        3,
+        7,
+        9,
+        1
+      ],
+      [
+        7,
+        1,
+        3,
+        9,
+        2,
+        4,
+        8,
+        5,
+        6
+      ],
+      [
+        9,
+        6,
+        1,
+        5,
+        3,
+        7,
+        2,
+        8,
+        4
+      ],
+      [
+        2,
+        8,
+        7,
+        4,
+        1,
+        9,
+        6,
+        3,
+        5
+      ],
+      [
+        3,
+        4,
+        5,
+        2,
+        8,
+        6,
+        1,
+        7,
+        9
+      ]
+    ],
+    "n": 9,
+    "n_perms": 362880,
+    "scan_space": "all of S_9"
+  },
+  "outputs": {
+    "four_way_certificates": [
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          2,
+          3,
+          7,
+          4,
+          6,
+          9,
+          5,
+          8
+        ],
+        "primitive_kernel_vector_V_std": [
+          7903,
+          -2384,
+          10216,
+          -10232,
+          -1655,
+          -2078,
+          -1727,
+          -4607,
+          4564
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          4,
+          9,
+          2,
+          5,
+          6,
+          7,
+          3,
+          8
+        ],
+        "primitive_kernel_vector_V_std": [
+          10,
+          19,
+          1,
+          -8,
+          1,
+          -26,
+          -8,
+          28,
+          -17
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          5,
+          3,
+          8,
+          7,
+          9,
+          6,
+          2,
+          4
+        ],
+        "primitive_kernel_vector_V_std": [
+          181,
+          3610,
+          3448,
+          -3212,
+          -3455,
+          -9080,
+          -2825,
+          4312,
+          7021
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          5,
+          3,
+          9,
+          6,
+          4,
+          7,
+          8,
+          2
+        ],
+        "primitive_kernel_vector_V_std": [
+          8,
+          -19,
+          8,
+          8,
+          -1,
+          -10,
+          -10,
+          17,
+          -1
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          7,
+          3,
+          9,
+          8,
+          5,
+          4,
+          6,
+          2
+        ],
+        "primitive_kernel_vector_V_std": [
+          10,
+          -269,
+          136,
+          91,
+          262,
+          -458,
+          -242,
+          343,
+          127
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          7,
+          5,
+          6,
+          9,
+          4,
+          2,
+          8,
+          3
+        ],
+        "primitive_kernel_vector_V_std": [
+          17,
+          -1,
+          30,
+          31,
+          -68,
+          15,
+          -26,
+          62,
+          -60
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          1,
+          9,
+          2,
+          5,
+          7,
+          8,
+          3,
+          4,
+          6
+        ],
+        "primitive_kernel_vector_V_std": [
+          67,
+          -176,
+          4,
+          184,
+          49,
+          58,
+          94,
+          4,
+          -284
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          2,
+          7,
+          6,
+          5,
+          9,
+          1,
+          8,
+          4,
+          3
+        ],
+        "primitive_kernel_vector_V_std": [
+          104,
+          5,
+          23,
+          32,
+          -94,
+          41,
+          32,
+          -76,
+          -67
+        ],
+        "rank_F2": 5,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          10,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          4,
+          6,
+          9,
+          8,
+          3,
+          2,
+          1,
+          5,
+          7
+        ],
+        "primitive_kernel_vector_V_std": [
+          6,
+          -1,
+          7,
+          0,
+          -2,
+          -5,
+          -2,
+          3,
+          -6
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          5,
+          1,
+          7,
+          4,
+          9,
+          8,
+          6,
+          3,
+          2
+        ],
+        "primitive_kernel_vector_V_std": [
+          4,
+          1,
+          10,
+          7,
+          -11,
+          -5,
+          4,
+          -14,
+          4
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          5,
+          1,
+          9,
+          3,
+          4,
+          6,
+          8,
+          2,
+          7
+        ],
+        "primitive_kernel_vector_V_std": [
+          8835,
+          -19462,
+          -1215,
+          8546,
+          10819,
+          -8310,
+          2134,
+          2166,
+          -3513
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          5,
+          9,
+          1,
+          7,
+          6,
+          4,
+          2,
+          8,
+          3
+        ],
+        "primitive_kernel_vector_V_std": [
+          8835,
+          -19462,
+          -1215,
+          8546,
+          10819,
+          -8310,
+          2134,
+          2166,
+          -3513
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          5,
+          9,
+          3,
+          6,
+          1,
+          2,
+          4,
+          7,
+          8
+        ],
+        "primitive_kernel_vector_V_std": [
+          4,
+          1,
+          10,
+          7,
+          -11,
+          -5,
+          4,
+          -14,
+          4
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          6,
+          4,
+          1,
+          2,
+          7,
+          8,
+          9,
+          5,
+          3
+        ],
+        "primitive_kernel_vector_V_std": [
+          6,
+          -1,
+          7,
+          0,
+          -2,
+          -5,
+          -2,
+          3,
+          -6
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          8,
+          3,
+          4,
+          5,
+          1,
+          9,
+          2,
+          6,
+          7
+        ],
+        "primitive_kernel_vector_V_std": [
+          104,
+          5,
+          23,
+          32,
+          -94,
+          41,
+          32,
+          -76,
+          -67
+        ],
+        "rank_F2": 5,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          10,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          1,
+          8,
+          5,
+          3,
+          2,
+          7,
+          6,
+          4
+        ],
+        "primitive_kernel_vector_V_std": [
+          67,
+          -176,
+          4,
+          184,
+          49,
+          58,
+          94,
+          4,
+          -284
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          3,
+          5,
+          4,
+          1,
+          6,
+          8,
+          2,
+          7
+        ],
+        "primitive_kernel_vector_V_std": [
+          17,
+          -1,
+          30,
+          31,
+          -68,
+          15,
+          -26,
+          62,
+          -60
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          3,
+          7,
+          1,
+          2,
+          5,
+          6,
+          4,
+          8
+        ],
+        "primitive_kernel_vector_V_std": [
+          10,
+          -269,
+          136,
+          91,
+          262,
+          -458,
+          -242,
+          343,
+          127
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          5,
+          7,
+          1,
+          4,
+          6,
+          3,
+          2,
+          8
+        ],
+        "primitive_kernel_vector_V_std": [
+          8,
+          -19,
+          8,
+          8,
+          -1,
+          -10,
+          -10,
+          17,
+          -1
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          5,
+          7,
+          2,
+          3,
+          1,
+          4,
+          8,
+          6
+        ],
+        "primitive_kernel_vector_V_std": [
+          181,
+          3610,
+          3448,
+          -3212,
+          -3455,
+          -9080,
+          -2825,
+          4312,
+          7021
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          6,
+          1,
+          8,
+          5,
+          4,
+          3,
+          7,
+          2
+        ],
+        "primitive_kernel_vector_V_std": [
+          10,
+          19,
+          1,
+          -8,
+          1,
+          -26,
+          -8,
+          28,
+          -17
+        ],
+        "rank_F2": 6,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "exact_rank_Z": 7,
+        "kernel_vector_sum_zero": true,
+        "perm": [
+          9,
+          8,
+          7,
+          3,
+          6,
+          4,
+          1,
+          5,
+          2
+        ],
+        "primitive_kernel_vector_V_std": [
+          7903,
+          -2384,
+          10216,
+          -10232,
+          -1655,
+          -2078,
+          -1727,
+          -4607,
+          4564
+        ],
+        "rank_F2": 7,
+        "rank_Z_from_snf": 7,
+        "snf_F2_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "snf_Z_diagonal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          0,
+          0
+        ]
+      }
+    ],
+    "four_way_n_certs": 22,
+    "n_certified_perms_in_phase_9_13f": 3,
+    "odd_examples_logged_in_phase_9_13": [
+      [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        9,
+        5,
+        8
+      ],
+      [
+        1,
+        4,
+        9,
+        2,
+        5,
+        6,
+        7,
+        3,
+        8
+      ],
+      [
+        1,
+        5,
+        3,
+        8,
+        7,
+        9,
+        6,
+        2,
+        4
+      ],
+      [
+        1,
+        5,
+        3,
+        9,
+        6,
+        4,
+        7,
+        8,
+        2
+      ],
+      [
+        1,
+        7,
+        3,
+        9,
+        8,
+        5,
+        4,
+        6,
+        2
+      ]
+    ],
+    "odd_perms_count": 22,
+    "odd_perms_full_list": [
+      [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        9,
+        5,
+        8
+      ],
+      [
+        1,
+        4,
+        9,
+        2,
+        5,
+        6,
+        7,
+        3,
+        8
+      ],
+      [
+        1,
+        5,
+        3,
+        8,
+        7,
+        9,
+        6,
+        2,
+        4
+      ],
+      [
+        1,
+        5,
+        3,
+        9,
+        6,
+        4,
+        7,
+        8,
+        2
+      ],
+      [
+        1,
+        7,
+        3,
+        9,
+        8,
+        5,
+        4,
+        6,
+        2
+      ],
+      [
+        1,
+        7,
+        5,
+        6,
+        9,
+        4,
+        2,
+        8,
+        3
+      ],
+      [
+        1,
+        9,
+        2,
+        5,
+        7,
+        8,
+        3,
+        4,
+        6
+      ],
+      [
+        2,
+        7,
+        6,
+        5,
+        9,
+        1,
+        8,
+        4,
+        3
+      ],
+      [
+        4,
+        6,
+        9,
+        8,
+        3,
+        2,
+        1,
+        5,
+        7
+      ],
+      [
+        5,
+        1,
+        7,
+        4,
+        9,
+        8,
+        6,
+        3,
+        2
+      ],
+      [
+        5,
+        1,
+        9,
+        3,
+        4,
+        6,
+        8,
+        2,
+        7
+      ],
+      [
+        5,
+        9,
+        1,
+        7,
+        6,
+        4,
+        2,
+        8,
+        3
+      ],
+      [
+        5,
+        9,
+        3,
+        6,
+        1,
+        2,
+        4,
+        7,
+        8
+      ],
+      [
+        6,
+        4,
+        1,
+        2,
+        7,
+        8,
+        9,
+        5,
+        3
+      ],
+      [
+        8,
+        3,
+        4,
+        5,
+        1,
+        9,
+        2,
+        6,
+        7
+      ],
+      [
+        9,
+        1,
+        8,
+        5,
+        3,
+        2,
+        7,
+        6,
+        4
+      ],
+      [
+        9,
+        3,
+        5,
+        4,
+        1,
+        6,
+        8,
+        2,
+        7
+      ],
+      [
+        9,
+        3,
+        7,
+        1,
+        2,
+        5,
+        6,
+        4,
+        8
+      ],
+      [
+        9,
+        5,
+        7,
+        1,
+        4,
+        6,
+        3,
+        2,
+        8
+      ],
+      [
+        9,
+        5,
+        7,
+        2,
+        3,
+        1,
+        4,
+        8,
+        6
+      ],
+      [
+        9,
+        6,
+        1,
+        8,
+        5,
+        4,
+        3,
+        7,
+        2
+      ],
+      [
+        9,
+        8,
+        7,
+        3,
+        6,
+        4,
+        1,
+        5,
+        2
+      ]
+    ],
+    "odd_rank_count": 22,
+    "rank_F2_histogram": {
+      "5": 2,
+      "6": 8,
+      "7": 12
+    },
+    "rank_distribution": {
+      "7": 22,
+      "8": 362858
+    },
+    "snf_Z_diagonal_histogram": {
+      "[1, 1, 1, 1, 1, 1, 1, 0, 0]": 10,
+      "[1, 1, 1, 1, 1, 1, 2, 0, 0]": 4,
+      "[1, 1, 1, 1, 1, 1, 3, 0, 0]": 2,
+      "[1, 1, 1, 1, 1, 1, 4, 0, 0]": 4,
+      "[1, 1, 1, 1, 1, 2, 10, 0, 0]": 2
+    }
+  },
+  "paper_label": "Proposition P1",
+  "produced_utc": "2026-04-26T12:44:29Z",
+  "result_id": "base1_odd_rank_22",
+  "schema_version": 1,
+  "scripts": [
+    {
+      "path": "scripts/legacy/phase13b_exhaustive.py",
+      "sha256": "4022ee4aa21b21321fcaabc01a76ad6d51b16a45979e0a2d2368f23012279511"
+    },
+    {
+      "path": "scripts/legacy/phase_9_13.py",
+      "sha256": "b51e1a025de3db49ec12a9099363daeec885cc063249a1ef0d7989627095d421"
+    },
+    {
+      "path": "scripts/legacy/phase_9_13f_certificate.py",
+      "sha256": "3cbd343002878e3d464cfba68eb0f183040dff05c3b2612f5980c6609c1bd3a8"
+    },
+    {
+      "path": "certified/recover_base1_22_perms.py",
+      "sha256": "54e71d48b8fbde5a98606edc599911db5d014a6560e65eb7e306468dfe6e4517"
+    },
+    {
+      "path": "certified/four_way_base1_22.py",
+      "sha256": "1e0c788541fd6579d792bdd9442342dbf7616724066cf3e70ad1cc41a1cf585f"
+    }
+  ],
+  "seed": null,
+  "source": [
+    {
+      "extracted_keys": [
+        "phase_9_13_c"
+      ],
+      "file": "data/phase_9_13_results.json",
+      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+    },
+    {
+      "extracted_keys": [
+        "certificates"
+      ],
+      "file": "data/phase_9_13f_certificate.json",
+      "sha256": "cd046656f9102b28ec7f5633f97063d3f5b0010a32cf5a346391fc6b8bc97600"
+    },
+    {
+      "extracted_keys": [
+        "odd_perms",
+        "odd_rank_count"
+      ],
+      "file": "certified/base1_22_perms_recovered.json",
+      "note": "Recovered via certified/recover_base1_22_perms.py; exhaustive S_9 rescan of base1 in ~16s.",
+      "sha256": "d8abc10440a8e443f7a573488a4749748c7842f2fca70df91aafd8a6d259d817"
+    },
+    {
+      "extracted_keys": [
+        "four_way_certificates"
+      ],
+      "file": "certified/four_way_base1_22.json",
+      "note": "Generated via certified/four_way_base1_22.py; exact Sympy computation of (rank Z, primitive V_std kernel, integer SNF, F_2 SNF) for every one of the 22 perms.",
+      "sha256": "fed364c7f8200332c200c9ce94f26018405dec0157b6a57a8680e4f752a3aed1"
+    }
+  ],
+  "tier": "EXHAUSTIVE"
+}

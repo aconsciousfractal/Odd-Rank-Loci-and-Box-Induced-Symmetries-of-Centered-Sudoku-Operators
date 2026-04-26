@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software or the certified data, please cite both the paper and this repository."
+title: "Odd-Rank Loci and Box-Induced Symmetries of Centered Sudoku Operators"
+type: software
+authors:
+  - family-names: Babanskyy
+    given-names: Oleksiy
+    orcid: "https://orcid.org/0009-0001-6176-6208"
+repository-code: "https://github.com/aconsciousfractal/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators"
+license: MIT
+date-released: "2026-04-26"
+keywords:
+  - sudoku
+  - latin-squares
+  - centered-operators
+  - exhaustive-enumeration
+  - root-lattices
+  - dihedral-groups
+  - hessian-group
+  - reproducibility
+preferred-citation:
+  type: article
+  title: "Odd-Rank Loci and Box-Induced Symmetries of Centered Sudoku Operators"
+  authors:
+    - family-names: Babanskyy
+      given-names: Oleksiy
+      orcid: "https://orcid.org/0009-0001-6176-6208"
+  year: 2026
