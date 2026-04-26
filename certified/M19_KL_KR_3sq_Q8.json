@@ -1,5 +1,5 @@
 {
-  "claim": "At the laboratory base M_{19}, the left and right Hessian symmetry groups of the bilateral coset structure of Gamma^*_{M_{19}} satisfy K_L cong K_R cong 3^2:Q_8 = SmallGroup(72, 41); both groups have order 72, exponent 6, derived series 72->18->9->1, abelianization Z/4, trivial centre, and 9 conjugacy classes. K_L != K_R as subgroups of S_9 (intersection trivial), but they are conjugate via the structural permutation pi_0.",
+  "claim": "At the laboratory base M_{19}, the left and right Hessian symmetry groups of the bilateral coset structure of Gamma^*_{M_{19}} satisfy K_L cong K_R cong 3^2:Q_8 = SmallGroup(72, 41); both groups have order 72, exponent 6, derived series 72->18->9->1, abelianization Z/4, trivial centre, and 9 conjugacy classes. K_L != K_R as subgroups of S_9 (intersection trivial), but they are conjugate via the external structural permutation pi_0 = (1,5,3,9,6,8,7,4,2) in S_9 (lex-min of Gamma^*_{M_{19}}); pi_0 is not contained in K_L or K_R.",
   "inputs": {
     "base": "M_{19}",
     "n": 9
@@ -145,10 +145,23 @@
     "K_R_block_systems": [],
     "Y2_conjugate_via_pi0": true,
     "abstract_group_id": "SmallGroup(72, 41)",
-    "abstract_group_name": "3^2 : Q_8"
+    "abstract_group_name": "3^2 : Q_8",
+    "pi0_in_K_L": false,
+    "pi0_in_K_R": false,
+    "pi0_perm": [
+      1,
+      5,
+      3,
+      9,
+      6,
+      8,
+      7,
+      4,
+      2
+    ]
   },
   "paper_label": "Theorem E",
-  "produced_utc": "2026-04-26T12:44:29Z",
+  "produced_utc": "2026-04-26T13:28:01Z",
   "result_id": "M19_KL_KR_3sq_Q8",
   "schema_version": 1,
   "scripts": [
@@ -166,7 +179,8 @@
     {
       "extracted_keys": [
         "K_L_elements",
-        "K_R_elements"
+        "K_R_elements",
+        "Gamma_star_perms"
       ],
       "file": "data/phase_9_18_S9x_results.json",
       "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"

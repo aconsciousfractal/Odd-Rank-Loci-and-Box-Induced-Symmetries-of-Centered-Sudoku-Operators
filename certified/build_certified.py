@@ -758,6 +758,16 @@ def cert_M19_KL_KR_3sq_Q8() -> Dict[str, Any]:
     inv = src2["invariants"]
     sp1, sh1 = script_provenance("phase_9_18_S9x.py")
     sp2, sh2 = script_provenance("phase_9_18_S9x_bis.py")
+    gamma_star_perms = src1.get("Gamma_star_perms", []) or []
+    pi0_perm = min(gamma_star_perms) if gamma_star_perms else None
+    expected_pi0_perm = [1, 5, 3, 9, 6, 8, 7, 4, 2]
+    if pi0_perm != expected_pi0_perm:
+        raise AssertionError(f"pi0_perm drifted: {pi0_perm}")
+    pi0_text = "(" + ",".join(str(x) for x in pi0_perm) + ")"
+    K_L_elements = src1.get("K_L_elements", []) or []
+    K_R_elements = src1.get("K_R_elements", []) or []
+    pi0_in_K_L = pi0_perm is not None and pi0_perm in K_L_elements
+    pi0_in_K_R = pi0_perm is not None and pi0_perm in K_R_elements
     return {
         "result_id": "M19_KL_KR_3sq_Q8",
         "tier": "THEOREM",
@@ -768,8 +778,9 @@ def cert_M19_KL_KR_3sq_Q8() -> Dict[str, Any]:
             "K_L cong K_R cong 3^2:Q_8 = SmallGroup(72, 41); both groups have order "
             "72, exponent 6, derived series 72->18->9->1, abelianization Z/4, "
             "trivial centre, and 9 conjugacy classes. K_L != K_R as subgroups of "
-            "S_9 (intersection trivial), but they are conjugate via the structural "
-            "permutation pi_0."
+            "S_9 (intersection trivial), but they are conjugate via the external "
+            f"structural permutation pi_0 = {pi0_text} in S_9 (lex-min of "
+            "Gamma^*_{M_{19}}); pi_0 is not contained in K_L or K_R."
         ),
         "inputs": {"n": 9, "base": "M_{19}"},
         "outputs": {
@@ -782,10 +793,17 @@ def cert_M19_KL_KR_3sq_Q8() -> Dict[str, Any]:
             "K_R_block_systems": src2["K_R_block_systems"],
             "abstract_group_id": "SmallGroup(72, 41)",
             "abstract_group_name": "3^2 : Q_8",
-            "K_L_generators_perms": src1.get("K_L_elements", [])[:8],
+            "K_L_generators_perms": K_L_elements[:8],
+            "pi0_perm": pi0_perm,
+            "pi0_in_K_L": pi0_in_K_L,
+            "pi0_in_K_R": pi0_in_K_R,
         },
         "source": [
-            {**prov1, "extracted_keys": ["K_L_elements", "K_R_elements"]},
+            {**prov1, "extracted_keys": [
+                "K_L_elements",
+                "K_R_elements",
+                "Gamma_star_perms",
+            ]},
             {
                 **prov2,
                 "extracted_keys": [

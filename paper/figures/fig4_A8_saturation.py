@@ -89,7 +89,7 @@ def main() -> Path:
 
     out_pdf = HERE / "fig4_A8_saturation.pdf"
     out_png = HERE / "fig4_A8_saturation.png"
-    fig.savefig(out_pdf)
+    fig.savefig(out_pdf, metadata={"CreationDate": None, "ModDate": None})
     fig.savefig(out_png, dpi=200)
     plt.close(fig)
     print(f"[OK] {out_pdf.name}, {out_png.name}")

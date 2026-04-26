@@ -7,3 +7,4 @@
 numpy>=1.24,<3.0        # array algebra, exhaustive S_9 / B_3 scans
 sympy>=1.12,<2.0        # exact rational rank, integer SNF, Gauss-Jordan over Z
 scipy>=1.10,<2.0        # erfc (two-proportion p-value), optional helpers
+matplotlib>=3.7,<4.0    # regenerating paper figures

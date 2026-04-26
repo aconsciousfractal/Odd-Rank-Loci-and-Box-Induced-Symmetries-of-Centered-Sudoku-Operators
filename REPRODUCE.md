@@ -3,6 +3,7 @@
 This guide records the exact commands and canonical artifact paths for
 
 - `paper/main.tex`
+- `paper/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf`
 
 inside this repository. The repository is fully self-contained — no
 external folder is read by any script in this package.
@@ -10,7 +11,7 @@ external folder is read by any script in this package.
 ## Environment
 
 - Python 3.11+
-- `numpy`, `sympy`, `scipy`
+- `numpy`, `sympy`, `scipy`, `matplotlib`
 - A working LaTeX distribution (MiKTeX 25.x or TeX Live 2025+) with
   `pdflatex` and `bibtex` on `PATH`
 
@@ -29,10 +30,10 @@ pip install -r requirements.txt
 | Recovered base1 22-perm list                       | `certified/base1_22_perms_recovered.json`            |
 | Four-way base1 audit (rank/SNF Z + F2 / kernel)    | `certified/four_way_base1_22.json`                   |
 | Recovered M19 100-perm list                        | `certified/M19_100_perms_recovered.json`             |
-| 13 source data JSONs                               | `data/*.json`                                        |
+| 13 verified source artifacts                       | 10 under `data/`, 3 recovered/audit JSONs under `certified/` |
 | 15 producer scripts                                | `scripts/legacy/*.py`                                |
 | Paper figures (5 PDFs + producing scripts)         | `paper/figures/`                                     |
-| Compiled paper                                     | `paper/main.pdf`                                     |
+| Release paper PDF                                  | `paper/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf` |
 
 ## Core commands (run from repository root)
 
@@ -42,9 +43,10 @@ pip install -r requirements.txt
 python certified/build_certified.py
 ```
 
-Reads `data/*.json` (provenance) and `scripts/legacy/*.py` (sha-stamped
-provenance only — the data are already on disk), runs every claimed
-invariant in process (Lift Lemma over $\mathbb{Q}$ via Sympy on
+Reads the SHA-pinned source artifacts under `data/` and `certified/`,
+plus `scripts/legacy/*.py` (sha-stamped provenance only — the upstream
+data are already on disk), runs every claimed invariant in process
+(Lift Lemma over $\mathbb{Q}$ via Sympy on
 22 + 100 + 72 perms; Box-Band identity on Sudoku vs non-Sudoku; full SNF
 of the cyclic LS-9 counterexample; etc.), and writes 11 certificate
 JSONs plus `certified/MANIFEST.sha256`.
@@ -112,7 +114,10 @@ python fig4_A8_saturation.py
 python fig5_M19_coset_structure.py
 ```
 
-Each script writes the corresponding `.pdf` next to itself.
+Each script writes the corresponding `.pdf` next to itself. Figure
+regeneration uses `matplotlib>=3.7` from `requirements.txt`; the
+scripts freeze PDF `CreationDate` and `ModDate` metadata so repeated
+runs are byte-stable.
 
 ### 6. Compile the paper
 
@@ -124,9 +129,10 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 bibtex main
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
+cp main.pdf Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf
 ```
 
-Output: `paper/main.pdf` (21 pages).
+Output: `paper/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf` (currently 22 pages). The intermediate `paper/main.pdf` is a local LaTeX build product and is ignored by git.
 
 ## Standalone test
 
@@ -140,7 +146,7 @@ cd /tmp/standalone-test/
 python certified/build_certified.py
 python certified/verify_all.py
 python certified/reproduce_all.py
-cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
+cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex && cp main.pdf Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf
 ```
 
 All checks should pass with output identical to the in-place run.

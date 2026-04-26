@@ -9,8 +9,9 @@ confirms that every regenerated certificate matches the on-disk version
 It does NOT re-execute the upstream producer scripts under ``scripts/``
 (those already wrote the source JSONs under ``data/``); it does re-import
 ``build_certified`` and call each builder, exercising every assertion
-inside (Lift Lemma full Sympy check on 94 perms, Box-Band identity on
-base1 + M19, kernel-via-SNF on the cyclic LS-9 counterexample, etc.).
+inside (full SymPy lift-lemma check on the 22 base1 + 100 M_{19} + 72
+Hessian odd-rank relabelings, Box-Band identity on base1 and M_{19},
+kernel-via-SNF on the cyclic LS-9 counterexample, etc.).
 
 Usage::
 

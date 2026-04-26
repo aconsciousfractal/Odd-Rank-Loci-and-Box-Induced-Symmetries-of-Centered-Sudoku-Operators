@@ -4,7 +4,7 @@ Fig. 2 (paper II §4) — Rank distribution of the family
 $\{E_\gamma\}_{\gamma \in S_9}$ on Sudoku base$_1$. Single bar plot,
 log-scale on the y-axis, showing 362858 rank-8 vs 22 rank-7 relabelings.
 
-Source: ``paper/certified/base1_odd_rank_22.json``.
+Source: ``certified/base1_odd_rank_22.json`` (repo-root sibling of ``paper/``).
 """
 from __future__ import annotations
 
@@ -14,7 +14,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 HERE = Path(__file__).resolve().parent
-CERT = HERE.parent / "certified" / "base1_odd_rank_22.json"
+# HERE = paper/figures/, HERE.parents[1] = repo root, then /certified/.
+CERT = HERE.parents[1] / "certified" / "base1_odd_rank_22.json"
 
 
 def main() -> Path:
@@ -51,7 +52,7 @@ def main() -> Path:
 
     out_pdf = HERE / "fig2_rank_distribution.pdf"
     out_png = HERE / "fig2_rank_distribution.png"
-    fig.savefig(out_pdf)
+    fig.savefig(out_pdf, metadata={"CreationDate": None, "ModDate": None})
     fig.savefig(out_png, dpi=200)
     plt.close(fig)
     print(f"[OK] {out_pdf.name}, {out_png.name}")

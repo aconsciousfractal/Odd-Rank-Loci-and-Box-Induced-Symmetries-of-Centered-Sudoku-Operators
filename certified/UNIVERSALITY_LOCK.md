@@ -4,8 +4,8 @@
 > §9 (universal $\{M_n, O_n\}$ dichotomy) into three tier-disjoint
 > statements: (i) THEOREM at $n \in \{7, 9, 11\}$, (ii) PROPOSITION
 > (exhaustive verification) at $5 \le n \le 13$, (iii) CONJECTURE for
-> general $n \ge 5$. Built per task **P0.5** of
-> [`PRE_DRAFT_TASKS.md`](../PRE_DRAFT_TASKS.md).
+> general $n \ge 5$. This standalone lock supersedes the internal
+> pre-draft planning notes used during manuscript preparation.
 >
 > **Acceptance test.** None of the three blocks below may bleed into
 > another's tier. Specifically:
@@ -28,8 +28,8 @@
 > **Theorem F (Stabilizer / lattice / orbit-distance dichotomy at
 > $n \in \{7, 9, 11\}$).** *Let $n \in \{7, 9, 11\}$, and let
 > $M_n,\ O_n \in V_{\mathrm{std},n}$ denote the canonical sparse-low
-> templates (specified in §2.4). Acting by the structural group
-> $G^* \le S_n \times S_n \times S_n$ defined in §2.5:*
+> templates. Acting by the signed coordinate-permutation group
+> $G^*_n = S_n \times \{\pm 1\}$ on $A_{n-1}$:*
 >
 > 1. *the stabilizer of $M_n$ is*
 >    $$\mathrm{Stab}_{G^*}(M_n) \;\cong\; D_4 \times S_{n-4},$$
@@ -48,8 +48,9 @@
 > $n$.*
 >
 > **Tier.** THEOREM. *Source.*
-> [`PHASE_9_13_S9_REPORT.md`](../../../docs/PHASE_9_13_S9_REPORT.md)
-> §8.25.duodecies / terdecies / quaterdecies / sexdecies. *Certificate.*
+> `PHASE_9_13_S9_REPORT.md`
+> §8.25.duodecies / terdecies / quaterdecies / sexdecies (historical
+> source-workspace provenance label, not bundled here). *Certificate.*
 > [`dichotomy_n7_n9_n11.json`](dichotomy_n7_n9_n11.json).
 
 ---
@@ -80,8 +81,9 @@
 > output of the enumeration.*
 >
 > **Tier.** EXHAUSTIVE. *Source.*
-> [`PHASE_9_13_S9_REPORT.md`](../../../docs/PHASE_9_13_S9_REPORT.md)
-> §8.27 (γ-1). *Certificate.*
+> `PHASE_9_13_S9_REPORT.md`
+> §8.27 (γ-1) (historical source-workspace provenance label, not
+> bundled here). *Certificate.*
 > [`stabilizers_5_to_13.json`](stabilizers_5_to_13.json).
 >
 > **Scope caveat.** Proposition P4 is a *computer verification* over a
@@ -152,18 +154,18 @@ method with another row.
   notational conventions and §-numbering, which may differ at
   typesetting time).
 - §12 Open problems: C10 is reproduced verbatim.
-- [`NOVELTY_AND_POSITIONING.md`](../NOVELTY_AND_POSITIONING.md) §4.2
-  remains: "only $M$ and $O_6$ saturate $A_{n-1}$ in the verified
-  range $n \in \{7, 9, 11\}$; universality outside is Conjecture C10."
+- The manuscript and this lock retain the standalone rule: only the
+  verified theorem/proposition ranges are established; universality
+  outside them is Conjecture C10.
 
 ---
 
 ## §9.6 Canonical statement of $M_n$, $O_n$ (referenced above)
 
 For completeness, the "canonical sparse-low template" rule used in
-both Theorem F and Conjecture C10 is the one already fixed in §2.4
-of [`PAPER_PLAN.md`](../PAPER_PLAN.md), with $n$-specific representatives
-listed in [`dichotomy_n7_n9_n11.json`](dichotomy_n7_n9_n11.json) and
+both Theorem F and Conjecture C10 is the one encoded by the certified
+$n$-specific representatives listed in
+[`dichotomy_n7_n9_n11.json`](dichotomy_n7_n9_n11.json) and
 [`stabilizers_5_to_13.json`](stabilizers_5_to_13.json) under the keys
 `M_rep` and `O_rep`. The conjecture extends this rule to arbitrary
 $n \ge 5$; **no other extension rule is admissible** without amending

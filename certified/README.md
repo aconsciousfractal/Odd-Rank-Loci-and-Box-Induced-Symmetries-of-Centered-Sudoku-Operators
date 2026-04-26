@@ -26,37 +26,54 @@ Each JSON conforms to:
 ```json
 {
   "result_id": "<stable identifier>",
-  "tier": "THEOREM | EXHAUSTIVE | THEOREM_EXHAUSTIVE | PROPOSITION_FINITE_CORPUS",
-  "claim": "<one sentence>",
+  "tier": "THEOREM | THEOREM_EXHAUSTIVE | EXHAUSTIVE | EMPIRICAL | OBSERVED TEMPLATE | CONJECTURE",
   "paper_label": "Theorem A | Proposition P1 | ...",
+  "claim": "<one or two sentences>",
   "inputs": { ... },
   "outputs": { ... },
-  "script": "scripts/<file>.py",
-  "script_sha256": "<hex64>",
+  "scripts": [
+    { "path": "scripts/legacy/<file>.py", "sha256": "<hex64>" },
+    ...
+  ],
+  "source": [
+    { "file": "data/<file>.json | certified/<file>.json", "sha256": "<hex64>",
+      "extracted_keys": [ ... ] },
+    ...
+  ],
   "seed": null,
   "produced_utc": "YYYY-MM-DDTHH:MM:SSZ",
   "schema_version": 1
 }
 ```
 
+`scripts[]` is a list (one or more producer scripts under
+`scripts/legacy/` or canonical scripts under `certified/`); `source[]`
+is a list of the upstream JSON sources under `data/` and recovered
+cross-check JSONs under `certified/` from which the certificate is
+assembled. The
+`MANIFEST.sha256` digest is computed over the canonical serialization
+`json.dumps(cert, sort_keys=True, indent=2, ensure_ascii=False)` with
+the `produced_utc` field removed.
+
 ## Reproducibility entry-points
 
 ```
-python verify_all.py --quick      # claim-level checks (minutes)
-python reproduce_all.py --full    # full byte-level rerun (costly)
+python verify_all.py            # claim-level checks (seconds)
+python reproduce_all.py         # full builder rerun + byte-equality
 ```
 
-`verify_all.py --quick` reads `MANIFEST.sha256`, validates schema,
-recomputes content hashes, and re-checks the principal claims (ranks,
-SNF invariant factors of the listed witnesses, kernel verifications,
+`verify_all.py` reads `MANIFEST.sha256`, validates schema, recomputes
+content hashes, and re-checks the principal claims (ranks, SNF
+invariant factors of the listed witnesses, kernel verifications,
 group orders / SmallGroup IDs).
 
-`reproduce_all.py --full` re-runs every producing script end-to-end and
-asserts byte-equality of the canonical JSON output (modulo the
-`produced_utc` field). Exit code 0 ⇔ all certificates reproduced.
-
-JSONs are serialized with `json.dumps(..., sort_keys=True, indent=2)`;
-`produced_utc` is excluded from the SHA-256 digest.
+`reproduce_all.py` re-imports `build_certified.py` and invokes every
+builder, asserting byte-equality of the canonical JSON output (modulo
+the `produced_utc` field). It does **not** re-execute the upstream
+producer scripts under `scripts/legacy/` — those have already written
+the authoritative source JSONs under `data/`, whose content is pinned
+by their own sha256 inside each certificate's `source[]` block. Exit
+code 0 iff every certificate reproduces.
 
 ## Seed policy
 

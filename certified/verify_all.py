@@ -120,7 +120,31 @@ def chk_base1_odd_rank_22(o: Dict[str, Any]) -> Tuple[bool, str]:
     fwc = out.get("four_way_certificates")
     if not isinstance(fwc, list) or len(fwc) != 22:
         return False, f"four_way_certificates len={len(fwc) if isinstance(fwc, list) else type(fwc).__name__}"
-    return True, "22 distinct S_9 perms, rank-7 each, four-way x22"
+    # SNF/F_2 distribution sanity (paper §4.3): NOT all torsion-free, NOT
+    # uniform F_2 rank. The published paper text references the actual
+    # multi-class distribution; if a single SNF class or a single F_2 rank
+    # appears for all 22, the certificate has drifted.
+    from collections import Counter
+    snf_classes = Counter(tuple(c["snf_Z_diagonal"]) for c in fwc)
+    f2_ranks = Counter(c["rank_F2"] for c in fwc)
+    if len(snf_classes) < 2:
+        return False, f"§4.3: SNF over Z is not multi-class as paper claims: {dict(snf_classes)}"
+    if len(f2_ranks) < 2:
+        return False, f"§4.3: F_2 rank is uniform; paper claims a non-trivial histogram: {dict(f2_ranks)}"
+    # Per-cert sanity: all ranks integer 7, kernel sums to 0, SNF length 9.
+    for c in fwc:
+        if c["exact_rank_Z"] != 7:
+            return False, f"perm {c['perm']}: exact_rank_Z={c['exact_rank_Z']}"
+        if not c.get("kernel_vector_sum_zero", False):
+            return False, f"perm {c['perm']}: kernel not in V_std"
+        if len(c["snf_Z_diagonal"]) != 9:
+            return False, f"perm {c['perm']}: SNF length != 9"
+        if c["rank_Z_from_snf"] != 7:
+            return False, f"perm {c['perm']}: SNF rank mismatch"
+    return True, (
+        f"22 perms rank-7; SNF classes={len(snf_classes)} "
+        f"(max={snf_classes.most_common(1)[0][1]}); F_2 ranks={dict(f2_ranks)}"
+    )
 
 
 def chk_n6_odd_rank_census(o: Dict[str, Any]) -> Tuple[bool, str]:
@@ -240,8 +264,29 @@ def chk_M19_KL_KR(o: Dict[str, Any]) -> Tuple[bool, str]:
         return False, f"|cc(K_L)|={KL['n_conjugacy_classes']}"
     if out.get("K_L_inter_K_R_size") != 1:
         return False, f"K_L cap K_R={out.get('K_L_inter_K_R_size')}"
-    return True, "K_L=K_R: order 72, exp 6, deriv 72->18->9->1, ab Z/4, 9 cc"
-
+    # pi_0 must be present, must be a permutation of {1..9}, must NOT lie
+    # in K_L or K_R, and the conjugacy flag Y2_conjugate_via_pi0 must hold.
+    pi0 = out.get("pi0_perm")
+    if not isinstance(pi0, list) or sorted(pi0) != list(range(1, 10)):
+        return False, f"pi0_perm absent or not a permutation: {pi0}"
+    expected_pi0 = [1, 5, 3, 9, 6, 8, 7, 4, 2]
+    if pi0 != expected_pi0:
+        return False, f"pi0_perm={pi0}, expected {expected_pi0}"
+    if out.get("pi0_in_K_L", True):
+        return False, "pi_0 must be EXTERNAL to K_L (paper Remark 8.6)"
+    if out.get("pi0_in_K_R", True):
+        return False, "pi_0 must be EXTERNAL to K_R (paper Remark 8.6)"
+    if not out.get("Y2_conjugate_via_pi0", False):
+        return False, "pi_0 conjugacy K_L = pi_0 K_R pi_0^{-1} not certified"
+    if out.get("K_L_eq_K_R", True):
+        return False, "K_L_eq_K_R must be False (paper Theorem 8.5)"
+    gens = out.get("K_L_generators_perms", [])
+    if pi0 in gens:
+        return False, "pi_0 must NOT be one of the K_L generators"
+    return True, (
+        "K_L=K_R: order 72, exp 6, deriv 72->18->9->1, ab Z/4, 9 cc; "
+        f"pi_0={pi0} external; Y2 conj via pi_0"
+    )
 
 def chk_A8_saturation(o: Dict[str, Any]) -> Tuple[bool, str]:
     out = o["outputs"]
@@ -438,6 +483,33 @@ def main() -> int:
                 continue
         log(f"OK    standalone-source {rel}")
     failures += standalone_failures
+
+    # Paper-grep guard: forbid drift back to the falsified blanket claim.
+    paper_tex = REPO_ROOT / "paper" / "main.tex"
+    if paper_tex.exists():
+        forbidden = [
+            ("cokernel is torsion-free of rank $1$",
+             "§4.3 falsified blanket SNF claim"),
+            ("agreeing with the integer rank on every",
+             "§4.3 falsified blanket F_2 claim"),
+            ("$\\pi_0$ is one of the eight generators",
+             "Remark 8.6: pi_0 wrongly placed inside K_L"),
+            ("odd-rank phenomenon at\n$n = 6$",
+             "§5 wording: should be F_2-rank parity proxy"),
+        ]
+        try:
+            text = paper_tex.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            text = paper_tex.read_text(encoding="latin-1")
+        paper_failures = 0
+        for needle, why in forbidden:
+            if needle in text:
+                print(f"FAIL  paper-grep: forbidden phrase present — {why}")
+                print(f"        needle: {needle!r}")
+                paper_failures += 1
+        if paper_failures == 0:
+            log(f"OK    paper-grep paper/main.tex (no forbidden phrases)")
+        failures += paper_failures
 
     if failures == 0:
         print(f"\n[verify_all] ALL CHECKS PASSED ({len(entries)} certificates, "

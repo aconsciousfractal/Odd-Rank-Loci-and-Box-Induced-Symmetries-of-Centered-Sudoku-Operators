@@ -99,7 +99,7 @@ def main() -> Path:
 
     out_pdf = HERE / "fig1_sudoku_projectors.pdf"
     out_png = HERE / "fig1_sudoku_projectors.png"
-    fig.savefig(out_pdf)
+    fig.savefig(out_pdf, metadata={"CreationDate": None, "ModDate": None})
     fig.savefig(out_png, dpi=200)
     plt.close(fig)
     print(f"[OK] {out_pdf.name}, {out_png.name}")

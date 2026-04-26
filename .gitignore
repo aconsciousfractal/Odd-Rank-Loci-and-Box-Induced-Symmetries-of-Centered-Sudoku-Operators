@@ -15,5 +15,6 @@ build/
 *.out
 *.synctex.gz
 *.toc
+paper/main.pdf
 .DS_Store
 Thumbs.db

@@ -22,7 +22,8 @@
 │   ├── main.tex
 │   ├── notation.tex
 │   ├── refs.bib
-│   ├── main.pdf                 # 21 pp build (regenerable)
+│   ├── Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf
+│   │                            # release PDF (regenerable from main.tex)
 │   └── figures/                 # 5 publication PDFs + producing scripts
 ├── certified/                   # Self-contained certificate package
 │   ├── build_certified.py       # Builds 11 certificate JSONs from data/
@@ -44,7 +45,7 @@
 ├── scripts/
 │   ├── SCRIPT_INDEX.md          # Cryptic-name → meaningful-purpose map
 │   └── legacy/                  # 15 producer scripts (legacy phase_9_* names)
-├── data/                        # 13 source JSONs ingested by the certificate builder
+├── data/                        # upstream JSONs, 10 used directly by certificates
 ├── README.md                    # This file
 ├── REPRODUCE.md                 # Step-by-step reproduction guide
 ├── CITATION.cff
@@ -87,6 +88,7 @@ python certified/build_certified.py
 | numpy   | ≥ 1.24  | Array algebra, exhaustive S_9 and B_3 scans        |
 | sympy   | ≥ 1.12  | Exact rank over ℚ, integer SNF, Gauss–Jordan/ℤ     |
 | scipy   | ≥ 1.10  | `erfc` (two-proportion p-value), optional helpers  |
+| matplotlib | ≥ 3.7 | Regenerating the paper figures                     |
 
 Tested with Python 3.11 / 3.12 / 3.14.
 
@@ -96,13 +98,14 @@ See [`REPRODUCE.md`](REPRODUCE.md) for the full artifact map and exact
 commands. The minimal three-step sequence is:
 
 1. `python certified/build_certified.py` — regenerates 11 certificate
-   JSONs and `MANIFEST.sha256` from `data/` and `scripts/legacy/`.
+   JSONs and `MANIFEST.sha256` from the verified source artifacts under
+   `data/`, `certified/`, and `scripts/legacy/`.
 2. `python certified/verify_all.py` — schema validation, manifest
    sha256 check, semantic spot-checks, and **standalone-completeness
    audit** (every script and source file referenced in any certificate
    must exist inside the repository with matching sha256).
 3. `pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex`
-   inside `paper/`.
+   inside `paper/`, then copy `main.pdf` to the release PDF filename.
 
 ## Certificate tier discipline
 

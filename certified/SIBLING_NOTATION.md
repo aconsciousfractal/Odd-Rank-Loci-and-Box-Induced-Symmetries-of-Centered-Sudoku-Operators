@@ -1,9 +1,10 @@
 # SIBLING_NOTATION.md — notational reconciliation with the determinant-divisibility paper
 
 > **Purpose.** One-page consistency check between the notation of paper II
-> (this folder) and that of the sibling
-> [`Determinant Divisibility of Centered Latin Squares`](../../../Determinant%20Divisibility%20of%20Centered%20Latin%20Squares/paper/Determinant%20Divisibility%20of%20Centered%20Latin%20Squares.tex).
-> Built per task **P1.3** of [`PRE_DRAFT_TASKS.md`](../PRE_DRAFT_TASKS.md).
+> (this folder) and that of the sibling working draft
+> `Determinant Divisibility of Centered Latin Squares`.
+> This standalone note supersedes the internal pre-draft task file used
+> during manuscript preparation.
 >
 > **Acceptance.** Every symbol that appears in both papers must denote
 > the same mathematical object up to (a) trivially equivalent indexing
