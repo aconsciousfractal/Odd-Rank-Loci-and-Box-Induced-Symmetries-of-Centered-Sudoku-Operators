@@ -1,6 +1,6 @@
 """reproduce_all.py
 ====================
-Full reproducibility verifier for paper II certified package.
+Full reproducibility verifier for this certified package certified package.
 
 This script re-runs the certificate builders (``build_certified.py``) and
 confirms that every regenerated certificate matches the on-disk version
@@ -10,7 +10,7 @@ It does NOT re-execute the upstream producer scripts under ``scripts/``
 (those already wrote the source JSONs under ``data/``); it does re-import
 ``build_certified`` and call each builder, exercising every assertion
 inside (full SymPy lift-lemma check on the 22 base1 + 100 M_{19} + 72
-Hessian odd-rank relabelings, Box-Band identity on base1 and M_{19},
+shared left-kernel odd-rank relabelings, Box-Band identity on base1 and M_{19},
 kernel-via-SNF on the cyclic LS-9 counterexample, etc.).
 
 Usage::
@@ -41,7 +41,8 @@ BUILDERS: Dict[str, Tuple[str, str]] = {
     "box_band_lemma":      ("box_band_lemma_witness.json", "cert_box_band_lemma_witness"),
     "lift_lemma":          ("lift_lemma_evidence.json",    "cert_lift_lemma_evidence"),
     "M19_audit":           ("M19_audit.json",              "cert_M19_audit"),
-    "M19_KL_KR_3sq_Q8":    ("M19_KL_KR_3sq_Q8.json",       "cert_M19_KL_KR_3sq_Q8"),
+    "M19_middle_band_balance": ("M19_middle_band_balance.json", "cert_M19_middle_band_balance"),
+    "M19_KL_KR_affine_D4":  ("M19_KL_KR_affine_D4.json",    "cert_M19_KL_KR_affine_D4"),
     "A8_saturation":       ("A8_saturation.json",          "cert_A8_saturation"),
     "dichotomy_n7_n9_n11": ("dichotomy_n7_n9_n11.json",    "cert_dichotomy_n7_n9_n11"),
     "stabilizers_5_to_13": ("stabilizers_5_to_13.json",    "cert_stabilizers_5_to_13"),

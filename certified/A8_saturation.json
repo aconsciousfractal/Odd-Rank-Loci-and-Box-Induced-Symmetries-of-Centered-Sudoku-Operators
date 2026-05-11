@@ -72,8 +72,8 @@
       "saturates_V_std": true
     }
   },
-  "paper_label": "Theorem D",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "paper_label": "Certified Proposition D",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "A8_saturation",
   "schema_version": 1,
   "scripts": [
@@ -92,5 +92,5 @@
       "sha256": "4e809fe5166b1963e0b98f816b42ae0782e93d1369935e53f001bc64503209fe"
     }
   ],
-  "tier": "THEOREM"
+  "tier": "CERTIFIED_EXHAUSTIVE"
 }

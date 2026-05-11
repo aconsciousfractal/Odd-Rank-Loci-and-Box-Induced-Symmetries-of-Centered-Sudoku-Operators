@@ -425,8 +425,8 @@
       }
     ]
   },
-  "paper_label": "Theorem F",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "paper_label": "Certified Proposition F",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "dichotomy_n7_n9_n11",
   "schema_version": 1,
   "scripts": [
@@ -445,5 +445,5 @@
       "sha256": "64c3f45158e0491f469a6dcf9602b90f7d722d454a8740d25923da78c1c69751"
     }
   ],
-  "tier": "THEOREM"
+  "tier": "CERTIFIED_EXHAUSTIVE"
 }

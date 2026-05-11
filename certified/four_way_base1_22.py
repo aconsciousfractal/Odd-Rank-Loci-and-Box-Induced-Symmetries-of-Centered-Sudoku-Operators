@@ -9,7 +9,7 @@ relabelings of base1, namely:
   (4) the F_2 Smith Normal Form elementary-divisor list (rank distribution
       modulo 2).
 
-This is the explicit data for Appendix A of paper II.
+This is the explicit data for Appendix A of this paper.
 
 Output: ``four_way_base1_22.json`` next to this script.
 

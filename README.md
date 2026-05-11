@@ -8,8 +8,8 @@
 > four certified results: (i) a Sudoku-specific projector identity
 > (Box Band Lemma), (ii) a Lift Lemma into the root lattice $A_{n-1}$,
 > (iii) a $\{M_n, O_n\}$ orbit dichotomy with stabilizers
-> $D_4 \times S_{n-4}$ vs $C_2 \times S_{n-4}$, and (iv) a Hessian
-> symmetry $K_L \cong K_R \cong 3^2{:}Q_8$ at the laboratory base
+> $D_4 \times S_{n-4}$ vs $C_2 \times S_{n-4}$, and (iv) an affine
+> coset symmetry $K_L \cong K_R \cong 3^2{:}D_4$ at the laboratory base
 > $M_{19}$, with $|\mathrm{Aut}(L_{M_{19}})| = 1$.
 
 ---
@@ -26,14 +26,14 @@
 │   │                            # release PDF (regenerable from main.tex)
 │   └── figures/                 # 5 publication PDFs + producing scripts
 ├── certified/                   # Self-contained certificate package
-│   ├── build_certified.py       # Builds 11 certificate JSONs from data/
+│   ├── build_certified.py       # Builds 12 certificate JSONs from data/
 │   ├── verify_all.py            # Schema + manifest + semantic + standalone audit
 │   ├── reproduce_all.py         # Byte-identical re-derivation of every cert
 │   ├── recover_base1_22_perms.py
 │   ├── recover_M19_100_perms.py
 │   ├── four_way_base1_22.py
-│   ├── MANIFEST.sha256          # 11 result_id -> sha256 lines
-│   ├── 11 *.json                # Certificate files
+│   ├── MANIFEST.sha256          # 12 result_id -> sha256 lines
+│   ├── 12 *.json                # Certificate files
 │   ├── base1_22_perms_recovered.json
 │   ├── four_way_base1_22.json
 │   ├── M19_100_perms_recovered.json
@@ -71,13 +71,13 @@ python -m venv .venv
 
 pip install -r requirements.txt
 
-# Verify all 11 certificates (schema + manifest + semantic + standalone audit)
+# Verify all 12 certificates (schema + manifest + semantic + standalone audit)
 python certified/verify_all.py
 
 # Re-derive every certificate byte-for-byte
 python certified/reproduce_all.py
 
-# Rebuild the manifest (writes 11 cert JSONs and MANIFEST.sha256)
+# Rebuild the manifest (writes 12 cert JSONs and MANIFEST.sha256)
 python certified/build_certified.py
 ```
 
@@ -87,7 +87,7 @@ python certified/build_certified.py
 |---------|---------|----------------------------------------------------|
 | numpy   | ≥ 1.24  | Array algebra, exhaustive S_9 and B_3 scans        |
 | sympy   | ≥ 1.12  | Exact rank over ℚ, integer SNF, Gauss–Jordan/ℤ     |
-| scipy   | ≥ 1.10  | `erfc` (two-proportion p-value), optional helpers  |
+| scipy   | ≥ 1.10  | `erfc` (descriptive z-score), optional helpers  |
 | matplotlib | ≥ 3.7 | Regenerating the paper figures                     |
 
 Tested with Python 3.11 / 3.12 / 3.14.
@@ -97,7 +97,7 @@ Tested with Python 3.11 / 3.12 / 3.14.
 See [`REPRODUCE.md`](REPRODUCE.md) for the full artifact map and exact
 commands. The minimal three-step sequence is:
 
-1. `python certified/build_certified.py` — regenerates 11 certificate
+1. `python certified/build_certified.py` — regenerates 12 certificate
    JSONs and `MANIFEST.sha256` from the verified source artifacts under
    `data/`, `certified/`, and `scripts/legacy/`.
 2. `python certified/verify_all.py` — schema validation, manifest
@@ -137,7 +137,7 @@ that, for every certificate, checks:
    matching the recorded provenance.
 
 A passing run prints
-`ALL CHECKS PASSED (11 certificates, N scripts, M sources)`.
+`ALL CHECKS PASSED (12 certificates, N scripts, M sources)`.
 
 ## Cryptic legacy script names
 

@@ -259,7 +259,7 @@ def main():
     print(f"    distinct γ: {len(gammas_used)} (each may appear with "
           f"multiple (α,β))", flush=True)
 
-    # Compare with K_L = 72 (Hessian)
+    # Compare with K_L = 72 (affine coset symmetry)
     print()
     print(f"  K_L (from S9x) order: 72", flush=True)
     print(f"  |Aut(L_M19)| order:   {len(auts)}", flush=True)

@@ -1,8 +1,8 @@
 {
-  "claim": "Lift Lemma: for every gamma in S_9 and every w in V_std, E_gamma(L) w = 0 if and only if gamma(L) w = 0 (and dually for left kernels). Verified on all 22 base1 rank-7 relabelings and on all 100 M_{19} rank-7 relabelings (the full rank-locus, not just the 72-element Hessian-class subset).",
+  "claim": "Lift Lemma: for every gamma in S_9 and every w in V_std, E_gamma(L) w = 0 if and only if gamma(L) w = 0 (and dually for left kernels). Verified on all 22 base1 rank-7 relabelings and on all 100 M_{19} rank-7 relabelings (the full rank-locus, not just the 72-element shared left-kernel / middle-band subset).",
   "inputs": {
-    "M19_hessian_class_perms_subset": 72,
     "M19_rank7_perms_total": 100,
+    "M19_shared_left_kernel_perms_subset": 72,
     "base1_perms": 22,
     "n": 9
   },
@@ -18,7 +18,18 @@
       "n_full_lift_check": 100,
       "n_perms": 100
     },
-    "M19_hessian_class_72": {
+    "M19_shared_kernel_72": {
+      "kernel_dim_full_histogram": {
+        "2": 72
+      },
+      "kernel_dim_in_V_std_histogram": {
+        "1": 72
+      },
+      "lift_lemma_holds_on_all_checked": true,
+      "n_full_lift_check": 72,
+      "n_perms": 72
+    },
+    "M19_shared_left_kernel_72": {
       "kernel_dim_full_histogram": {
         "2": 72
       },
@@ -42,7 +53,7 @@
     }
   },
   "paper_label": "Theorem C",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "lift_lemma_evidence",
   "schema_version": 1,
   "scripts": [
@@ -56,7 +67,7 @@
     },
     {
       "path": "certified/recover_M19_100_perms.py",
-      "sha256": "18a63d96ecd1b0d52592140fa2925beaf616a023326c5f9e46bf9f5361803e71"
+      "sha256": "489ed7017b80f3bd08c0e6e6f4b8a8e86db7a2b8b138f9375711b2f26427c6bb"
     }
   ],
   "seed": null,
@@ -82,8 +93,8 @@
         "M19_grid"
       ],
       "file": "certified/M19_100_perms_recovered.json",
-      "note": "Recovered via certified/recover_M19_100_perms.py; exhaustive S_9 rescan of M_{19} (~16s) followed by Sympy exact rank verification on every candidate.",
-      "sha256": "39a3d466fefe23cc7ead8802107275ab5c87a8d6d56a9c3c57736cd88d6ddc15"
+      "note": "Recovered via certified/recover_M19_100_perms.py; exhaustive S_9 modular determinant rescan of M_{19} followed by Sympy exact rank verification on every candidate.",
+      "sha256": "58fdc073763549e1ed9d65f2b9e177c1ce5418c942db95d65dc04ecc304a3ef8"
     }
   ],
   "tier": "THEOREM"

@@ -1,6 +1,6 @@
 r"""fig2_rank_distribution.py
 =============================
-Fig. 2 (paper II §4) — Rank distribution of the family
+This paper ?4 --
 $\{E_\gamma\}_{\gamma \in S_9}$ on Sudoku base$_1$. Single bar plot,
 log-scale on the y-axis, showing 362858 rank-8 vs 22 rank-7 relabelings.
 
@@ -37,7 +37,7 @@ def main() -> Path:
     ax.set_xlabel(r"rank of $E_\gamma$ on $V_{\mathrm{std},9}$")
     ax.set_ylabel(r"$\#\{\gamma \in S_9\}$  (log scale)")
     ax.set_title(
-        r"Fig. 2.  Rank distribution on base$_1$"
+        r"Rank distribution on base$_1$"
         r"  ($|S_9| = 362\,880$)",
         fontsize=11,
     )

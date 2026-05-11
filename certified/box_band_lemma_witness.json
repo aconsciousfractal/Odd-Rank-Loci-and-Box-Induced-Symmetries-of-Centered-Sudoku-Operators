@@ -1,10 +1,394 @@
 {
-  "claim": "For every Sudoku grid L of order 9, the row-band/column-stack projection P_rb^T E P_cs of E = L - 5J vanishes identically. The identity fails for generic Latin squares; the cyclic LS-9 is exhibited as an explicit counterexample.",
+  "claim": "For every Sudoku grid L of order 9, the centered row-band/column-stack average P_rb^T E P_cs of E = L - 5J vanishes identically. This identity is not forced by the Latin-square axioms alone; the cyclic LS-9 is exhibited as an explicit counterexample. The same centered-sum argument is certified for a rectangular 2x3 Roku-Doku grid and for a non-Cartesian gerechte partition of cyclic LS-9 by broken diagonals.",
   "inputs": {
-    "centering_scalar": 5,
-    "n": 9
+    "gerechte_witness": "cyclic LS-9 partitioned by broken diagonals (non-Cartesian regions)",
+    "rectangular_roku_doku": {
+      "box_height": 2,
+      "box_width": 3,
+      "n": 6
+    },
+    "square_centering_scalar": 5,
+    "square_sudoku_n": 9
   },
   "outputs": {
+    "gerechte_cyclic_LS9_broken_diagonals": {
+      "all_region_sums_zero": true,
+      "all_regions_cartesian_products": false,
+      "any_region_cartesian_product": false,
+      "each_region_symbols_once": true,
+      "gamma": [
+        9,
+        1,
+        8,
+        2,
+        7,
+        3,
+        6,
+        4,
+        5
+      ],
+      "n": 9,
+      "n_regions": 9,
+      "region_formula": "R_b = {(i, i+b mod n) : i=0,...,n-1}",
+      "region_size": 9,
+      "region_sums_twice_centered": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regions_1_based": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            9,
+            4
+          ]
+        ],
+        [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            5
+          ]
+        ],
+        [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        [
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            8
+          ]
+        ]
+      ],
+      "regions_partition_cells": true,
+      "uses_twice_centered_matrix": true
+    },
     "non_sudoku_LS_cyclic_counterexample": {
       "M_rb_cs": [
         [
@@ -25,6 +409,29 @@
       ],
       "frobenius_norm_sq": 1458,
       "is_zero": false
+    },
+    "rectangular_roku_doku_2x3": {
+      "box_height": 2,
+      "box_width": 3,
+      "frobenius_norm_sq": 0,
+      "is_zero": true,
+      "n_col_stacks": 2,
+      "n_row_bands": 3,
+      "twice_centered_M_rb_cs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "uses_twice_centered_matrix": true
     },
     "sudoku_M19": {
       "M_rb_cs": [
@@ -70,7 +477,7 @@
     }
   },
   "paper_label": "Theorem A",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "box_band_lemma_witness",
   "schema_version": 1,
   "scripts": [
@@ -81,6 +488,10 @@
     {
       "path": "scripts/legacy/phase_9_13.py",
       "sha256": "b51e1a025de3db49ec12a9099363daeec885cc063249a1ef0d7989627095d421"
+    },
+    {
+      "path": "scripts/legacy/phase_9_14.py",
+      "sha256": "fafdf2ed9f03588420ebd85ec418779e6dde8928f97fa93ca9da6988f0be19eb"
     },
     {
       "path": "certified/build_certified.py",
@@ -102,6 +513,13 @@
       ],
       "file": "data/phase_9_18_S9x_results.json",
       "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+    },
+    {
+      "extracted_keys": [
+        "sudoku6_firstrow_fixed.bad_examples[0]"
+      ],
+      "file": "data/phase_9_14_results.json",
+      "sha256": "8dc095aecb5f34b74c66f4ff06b97a2a1bf66d77a8a4e0127f62224c006f729a"
     }
   ],
   "tier": "THEOREM"

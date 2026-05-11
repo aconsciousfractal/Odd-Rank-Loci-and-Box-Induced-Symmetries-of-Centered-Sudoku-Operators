@@ -1,5 +1,5 @@
 {
-  "claim": "Exhaustive enumeration of all order-6 Sudoku grids (n=39168, first-row fixed) and order-6 Latin squares (n=1128960, first-row fixed) shows full-rank-over-F_2 (rank n-1 = 5) incidence 6.6177% vs 6.1224%; two-proportion z-test (pooled) gives z = 4.013706 and exact two-sided p = erfc(|z|/sqrt 2) = 5.9773e-05.  At n=6 this is the rank-parity proxy (`full_rank_count` over F_2), NOT the odd-rank locus (rank n-2) used at n in {7, 9, 11}; the box constraint nevertheless yields a small but significant enhancement.",
+  "claim": "Exhaustive enumeration of all order-6 Sudoku grids (n=39168, first-row fixed) and order-6 Latin squares (n=1128960, first-row fixed) shows full rank over F_2 for the auxiliary matrix A_{ij}=L_{ij}-L_{i,n-1} (rank n-1 = 5) with incidence 6.6177% vs 6.1224%.  The pooled two-proportion descriptive comparison gives z = 4.013706 and two-sided erfc(|z|/sqrt 2) = 5.9773e-05.  At n=6 this is the determinant-paper rank-parity proxy (`full_rank_count` over F_2), not rank(P^T E P), and not the odd-rank locus (rank n-2) used at n in {7, 9, 11}; the box constraint nevertheless yields a small enhancement.",
   "inputs": {
     "first_row_fixed": [
       1,
@@ -11,7 +11,7 @@
     ],
     "ls6_n_total": 1128960,
     "n": 6,
-    "rank_parity_proxy": "F_2 full-rank (rank == n-1 == 5 over F_2)",
+    "rank_parity_proxy": "F_2 full rank of A_{ij}=L_{ij}-L_{i,n-1} (rank == n-1 == 5); not rank(P^T E P)",
     "sudoku6_n_total": 39168
   },
   "outputs": {
@@ -39,7 +39,7 @@
     "two_proportion_z": 4.013705876038688
   },
   "paper_label": "Proposition P2",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "n6_odd_rank_census",
   "schema_version": 1,
   "scripts": [

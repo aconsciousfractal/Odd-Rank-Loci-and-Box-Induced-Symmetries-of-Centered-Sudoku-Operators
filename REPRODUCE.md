@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 | Artifact                                           | Canonical path                                       |
 |----------------------------------------------------|------------------------------------------------------|
-| 11 certificate JSONs                               | `certified/<result_id>.json`                         |
+| 12 certificate JSONs                               | `certified/<result_id>.json`                         |
 | Manifest of certificate sha256s                    | `certified/MANIFEST.sha256`                          |
 | Recovered base1 22-perm list                       | `certified/base1_22_perms_recovered.json`            |
 | Four-way base1 audit (rank/SNF Z + F2 / kernel)    | `certified/four_way_base1_22.json`                   |
@@ -48,7 +48,7 @@ plus `scripts/legacy/*.py` (sha-stamped provenance only — the upstream
 data are already on disk), runs every claimed invariant in process
 (Lift Lemma over $\mathbb{Q}$ via Sympy on
 22 + 100 + 72 perms; Box-Band identity on Sudoku vs non-Sudoku; full SNF
-of the cyclic LS-9 counterexample; etc.), and writes 11 certificate
+of the cyclic LS-9 counterexample; etc.), and writes 12 certificate
 JSONs plus `certified/MANIFEST.sha256`.
 
 ### 2. Verify the certificate package
@@ -71,7 +71,7 @@ Performs four layers of checks:
 A passing run prints
 
 ```
-[verify_all] ALL CHECKS PASSED (11 certificates, 18 scripts, 13 sources)
+[verify_all] ALL CHECKS PASSED (12 certificates, 18 scripts, 13 sources)
 ```
 
 ### 3. Re-derive every certificate byte-for-byte
@@ -85,8 +85,10 @@ the canonical JSON serialization (with `produced_utc` removed) to the
 on-disk certificate. A passing run prints
 
 ```
-[reproduce_all] ALL 11 CERTIFICATES REPRODUCE  (total ~1.3s)
+[reproduce_all] ALL 12 CERTIFICATES REPRODUCE
 ```
+
+Runtime is machine-dependent; on the audit machine this is about 30-35 seconds, dominated by the middle-band balance certificate.
 
 ### 4. Recover the perm lists from upstream data (optional)
 
@@ -161,4 +163,4 @@ All checks should pass with output identical to the in-place run.
   is documented in [`scripts/SCRIPT_INDEX.md`](scripts/SCRIPT_INDEX.md).
 - The certificate JSONs themselves are the canonical paper-facing
   artifact: every numerical claim in the paper points to the `result_id`
-  of one of the 11 entries in `certified/MANIFEST.sha256`.
+  of one of the 12 entries in `certified/MANIFEST.sha256`.

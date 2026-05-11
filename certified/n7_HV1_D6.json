@@ -1,7 +1,7 @@
 {
-  "claim": "At n=7, let L_{V_1} be the laboratory 7x7 Latin square recorded in scripts/legacy/phase_9_15.py.  Define H_{V_1} as the rank-locus subset {gamma in B_3 subset S_7 : rank E_{gamma, L_{V_1}} = 5}, i.e. the intersection of the odd-rank symbol-relabeling locus of L_{V_1} with the box-permutation group B_3 = S_3 wr S_3 acting on coordinates. Then |H_{V_1}| = 12, H_{V_1} is closed under composition (a subgroup of B_3), and H_{V_1} cong D_6 (dihedral of order 12), equivalently S_3 x Z/2.  The element-order multiset {1:1, 2:7, 3:2, 6:2} uniquely identifies D_6 among groups of order 12 (alternatives Z/12, Z/6 x Z/2, A_4, Dic_3 are excluded by their order multisets).  Constructively, H_{V_1} = <r, s> with r of order 6, s of order 2, and srs = r^{-1}; the relation is verified element-by-element. NOTE: H_{V_1} is NOT the coordinate stabilizer of any vector with all-distinct coordinates (which would be trivial in S_7); it is the rank-locus subset of B_3 associated with the base L_{V_1}, defined operationally by the rank condition above.",
+  "claim": "At n=7, let L_{V_1} be the laboratory 7x7 Latin square recorded in scripts/legacy/phase_9_15.py.  Define H_{V_1} as the rank-locus subset {gamma in B_3 subset S_7 : rank E_{gamma, L_{V_1}} = 5}, i.e. the intersection of the odd-rank symbol-relabeling locus of L_{V_1} with the signed-pair group B_3 = C_2 wr S_3 of order 48 acting on the three pairs {1,7}, {2,6}, {3,5} and fixing 4. Then |H_{V_1}| = 12, H_{V_1} is closed under composition (a subgroup of B_3), and H_{V_1} cong D_6 (dihedral of order 12), equivalently S_3 x Z/2.  The element-order multiset {1:1, 2:7, 3:2, 6:2} uniquely identifies D_6 among groups of order 12 (alternatives Z/12, Z/6 x Z/2, A_4, Dic_3 are excluded by their order multisets).  Constructively, H_{V_1} = <r, s> with r of order 6, s of order 2, and srs = r^{-1}; the relation is verified element-by-element. NOTE: H_{V_1} is NOT the coordinate stabilizer of any vector with all-distinct coordinates (which would be trivial in S_7); it is the rank-locus subset of B_3 associated with the base L_{V_1}, defined operationally by the rank condition above.",
   "inputs": {
-    "ambient_group": "B_3 = S_3 wr S_3 subset S_7",
+    "ambient_group": "B_3 = C_2 wr S_3 subset S_7, preserving pairs {1,7}, {2,6}, {3,5} and fixing 4",
     "base_grid_label": "L_{V_1}",
     "definition": "H_{V_1} := {gamma in B_3 : rank(E_{gamma, L_{V_1}}) = 5}",
     "n": 7
@@ -52,8 +52,8 @@
     },
     "order_distribution_unique_to_D6_among_order_12": true
   },
-  "paper_label": "Theorem B",
-  "produced_utc": "2026-04-26T13:28:01Z",
+  "paper_label": "Certified Proposition B",
+  "produced_utc": "2026-05-11T08:48:31Z",
   "result_id": "n7_HV1_D6",
   "schema_version": 1,
   "scripts": [
@@ -87,5 +87,5 @@
       "sha256": "fb0814a5fb93dd945e29b25c8e13b4df4aa522f8b081b6e526b75ff7ba9d977e"
     }
   ],
-  "tier": "THEOREM"
+  "tier": "CERTIFIED_EXHAUSTIVE"
 }

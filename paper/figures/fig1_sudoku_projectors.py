@@ -1,6 +1,6 @@
 r"""fig1_sudoku_projectors.py
 ============================
-Fig. 1 (paper II §3) — A 9x9 Sudoku grid with the row-band ($P_{\mathrm{rb}}$)
+This paper ?3 --
 and column-stack ($P_{\mathrm{cs}}$) projector overlays. The figure shows
 that the Box Band Lemma identity $B_{\mathrm{rb}}^\top E B_{\mathrm{cs}} = 0$
 acts on a basis adapted to the 3x3 box decomposition.
@@ -92,7 +92,7 @@ def main() -> Path:
               ncol=3, frameon=False, fontsize=8)
 
     fig.suptitle(
-        r"Fig. 1.  Sudoku base$_1$ with row-band and column-stack overlays",
+        r"Sudoku base$_1$ with row-band and column-stack overlays",
         fontsize=11, y=0.99,
     )
     fig.tight_layout(rect=(0, 0.04, 1, 0.97))

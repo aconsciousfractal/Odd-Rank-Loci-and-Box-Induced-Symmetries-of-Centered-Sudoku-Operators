@@ -272,7 +272,6 @@ def find_block_systems(K_set, n=9):
 #   - S_3 × A_4   (non-abelian, |Z|=1)
 #   - S_3 × D_6   (non-abelian)
 #   - (C_3 × C_3) ⋊ D_4
-#   - Q_8 × C_9, ...
 # We won't try full enumeration (50 cases); we'll output all invariants
 # so that the user can match against GAP/Sage tables.
 
@@ -405,13 +404,9 @@ def main():
             print(f"    {k}: {v}")
         invariants[label] = info
 
-    # Quick sanity: 72 = 2^3 · 3^2. Solvable. Cf. SmallGroup table
-    # If center order = 1, derived order = ?, abelianization = ?, we
-    # can narrow it down. Common candidates:
-    #   - SmallGroup(72,40) = S_3 × A_4    | |Z|=1, |G'|=12, |G/G'|=6
-    #   - SmallGroup(72,43) = S_3 × S_3 × C_2 ? no, that's 72 different
-    #   - SmallGroup(72,42) = (C_3 × C_3) ⋊ Q_8 ?
-    # We'll print enough info for cross-check.
+    # Quick sanity: 72 = 2^3 · 3^2. The certified paper package now
+    # identifies the group through a normal regular C_3^2 subgroup and
+    # D_4 point stabilizer, not through a SmallGroup ID.
 
     # ---- (Y4) Action on 9 points ----
     print()

@@ -100,8 +100,10 @@
       5
     ]
   ],
-  "elapsed_seconds": 15.133552074432373,
-  "method": "two-stage: numpy float scan + sympy exact rank verification",
+  "elapsed_seconds": 32.27153992652893,
+  "method": "two-stage: exact modular determinant scan + sympy exact rank verification",
+  "modular_candidate_count": 100,
+  "modular_prime": 1000003,
   "n_total": 362880,
   "phase": "M19 S_9 recovery (full 100 rank-7 perms, exact)",
   "rank7_count": 100,
@@ -1211,6 +1213,6 @@
     "7": 100,
     "8": 362780
   },
-  "stage1_elapsed_seconds": 14.570497274398804,
-  "stage2_elapsed_seconds": 0.5630548000335693
+  "stage1_elapsed_seconds": 31.696701049804688,
+  "stage2_elapsed_seconds": 0.5748388767242432
 }

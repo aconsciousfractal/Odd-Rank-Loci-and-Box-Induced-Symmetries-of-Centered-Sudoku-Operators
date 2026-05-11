@@ -25,6 +25,7 @@
 % ---- Theorem environments ----
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{certprop}[theorem]{Certified Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{conjecture}[theorem]{Conjecture}
@@ -51,14 +52,15 @@
 \newcommand{\Goddstar}{\Gamma^{*}_{L}}
 % --- Three distinct objects on the laboratory base M_{19} ---
 % (1) The full rank-locus in S_9, of size 100.
-% (2) The Hessian-class subset (kernel collapses to u9*), size 72.
-% (3) The ambient coordinate stabilizer Stab_{S_9}(u9*) = S_3 x S_6, order 4320.
+% (2) The shared left-kernel / middle-band subset, size 72.
+% (3) The ambient coordinate stabilizer Stab_{S_9}(w^L_9) = S_3 x S_6, order 4320.
 \newcommand{\GrankM}{\Gamma_{\mathrm{rank}}(M_{19})}
-\newcommand{\GMninetn}{\Gamma^{*}_{M_{19}}}     % Hessian-class subset (size 72)
-\newcommand{\StabUnine}{\mathrm{Stab}_{S_9}(u^{*}_{9})}
+\newcommand{\GMninetn}{\Gamma^{*}_{M_{19}}}     % shared left-kernel / middle-band subset (size 72)
+\newcommand{\wleftnine}{w^{L}_{9}}
+\newcommand{\StabWnine}{\mathrm{Stab}_{S_9}(\wleftnine)}
 \newcommand{\KL}{K_L}
 \newcommand{\KR}{K_R}
-\newcommand{\HesGroup}{3^{2}{:}Q_8}
+\newcommand{\AffDfour}{3^{2}{:}D_4}
 
 \title{Odd-Rank Loci and Box-Induced Symmetries\\
        of Centered Sudoku Operators}
@@ -72,34 +74,37 @@
 % Abstract (4 contributions, <= 14 lines, no out-of-scope material)
 % =====================================================================
 \begin{abstract}
-We study Sudoku grids as a constrained class of Latin squares through
-the centered linear operator
-$\Egamma = \gamma(L) - \tfrac{n+1}{2}J_n$, where $\gamma \in S_n$ is a
-symbol relabeling and $J_n$ is the all-ones matrix.
-Restricting to the standard hyperplane
-$\Vstdn = \{x \in \Q^n : \one^{\!\top} x = 0\}$, we prove four results.
-\emph{(a)} A \emph{Box Band Lemma}:
-$\Prb \, \Egamma \, \Pcs^{\!\top} = 0$, an exact linear identity that
-fails for generic Latin squares and isolates the box constraint at the
-linear-algebraic level. \emph{(b)} The odd-rank locus
-$\Goddstar = \{\gamma : \rank \Egamma = n-2\}$ is structured: every
-odd-rank kernel certificate lifts to $\Vstdn$ and lies in the root
-lattice $A_{n-1}$, and at $n = 7$ the relevant subgroup of
-$B_3 < S_7$ is isomorphic to $D_6$. \emph{(c)} At $n = 9$ on the base
-$M_{19}$, the left/right Hessian set-stabilizers of the Hessian-class subset $\GMninetn$ (of size $72$) satisfy
-$\KL \cong \KR \cong \HesGroup = \mathrm{SmallGroup}(72,41)$, with an
-explicit single-coset structure $\GMninetn = \KL \cdot \gamma_0 = \gamma_0 \cdot \KR$ of size $72$, with $\KL = \gamma_0\,\KR\,\gamma_0^{-1}$ inside the ambient coordinate stabilizer $\StabUnine \cong S_3 \times S_6$ of order $4320$. \emph{(d)}
-This structure is not explained by Latin-square autotopisms:
-$|\Aut(L_{M_{19}})| = 1$, so the underlying Latin square is rigid.
-We complement these results by an analytic identification of the
-stabilizer dichotomy at $n \in \{7,9,11\}$, exhaustive computational
-verification of the corresponding orbit/stabilizer formulas for
-$5 \le n \le 13$, and a certified reproducibility package whose
-contents are pinned by a SHA-256 manifest.
+We study how the rank of a Latin square changes when its symbols are
+relabelled.  To a square $L$ and a relabeling $\gamma\in S_n$ we attach
+the centered matrix $E_{\gamma,L}=\gamma(L)-\tfrac{n+1}{2}J_n$ and
+restrict it to the standard hyperplane.  For Sudoku grids, the box
+constraint becomes an exact linear identity: averaging $E_{\gamma,L}$
+over row-bands and column-stacks gives zero for every relabeling, while
+a cyclic Latin-square witness shows that the identity is not forced by
+Latin-squareness alone.  Kernel lines on the standard hyperplane admit
+primitive integral representatives in the root lattice $A_{n-1}$; the
+box identities select structured such certificates in the order-$9$
+examples.
+
+The paper has two kinds of results.  The analytic part proves the Box
+Band Lemma, the kernel-lift lemma, and a general stabilizer/lattice
+dichotomy for two sparse root-lattice templates at every $n\ge 5$.
+The certified finite part exhaustively studies selected orders and
+laboratory bases.  In particular, for a Sudoku grid $M_{19}$ of order
+$9$, a distinguished $72$-element subset of the rank-drop locus is
+exactly the set of relabelings whose middle row-band has column sums
+$15$.  This same subset is a single left and right coset, with affine
+stabilizers isomorphic to $3^2{:}D_4$, and it is also the isomorphism
+torsor from the reduced middle-band hypergraph of $M_{19}$ to a
+six-edge subhypergraph of the magic triples.  The underlying Latin
+square has trivial autotopism group, so this affine symmetry is not a
+classical Latin-square symmetry.  All finite claims are accompanied by
+a reproducibility package with exact-arithmetic certificates and a
+SHA-256 manifest.
 \end{abstract}
 
 \noindent\textbf{Keywords.} Sudoku, Latin squares, centered operators,
-odd-rank locus, $A_{n-1}$ root lattice, Hessian group, autotopism.
+odd-rank locus, $A_{n-1}$ root lattice, affine group, autotopism.
 
 \smallskip
 \noindent\textbf{MSC 2020.} 05B15 (primary), 15A03, 20B25, 11C20, 05E18.
@@ -132,8 +137,8 @@ which is generically equal to $n - 1$ on $\Vstdn$ but can drop to
 $n - 2$ on a sparse, structured subset of $S_n$. Third, when $L$ is
 \emph{Sudoku} (i.e.\ also satisfies the $\sqrt{n} \times \sqrt{n}$ box
 constraint at $n = 9$), the rank-drop locus and its kernel
-certificates exhibit additional algebraic structure that does not
-arise from generic Latin squares.
+certificates exhibit additional algebraic structure that is not
+forced by the Latin-square axioms alone.
 
 \subsection{Why box constraints matter}\label{sec:intro-box}
 
@@ -145,13 +150,14 @@ the row-band and column-stack incidence matrices, and let
 $\Prb := \tfrac{1}{\sqrt{n}} B_{\mathrm{rb}}^{\!\top}$,
 $\Pcs := \tfrac{1}{\sqrt{n}} B_{\mathrm{cs}}^{\!\top} \in
 \Q^{\sqrt{n} \times n}$ be the corresponding band-mean and stack-mean
-projectors (defined precisely in \S\ref{sec:bbl-proj}).
+averaging maps (defined precisely in \S\ref{sec:bbl-proj}).
 Then for every Sudoku grid $L$ and every $\gamma \in S_n$,
 \begin{equation}\label{eq:bbl-intro}
    \Prb \, \Egamma \, \Pcs^{\!\top} \;=\; 0.
 \end{equation}
-This identity \emph{fails} for generic Latin squares; that failure
-isolates the box contribution at the linear-algebraic level. The full
+This identity is not a consequence of Latin-squareness alone; the
+explicit cyclic witness in \S\ref{sec:bbl-failure} isolates the box
+contribution at the linear-algebraic level. The full
 formal statement of~\eqref{eq:bbl-intro} is Theorem~\ref{thm:box-band}
 below.
 
@@ -164,37 +170,45 @@ indicated.
 \begin{enumerate}[label=\textbf{(\alph*)},leftmargin=*]
    \item \textbf{Box Band Lemma (\S\ref{sec:bbl}).} The identity
    $\Prb \Egamma \Pcs^{\!\top} = 0$ is an exact, Sudoku-specific
-   linear identity. It fails for generic Latin squares.
+   linear identity. It is not forced by the Latin-square axioms alone.
    \emph{(Theorem~\ref{thm:box-band}, certified.)}
 
    \item \textbf{Odd-rank certificates lie in $A_{n-1}$
    (\S\ref{sec:certificates}, \S\ref{sec:orbits}).} For every
    relabeling $\gamma$ producing odd rank $n - 2$ on $\Vstdn$, the
-   kernel certificate lifts to a vector in $\Vstdn$ that lies in the
-   root lattice $A_{n-1} = \Vstdn \cap \Z^n$. At $n = 9$, the
-   distinguished sparse–low template orbits $M$ and $O_6$ saturate
+   rational kernel line lifts to $\Vstdn$ and has a primitive
+   representative in the root lattice $A_{n-1} = \Vstdn \cap \Z^n$.
+   This is the natural centered-operator certificate framework; at
+   $n = 9$, the distinguished sparse height-one and height-two template
+   orbits $M$ and $O_6$ saturate
    $A_8$:
    $\Lambda_M = \Lambda_{O_6} = A_8$.
-   \emph{(Theorem~\ref{thm:lift}; Theorem~\ref{thm:A8-saturation}.)}
+   \emph{(Theorem~\ref{thm:lift}; Certified Proposition~\ref{thm:A8-saturation}.)}
 
-   \item \textbf{Hessian symmetry of $M_{19}$ (\S\ref{sec:M19}).} On
+   \item \textbf{Affine coset symmetry of $M_{19}$ (\S\ref{sec:M19}).} On
    the Sudoku base $M_{19}$, the left/right set-stabilizers of the
-   Hessian-class subset $\GMninetn$ satisfy
-   $\KL \cong \KR \cong \HesGroup = \mathrm{SmallGroup}(72,41)$, and
-   the Hessian-class subset $\GMninetn$ (of size $72$, sitting inside the
+   shared left-kernel subset $\GMninetn$ satisfy
+   $\KL \cong \KR \cong \AffDfour$, and
+   the subset $\GMninetn$ (of size $72$, sitting inside the
    full rank-locus $\GrankM$ of size $100$) form a single $\KL$-coset
-   $\GMninetn = \KL \gamma_0 = \gamma_0 \KR$ with $\KL = \gamma_0 \KR
-   \gamma_0^{-1}$. The number $4320 = 3!\cdot 6!$ is the order of the
-   ambient coordinate stabilizer $\StabUnine \cong S_3 \times S_6$, not
+   $\GMninetn = \KL \pi_0 = \pi_0 \KR$ with $\KL = \pi_0 \KR
+   \pi_0^{-1}$. Equivalently, $\GMninetn$ is exactly the set of
+   middle-band balanced relabelings of $M_{19}$: in every column, the
+   entries in rows $4,5,6$ sum to $15$ after applying $\gamma$. The
+   number $4320 = 3!\cdot 6!$ is the order of the
+   ambient coordinate stabilizer $\StabWnine \cong S_3 \times S_6$, not
    the size of $\GMninetn$.
-   \emph{(Theorem~\ref{thm:M19-hessian}; Theorem~\ref{thm:M19-coset}.)}
+   \emph{(Proposition~\ref{prop:M19-middle-band};
+   Certified Proposition~\ref{thm:M19-affine};
+   Certified Proposition~\ref{thm:M19-coset}.)}
 
    \item \textbf{Sudoku-specificity beyond autotopisms
    (\S\ref{sec:autLM19}).} The Latin square underlying $M_{19}$ is
    rigid as a Latin square: $|\Aut(L_{M_{19}})| = 1$. Therefore $\KL$
-   is \emph{not} the image of any autotopism subgroup. The Hessian
-   structure is genuinely Sudoku-grid / box / $A_8$-induced.
-   \emph{(Theorem~\ref{thm:aut-LM19-trivial};
+   is \emph{not} the image of any autotopism subgroup. In this grid,
+   the affine coset structure is detected by the Sudoku middle-band
+   balance condition.
+   \emph{(Certified Proposition~\ref{thm:aut-LM19-trivial};
         Corollary~\ref{cor:KL-not-autotopism}.)}
 \end{enumerate}
 
@@ -202,12 +216,42 @@ We complement \emph{(a)}--\emph{(d)} with an exhaustive computational
 verification of a stabilizer dichotomy for the odd-rank locus
 representatives $\{M_n, O_n\}$ at $5 \le n \le 13$
 (Proposition~\ref{prop:dichotomy-exhaustive}), plus an analytic
-identification of the abstract isomorphism types
+certified identification of the abstract isomorphism types
 $\Stab(M_n) \cong D_4 \times S_{n-4}$ and
 $\Stab(O_n) \cong C_2 \times S_{n-4}$ at $n \in \{7, 9, 11\}$
-(Theorem~\ref{thm:dichotomy-analytic}). The general-$n$ dichotomy is
-formulated as Conjecture~\ref{conj:universal-dichotomy} and is
-\emph{not} claimed elsewhere.
+(Certified Proposition~\ref{thm:dichotomy-analytic}). The same stabilizer and
+lattice-saturation dichotomy is proved for every $n \ge 5$ in
+Theorem~\ref{thm:universal-dichotomy}.
+
+\paragraph{Terminology for finite certificates.}
+We reserve the word \emph{Theorem} for statements proved in the text by
+ordinary mathematical argument. Statements whose proof is an exhaustive
+finite computation, with exact arithmetic and a reproducible certificate,
+are labelled \emph{Certified Proposition}. This distinction is editorial,
+not epistemic: the certified propositions are part of the paper's claimed
+results, but their proof object is the checked certificate package rather
+than a hand derivation alone. Section~\ref{sec:methods} describes the
+verification protocol.
+
+\subsection{Why this structure matters}\label{sec:intro-why}
+
+The main point is not that a few relabelings happen to lower rank.
+It is that the Sudoku box constraint produces exact linear relations
+after centering, and those relations interact with the natural root-lattice certificate
+framework for centered operators.  This gives a way to separate
+ordinary Latin-square phenomena from box-induced phenomena: Latin
+squares need not satisfy the band/stack identity, while Sudoku grids do
+so uniformly in the symbol relabeling.
+
+The $M_{19}$ computation is included because it exposes a second layer
+of structure.  A rank-drop subset that first appears as an exhaustive
+list is recovered as a middle-band balance condition, then as a single
+affine coset with stabilizer $3^2{:}D_4$, and finally as a hypergraph
+isomorphism torsor.  Since the underlying Latin square has trivial
+autotopism group, this symmetry is not explained by the classical row,
+column, and symbol symmetries of Latin squares.  The certified finite
+results therefore serve as a controlled laboratory for the general
+lattice mechanisms proved later in the paper.
 
 \subsection{Relation to prior work}\label{sec:intro-prior-work}
 
@@ -218,11 +262,21 @@ problems~\cite{McGuireTugemannCivario14}, group-based and orthogonal
 constructions~\cite{SudokuPairsGroups22,Wanless11}, autotopism
 computation~\cite{SVW12,AutotopismsPartialLatin20}, and Latin-square
 determinant theory~\cite{FordJohnson96,DJW16,LatinSquareDetII92,DK91}.
+Our use of $A_{n-1}$, lattice saturation, and Smith normal form follows
+standard lattice and integral-matrix language~\cite{ConwaySloaneSPLAG,Newman72}.
 We treat a Sudoku grid as a linear-algebraic object parameterized by
 symbol relabelings, and study the odd-rank locus, its kernel
 certificates in $A_{n-1}$, and the algebra of its stabilizers under
 the natural $S_n$-action; none of the works above address these
 questions.
+
+This paper is also deliberately narrower than several nearby problems.
+It does not count Sudoku grids, solve completion or clue-minimality
+problems, classify autotopism groups, or assert that the laboratory base
+$M_{19}$ is extremal among all order-$9$ Sudoku grids.  Its contribution
+is the rank-and-kernel geometry of the centered relabeling family and
+the reproducible identification of the finite structures that arise
+from that geometry.
 
 Within the present project, two sibling papers form the immediate
 context. The companion paper \emph{Determinant Divisibility of
@@ -232,8 +286,8 @@ for the centered operator; its results are used here as a base layer
 and not re-proved. The working draft \emph{Rank-parity falsification
 of Latin square operators}~\cite{HAN-RankParity} provides the
 existence of odd-rank examples; the present paper goes from existence
-to algebraic structure (kernel lattice, stabilizer groups, Hessian
-symmetry, autotopism rigidity).
+to algebraic structure (kernel lattice, stabilizer groups, affine
+coset symmetry, autotopism rigidity).
 
 \subsection{Organization}\label{sec:intro-organization}
 
@@ -243,7 +297,7 @@ Section~\ref{sec:bbl} proves the Box Band Lemma.
 Section~\ref{sec:n6n7} treats lower-order calibration at $n = 6$ and
 $n = 7$. Sections~\ref{sec:certificates}--\ref{sec:orbits} establish
 the lift lemma and $A_8$-saturation. Section~\ref{sec:M19} identifies
-the Hessian group of $M_{19}$. Section~\ref{sec:dichotomy} contains
+the affine coset-symmetry group of $M_{19}$. Section~\ref{sec:dichotomy} contains
 the stabilizer dichotomy. Section~\ref{sec:autLM19} proves Latin-
 square rigidity of $L_{M_{19}}$ and its consequences.
 Section~\ref{sec:methods} describes the computational methodology.
@@ -270,8 +324,15 @@ $n = 6$ (the $2 \times 3$ Roku-Doku family) and $n = 7$
 (non-Sudoku Latin squares used as a comparison class).
 
 We write $\mathrm{LS}(n)$ for the set of Latin squares of order $n$
-and $\mathrm{Sud}(n) \subseteq \mathrm{LS}(n)$ for the subset of Sudoku
-grids when $n$ is a perfect square.
+and $\mathrm{Sud}(n) \subseteq \mathrm{LS}(n)$ for the subset of square
+Sudoku grids when $n$ is a perfect square.  More generally, when
+$n=hw$ we write $\mathrm{Sud}_{h,w}(n)$ for the rectangular
+$h\times w$ Sudoku/Roku-Doku family. Thus the order-$6$ calibration
+uses $\mathrm{Sud}_{2,3}(6)$, not the square-grid notation
+$\mathrm{Sud}(6)$.
+
+Throughout the paper, $D_n$ denotes the geometric dihedral group of
+order $2n$; thus $D_6$ has order $12$ and $D_4$ has order $8$.
 
 \subsection{\texorpdfstring{Symbol relabelings $\gamma \in S_n$}{Symbol relabelings in Sn}}
 \label{sec:setup-relabel}
@@ -281,7 +342,8 @@ relabeling}: for $\gamma \in S_n$ and $L \in \mathrm{LS}(n)$,
 \begin{equation}\label{eq:gamma-action}
    (\gamma(L))_{ij} \;:=\; \gamma(L_{ij}).
 \end{equation}
-This action stabilizes $\mathrm{Sud}(n)$ and commutes with the row,
+This action stabilizes $\mathrm{Sud}(n)$, when defined, and similarly
+stabilizes $\mathrm{Sud}_{h,w}(n)$; it commutes with the row,
 column, band, and stack permutations of the standard Latin-square
 isotopy group: $\gamma$ relabels the alphabet but preserves the
 combinatorial frame. In particular, an autotopism of $L$ in the sense
@@ -354,7 +416,10 @@ $\Egamma|_{\Vstdn} : \Vstdn \to \Vstdn$, justifying
 \end{remark}
 
 We say $(L, \gamma)$ is \emph{full-rank} if $\rank \Ehat = n - 1$ and
-\emph{odd-rank} if $\rank \Ehat = n - 2$. The intermediate root
+\emph{odd-rank} if $\rank \Ehat = n - 2$. The term ``odd-rank'' is
+used for the rank-drop-one locus in the odd-order cases studied below;
+the order-$6$ discussion is a separate even-characteristic calibration.
+The intermediate root
 lattice
 \begin{equation}\label{eq:Aroot-def}
    A_{n-1} \;:=\; \Vstdn \cap \Z^n
@@ -378,6 +443,38 @@ $\{n-1\!:\!400\}$; no sample grid is canonically odd-rank
 are produced by relabeling $\gamma \neq \mathrm{id}$ and not by the
 underlying Sudoku grid alone.
 \end{remark}
+
+\subsection{Left and right kernel loci}\label{sec:setup-left-right-loci}
+
+For a fixed Latin square $L$ and vectors $w,u \in \Vstdn$, define the
+raw left and right kernel loci
+\begin{align}
+   \Gamma_L(L,w)
+      &\;:=\; \bigl\{\gamma \in S_n : w^{\!\top}E_{\gamma,L}=0\bigr\},
+      \label{eq:GammaL-def}\\
+   \Gamma_R(L,u)
+      &\;:=\; \bigl\{\gamma \in S_n : E_{\gamma,L}u=0\bigr\}.
+      \label{eq:GammaR-def}
+\end{align}
+These loci are not assumed to be groups; in the examples below they
+are usually finite subsets of $S_n$ which may become cosets after a
+choice of basepoint.
+
+\begin{lemma}[Transpose duality for kernel loci]\label{lem:left-right-duality}
+For every Latin square $L$ and every $u \in \Vstdn$,
+\begin{equation}\label{eq:left-right-duality}
+   \Gamma_R(L,u) \;=\; \Gamma_L(L^{\!\top},u).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Symbol relabeling commutes with transpose, so
+$\gamma(L^{\!\top})=\gamma(L)^{\!\top}$ and hence
+$E_{\gamma,L^{\!\top}}=E_{\gamma,L}^{\!\top}$. Therefore
+$E_{\gamma,L}u=0$ if and only if
+$u^{\!\top}E_{\gamma,L}^{\!\top}=0$, which is precisely the condition
+$\gamma\in\Gamma_L(L^{\!\top},u)$.
+\end{proof}
 
 \subsection{Exact rank and kernel computation}\label{sec:setup-exact}
 
@@ -408,7 +505,7 @@ We now formalize the linear identity~\eqref{eq:bbl-intro} announced in
 the introduction. Throughout this section $n = m^2$, $L \in
 \mathrm{LS}(n)$, and $\Egamma = \gamma(L) - \tfrac{n+1}{2} J_n$.
 
-\subsection{Row-band and column-stack projectors}\label{sec:bbl-proj}
+\subsection{Row-band and column-stack averaging maps}\label{sec:bbl-proj}
 
 For $n = m^2$, partition the $n$ rows of an $n \times n$ matrix into
 $m$ \emph{row-bands} of size $m$ each:
@@ -470,7 +567,7 @@ since $|R_I| = |C_J| = m$ and $m^2 = n$. Therefore
 which proves~\eqref{eq:bbl-formal}.
 \end{proof}
 
-\subsection{Failure for generic Latin squares}\label{sec:bbl-failure}
+\subsection{A cyclic Latin-square witness}\label{sec:bbl-failure}
 
 The Sudoku hypothesis is essential. Let $L^{\mathrm{cyc}}$ denote the
 cyclic Latin square of order $9$ with $L^{\mathrm{cyc}}_{ij} \equiv i +
@@ -501,16 +598,68 @@ certified file \texttt{box\_band\_lemma\_witness.json}; the Sudoku
 hypothesis cannot be replaced by the Latin-square hypothesis without
 breaking~\eqref{eq:bbl-formal}.
 
-\subsection{Symmetric variant and corollaries}\label{sec:bbl-corollaries}
+\subsection{Rectangular and gerechte variants}\label{sec:bbl-corollaries}
 
-The proof of Theorem~\ref{thm:box-band} is symmetric in rows and
-columns: the same identity holds with $B_{\mathrm{rb}}$ and
-$B_{\mathrm{cs}}$ replaced by any pair of $\{0,1\}$-projectors onto a
-partition of the row index set and the column index set into $m$
-blocks of size $m$, provided the induced $m \times m$ blocks of the
-grid each contain every symbol once. In particular, on any Sudoku
-grid, the box-major sums of $\Egamma$ over any complete box partition
-vanish.
+The proof of Theorem~\ref{thm:box-band} does not use equality of box
+height and width except in the notation. It extends verbatim to
+rectangular Sudoku boxes.
+
+\begin{corollary}[Rectangular Box Band Lemma]
+\label{cor:rectangular-box-band}
+Let $n=hw$, and let $L$ be a Latin square of order $n$ equipped with a
+rectangular Sudoku structure whose boxes are the Cartesian products of
+row-bands of height $h$ and column-stacks of width $w$, each box
+containing every symbol exactly once. Let $B_{\mathrm{rb}}$ be the
+$n\times w$ row-band incidence matrix and $B_{\mathrm{cs}}$ the
+$n\times h$ column-stack incidence matrix. Then for every
+$\gamma\in S_n$,
+\begin{equation}\label{eq:rectangular-bbl}
+   B_{\mathrm{rb}}^{\!\top} E_{\gamma,L} B_{\mathrm{cs}}
+      \;=\; 0 \;\in\; \Z^{w\times h}.
+\end{equation}
+Equivalently, the corresponding normalized averaging maps also give
+zero.
+\end{corollary}
+
+\begin{proof}
+Each entry of the matrix in~\eqref{eq:rectangular-bbl} is the centered
+sum over one $h\times w$ box. The uncentered sum is
+$\sum_{k=1}^{n}k=n(n+1)/2$, and the centering contribution is
+$hw\cdot(n+1)/2=n(n+1)/2$.
+\end{proof}
+
+For general gerechte designs the correct statement is a region-sum
+identity rather than a row-averaging/column-averaging factorization.
+
+\begin{lemma}[Gerechte region-sum identity]
+\label{lem:gerechte-region-sum}
+Let $L$ be a Latin square of order $n$, and let
+$\mathcal R=\{R_1,\dots,R_n\}$ be a partition of the $n^2$ cells into
+$n$ regions of size $n$ such that every region contains each symbol
+exactly once. Then for every $\gamma\in S_n$ and every region
+$R_a\in\mathcal R$,
+\begin{equation}\label{eq:gerechte-region-sum}
+   \sum_{(i,j)\in R_a} (E_{\gamma,L})_{ij} \;=\; 0.
+\end{equation}
+If the regions are Cartesian products of a row partition and a column
+partition, this is exactly the rectangular Box Band Lemma. For a
+non-Cartesian gerechte partition there need not be a matrix identity of
+the form $B_{\mathrm{row}}^{\!\top}E_{\gamma,L}B_{\mathrm{col}}=0$;
+the invariant lives on cell-region incidence instead.
+\end{lemma}
+
+\begin{proof}
+For a fixed region $R_a$, the multiset
+$\{\gamma(L_{ij}):(i,j)\in R_a\}$ is $\{1,\dots,n\}$, since $R_a$
+contains every symbol once and $\gamma$ is a bijection. Thus the
+uncentered regional sum is $n(n+1)/2$, exactly equal to the sum of the
+centering term $(n+1)/2$ over the $n$ cells of $R_a$.
+\end{proof}
+
+The certified witness file \texttt{box\_band\_lemma\_witness.json}
+checks the square $3\times3$ Sudoku case, the rectangular $2\times3$
+Roku-Doku case, and a non-Cartesian gerechte partition of the cyclic
+Latin square of order $9$ by broken diagonals.
 
 \begin{corollary}[Box-band kernel inclusion]\label{cor:bbl-kernel}
 For every Sudoku grid $L$ and every $\gamma \in S_n$, the column span
@@ -525,7 +674,7 @@ Immediate from~\eqref{eq:bbl-formal}.
 \end{proof}
 
 Theorem~\ref{thm:box-band} is the structural input that distinguishes
-Sudoku from a generic Latin square at the linear-algebraic level. The
+Sudoku from the Latin-square axioms alone at the linear-algebraic level. The
 remainder of the paper exploits the fact that the box constraint is
 \emph{linear} (after centering) to import lattice and group-theoretic
 machinery to the analysis of $\Egamma$.
@@ -560,17 +709,16 @@ section is the canonical $9 \times 9$ grid
 \end{equation}
 This is the same grid recovered, byte-equal, by the audit script
 \href{../certified/recover_base1_22_perms.py}{\texttt{recover\_base1\_22\_perms.py}}
-and stored under the input field of
-\texttt{base1\_odd\_rank\_22.json}.
+and recorded in the certified package.
 
 \subsection{\texorpdfstring{Exhaustive $S_9$ scan}{Exhaustive S9 scan}}\label{sec:base1-scan}
 
 For each of the $|S_9| = 362{,}880$ symbol relabelings $\gamma$, the
 rank of $E_{\gamma,\,\texttt{base1}}$ on $\Vstdn$ is computed
 by exact integer Bareiss elimination. The resulting rank distribution
-is stated in Theorem~\ref{thm:base1-22}.
+is stated in Certified Proposition~\ref{thm:base1-22}.
 
-\begin{theorem}[Odd-rank scan on \texttt{base1}]
+\begin{certprop}[Odd-rank scan on \texttt{base1}]
 \label{thm:base1-22}
 On the Sudoku base \texttt{base1} of order $n = 9$, the rank
 distribution of the family $\{\Ehat\}_{\gamma \in S_9}$ is
@@ -583,10 +731,9 @@ distribution of the family $\{\Ehat\}_{\gamma \in S_9}$ is
       0,         & r \notin \{7, 8\}.
    \end{cases}
 \end{equation}
-The $22$ odd-rank relabelings are the explicit list of permutations
-in the \path{outputs.odd_perms_full_list} field of
-\path{base1_odd_rank_22.json}.
-\end{theorem}
+The $22$ odd-rank relabelings are recorded explicitly in the
+corresponding certificate.
+\end{certprop}
 
 This is an EXHAUSTIVE result: the entire group $S_9$ has been
 enumerated, no $\gamma$ has been omitted, and the rank of each
@@ -609,7 +756,7 @@ Each of the $22$ odd-rank relabelings has been independently certified
 by four exact-arithmetic procedures:
 \begin{enumerate}[label=(\roman*),leftmargin=*]
    \item \textbf{Integer rank} via Bareiss elimination on $\Egamma \in
-   \Z^{9 \times 9}$ followed by truncation to $\Ehat \in
+   \Z^{9 \times 9}$ followed by Gram projection to $\Ehat \in
    \Z^{8 \times 8}$;
    \item \textbf{Rational kernel} via SymPy nullspace of $\Ehat$,
    yielding a one-dimensional kernel $\Q$-vector for every
@@ -631,8 +778,9 @@ by four exact-arithmetic procedures:
       \end{array}
    \end{equation}
    In particular only $10/22$ relabelings have torsion-free cokernel
-   on $\Z^9 / \mathrm{im}(\Egamma)$; the remaining $12$ carry
-   $\Z$-torsion of order $\in \{2, 3, 4, 10\}$. The closed-form
+   on $\Z^9 / \mathrm{im}(\Egamma)$. Among the remaining $12$, the
+   torsion factors are $\Z/2$, $\Z/4$, $\Z/3$, and, for the final
+   SNF class, $\Z/2 \oplus \Z/10$. The closed-form
    description of this distribution as a function of $\gamma$ is
    recorded as open problem~(O1) in \S\ref{sec:disc-open};
    \item \textbf{$\mathbb{F}_2$-Smith normal form} of the reduction of
@@ -654,7 +802,7 @@ and summarized in Appendix~\ref{app:22-perms}.
 
 \subsection{Scope caveat}\label{sec:base1-scope}
 
-Theorem~\ref{thm:base1-22} concerns \emph{one} Sudoku base under
+Certified Proposition~\ref{thm:base1-22} concerns \emph{one} Sudoku base under
 \emph{all} symbol relabelings. It is \emph{not} a distributional
 statement over $\mathrm{Sud}(9)$. Comparable corpus-level statements
 require either an exhaustive enumeration of $\mathrm{Sud}(9)$ (out of
@@ -673,48 +821,82 @@ in $\mathrm{Sud}(9)$. To calibrate it against smaller orders, this
 section records two facts at $n \in \{6, 7\}$ that together motivate
 the structural treatment of \S\S\ref{sec:certificates}--\ref{sec:M19}:
 (i) the box constraint does not suppress the $\mathbb{F}_2$-rank
-parity proxy at $n = 6$ (i.e.~the rate of grids with
-$\rank_{\mathbb{F}_2} \Ehat = n - 1$ is comparable on Sudoku and on
-generic Latin squares of order $6$), and (ii) at $n = 7$ the
+parity proxy at $n = 6$ (i.e.~the rate of grids for which the
+determinant-paper auxiliary matrix has full $\mathbb{F}_2$-rank is
+comparable on rectangular Sudoku and on all Latin squares of order $6$), and
+(ii) at $n = 7$ the
 symmetry group of the simplest odd-rank certificate is dihedral of
-order $12$ and embeds inside the box automorphism group $B_3 < S_7$.
+order $12$ and embeds inside the signed-pair group $B_3 < S_7$.
+
+\begin{lemma}[Even-characteristic projected-rank ceiling]
+\label{lem:F2-even-projection}
+Let $n$ be even, let $L$ be any Latin square of order $n$, and reduce
+entries modulo $2$. With $P_n=(e_i-e_n)_{i<n}$ as in
+\eqref{eq:Ehat-def}, the Gram-projected matrix
+\begin{equation*}
+   P_n^{\!\top} L P_n \;\in\; \mathbb{F}_2^{(n-1)\times(n-1)}
+\end{equation*}
+has rank at most $n-2$ over $\mathbb{F}_2$.
+\end{lemma}
+
+\begin{proof}
+In characteristic $2$, subtraction and addition coincide, so
+$P_n\one_{n-1}=\one_n$ because $n-1$ is odd. Since each row of a Latin
+square has the same symbol sum, $L\one_n=s\one_n$ over $\mathbb{F}_2$
+for some $s\in\mathbb{F}_2$. But $P_n^{\!\top}\one_n=0$, again because
+each column of $P_n$ has two nonzero entries in characteristic $2$.
+Therefore
+\begin{equation*}
+   (P_n^{\!\top} L P_n)\one_{n-1}
+      = P_n^{\!\top}L\one_n
+      = s P_n^{\!\top}\one_n
+      = 0.
+\end{equation*}
+The vector $\one_{n-1}$ is nonzero, so the projected matrix has a
+nontrivial kernel.
+\end{proof}
+
+Lemma~\ref{lem:F2-even-projection} applies to the Gram-projected matrix
+$P_n^{\!\top}LP_n$ in characteristic $2$. It is separate from the
+determinant-paper auxiliary matrix $A_L$ used in the census below,
+which can have rank $n-1$.
 
 \subsection{\texorpdfstring{Roku-Doku at $n = 6$: $\mathbb{F}_2$-rank census}{Roku-Doku at n=6: F2-rank census}}\label{sec:n6}
 
-For $n = 6$, with first row fixed to $(1,2,3,4,5,6)$, the number of
-order-$6$ Latin squares is $|\mathrm{LS}(6)|_{\text{first row fixed}}
-= 1{,}128{,}960$ and the number of $2 \times 3$ Roku-Doku grids
-is $|\mathrm{Sud}(6)|_{\text{first row fixed}} = 39{,}168$.
-For each square $L$ in either family, we compute $\rank \Ehat$ at
-$\gamma = \mathrm{id}$ over $\mathbb{F}_2$ (the rank-parity proxy of
-\cite{HAN-RankParity}) and record the proportion of full-rank-over-$\mathbb{F}_2$
-witnesses (\,$\rank_{\mathbb{F}_2} \Ehat = n - 1 = 5$\,).
+For $n = 6$, with first row fixed to $(1,2,3,4,5,6)$, the finite
+corpora have sizes
+\begin{equation*}
+   |\mathrm{LS}(6)|_{\text{first row fixed}}=1{,}128{,}960,
+   \qquad
+   |\mathrm{Sud}_{2,3}(6)|_{\text{first row fixed}}=39{,}168.
+\end{equation*}
+The statistic used in this calibration is not $\rank \Ehat$ over
+$\mathbb{F}_2$. Instead, for each square $L$ in either family, we use
+the determinant-paper auxiliary matrix
+\begin{equation*}
+   A_L \;:=\; \bigl(L_{ij}-L_{i,6}\bigr)_{1\le i,j\le 5}
+   \quad \text{over }\mathbb{F}_2,
+\end{equation*}
+the rank-parity proxy of \cite{HAN-RankParity}. We record the
+proportion of witnesses for which $A_L$ has full $\mathbb{F}_2$-rank,
+namely $\rank_{\mathbb{F}_2} A_L = n - 1 = 5$.
 
-\begin{proposition}[Roku-Doku exhaustive census]\label{prop:n6-census}
+\begin{certprop}[Roku-Doku exhaustive census]\label{prop:n6-census}
 With the first row fixed to $(1,2,3,4,5,6)$,
 \begin{align*}
-   \#\bigl\{ L \in \mathrm{Sud}(6) : \rank_{\mathbb{F}_2} \Ehat = 5 \bigr\}
+   \#\bigl\{ L \in \mathrm{Sud}_{2,3}(6) : \rank_{\mathbb{F}_2} A_L = 5 \bigr\}
       &= 2{,}592 \;\;\;\,\,(=\!6.6177\%), \\
-   \#\bigl\{ L \in \mathrm{LS}(6) : \rank_{\mathbb{F}_2} \Ehat = 5 \bigr\}
+   \#\bigl\{ L \in \mathrm{LS}(6) : \rank_{\mathbb{F}_2} A_L = 5 \bigr\}
       &= 69{,}120 \;\;\,(=\!6.1224\%).
 \end{align*}
-Under the null hypothesis $H_0\!:\;p_{\mathrm{Sud}} = p_{\mathrm{LS}}$ that
-the two full-rank-over-$\mathbb{F}_2$ proportions are equal, the standard
-pooled two-proportion $z$-test (two-sided, with pooled variance estimator
-$\hat p (1-\hat p)\bigl(\tfrac{1}{N_{\mathrm{Sud}}} +
-\tfrac{1}{N_{\mathrm{LS}}}\bigr)$ where $\hat p$ is the pooled sample
-proportion) yields $z = 4.013706$, with two-sided $p$-value
-\begin{equation*}
-   p_{\text{two-sided}} \;=\; \mathrm{erfc}\!\bigl(|z|/\sqrt{2}\bigr)
-   \;=\; 5.977282 \times 10^{-5}.
-\end{equation*}
-\end{proposition}
+\end{certprop}
 
-We phrase the conclusion conservatively. The box constraint does
-\emph{not} suppress the full-rank-over-$\mathbb{F}_2$ phenomenon at
-$n = 6$; in the exhaustive Roku-Doku census, the proportion of
-full-rank-over-$\mathbb{F}_2$ witnesses is slightly but significantly
-larger than in the Latin-square census.
+The census is exhaustive on the two fixed-first-row finite corpora; no
+sampling inference is used. We phrase the conclusion conservatively. The box constraint does
+\emph{not} suppress the full-rank-over-$\mathbb{F}_2$ phenomenon for
+the auxiliary matrix $A_L$ at $n = 6$; in the exhaustive Roku-Doku
+census, the proportion of full-rank-over-$\mathbb{F}_2$ witnesses is
+slightly larger than in the Latin-square census.
 The full rank distribution at $n = 6$ across the five strata
 $\{1, 2, 3, 4, 5\}$ is reported in
 \texttt{n6\_odd\_rank\_census.json}.
@@ -722,10 +904,10 @@ $\{1, 2, 3, 4, 5\}$ is reported in
 \subsection{\texorpdfstring{The $n = 7$ group $H_{V_1} \cong D_6$}{The n=7 group HV1 is D6}}\label{sec:n7}
 
 For $n = 7$, fix the laboratory Latin square $L_{V_1}$ of order $7$
-recorded in \texttt{scripts/phase\_9\_15.py}, and let $B_3 = S_3 \wr
-S_3 \subset S_7$ be the box-permutation group acting on coordinates
-(it preserves the partition $\{1,2,3\} \cup \{4,5,6\} \cup \{7\}$ of
-the symbol set). Define
+recorded in \texttt{scripts/phase\_9\_15.py}, and let
+$B_3 = C_2 \wr S_3 \subset S_7$ be the signed-pair group of order $48$:
+it permutes the three pairs $\{1,7\}$, $\{2,6\}$, $\{3,5\}$, may swap
+the two entries inside each pair, and fixes $4$. Define
 \begin{equation}\label{eq:HV1-def}
    H_{V_1} \;:=\; \bigl\{\gamma \in B_3 \;:\;
       \rank \widehat{E}_{\gamma, L_{V_1}} \;=\; 5 \bigr\},
@@ -744,7 +926,7 @@ coordinate stabilizer of any such vector; it is intrinsically a
 \eqref{eq:HV1-def} on $\widehat{E}_{\gamma, L_{V_1}}$.
 \end{remark}
 
-\begin{theorem}[Stabilizer at $n = 7$]\label{thm:n7-D6}
+\begin{certprop}[Stabilizer at $n = 7$]\label{thm:n7-D6}
 The set $H_{V_1}$ defined by~\eqref{eq:HV1-def} satisfies
 $|H_{V_1}| = 12$, is closed under composition (hence a subgroup of
 $B_3$), and is isomorphic to the dihedral group $D_6 \cong S_3
@@ -759,26 +941,25 @@ The rank distribution of $\widehat{E}_{\gamma, L_{V_1}}$ on $B_3$ is
 $\{\rank 5 : 12,\ \rank 6 : 36\}$; the rank-$5$ rate inside $B_3$
 is $12/48 = 1/4$, against a baseline rate $30/5040 = 1/168$ in
 $S_7$, an enrichment ratio of $42$.
-\end{theorem}
+\end{certprop}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification]
 The exhaustive enumeration of $\rank \widehat{E}_{\gamma, L_{V_1}}$
-for $\gamma \in B_3$ is recorded in
-\texttt{n7\_HV1\_D6.json} under \texttt{rank\_distribution\_in\_B3};
-this directly gives $|H_{V_1}| = 12$. Closure under composition is
+for $\gamma \in B_3$ is recorded in the certificate
+\texttt{n7\_HV1\_D6.json}; this directly gives $|H_{V_1}| = 12$.
+Closure under composition is
 checked element-by-element on the $12$-element list. The element-order
 multiset of $H_{V_1}$ is $\{1\!:\!1,\ 2\!:\!7,\ 3\!:\!2,\
 6\!:\!2\}$, which uniquely identifies $D_6$ among groups of order
 $12$: the alternatives $\Z/12$, $\Z/6 \times \Z/2$, $A_4$, and
-$\mathrm{Dic}_3$ all have different order multisets (see
-\texttt{n7\_HV1\_D6.json}, field
-\texttt{alternatives\_excluded\_by\_order\_distribution}).
+$\mathrm{Dic}_3$ all have different order multisets, as recorded in
+the same certificate.
 Constructively, $r$ has order $6$, $s$ has order $2$, and $s r s =
 r^{-1}$ holds in $S_7$ by direct computation; hence $\langle r, s
 \rangle = D_6$. The order-$12$ subgroup $\langle r, s \rangle$
 coincides with $H_{V_1}$ on enumeration. Membership $r, s \in B_3$
-is verified by checking that each preserves the $\{1,2,3\} \cup
-\{4,5,6\} \cup \{7\}$ partition; this is implemented in
+is verified by checking that each preserves the pair system
+$\{1,7\}\cup\{2,6\}\cup\{3,5\}$ and fixes $4$; this is implemented in
 \href{../scripts/legacy/check_b3_subgroup.py}{\texttt{check\_b3\_subgroup.py}}.
 \end{proof}
 
@@ -798,14 +979,16 @@ involution $s$ generating the reflection.
 
 \subsection{Bridge to rank-parity falsification}\label{sec:parity-bridge}
 
-Theorem~\ref{thm:base1-22} and Proposition~\ref{prop:n6-census}
-together show that the parity statement
+Certified Proposition~\ref{thm:base1-22} falsifies the rank-parity
+statement
 ``$\rank \Ehat \equiv n - 1 \pmod 2$ for every Sudoku grid $L$ and
-every $\gamma$'' fails: \texttt{base1} admits $22$ relabelings with
-even-corank (odd-rank) $\Ehat$, and $n = 6$ Roku-Doku already
-contains over-$\mathbb{F}_2$ rank-$\le 4$ witnesses. These finite
-counterexamples are certified inside the present repository and are
-the only rank-parity input used below. The broader rank-parity
+every $\gamma$'': \texttt{base1} admits $22$ relabelings with
+even-corank (odd-rank) $\Ehat$. Certified Proposition~\ref{prop:n6-census}
+records a separate lower-order calibration for the determinant-paper
+auxiliary $\mathbb{F}_2$ proxy at rectangular order $6$; it is not an
+additional proof about $\rank\Ehat$ over $\mathbb{F}_2$. These finite
+counterexamples and calibrations are certified inside the present
+repository and are the only rank-parity input used below. The broader rank-parity
 falsification program is recorded in the sibling working draft
 \cite{HAN-RankParity}; here we proceed from the certified
 counterexamples to their algebraic structure
@@ -890,14 +1073,14 @@ invariants:
    \item the \emph{height} $\|w\|_\infty = \max_i |w_i|$.
 \end{itemize}
 We say $w$ is \emph{sparse} if $|\mathrm{supp}(w)| \le n/2$ (rounded
-up) and \emph{full} otherwise; \emph{low} if $\|w\|_\infty \le n/4$
-(rounded down) and \emph{high} otherwise. The two odd-rank orbits at
-$n = 9$ used in \S\ref{sec:orbits} arise from a sparse--low
+up) and \emph{full} otherwise. We record the height separately rather
+than folding it into a low/mid/high taxonomy. The two odd-rank orbits
+at $n = 9$ used in \S\ref{sec:orbits} arise from a sparse height-one
 representative
 \begin{equation*}
    M \;:=\; (-1, -1, 0, 0, 0, 0, 0, 1, 1) \;\in\; A_8
 \end{equation*}
-and a sparse--mid representative
+and a sparse height-two representative
 \begin{equation*}
    O_6 \;:=\; (-2, -1, 0, 0, 0, 0, 0, 1, 2) \;\in\; A_8.
 \end{equation*}
@@ -914,11 +1097,12 @@ $\gamma(L)\, w = 0$, which expands as
    \sum_{j=1}^{n} w_j \, \gamma(L_{ij}) \;=\; 0
    \qquad \text{for every row $i$ of $L$,}
 \end{equation}
-together with the column-wise dual. For sparse certificates the
-identity reduces to a relation among at most $|\mathrm{supp}(w)|$
-column entries of $\gamma(L)$ per row. The resulting identity is
-\emph{Sudoku-specific} only insofar as the certificate $w$ arises;
-on a generic Latin square no such $w$ exists.
+A left-kernel certificate gives the analogous column identities. For
+sparse right certificates, \eqref{eq:cert-identity} reduces to a
+relation among at most $|\mathrm{supp}(w)|$ column entries of
+$\gamma(L)$ per row. The resulting identity is Sudoku-specific only
+insofar as the certificate $w$ arises from the Sudoku rank-drop data;
+it is not a generic consequence of the Latin-square axioms.
 
 % =====================================================================
 \section{\texorpdfstring{Orbit structure and $A_8$ saturation}{Orbit structure and A8 saturation}}\label{sec:orbits}
@@ -937,7 +1121,7 @@ on $A_{n-1}\subset \Z^n$. Thus $G^*_n$ is the signed coordinate-
 permutation group generated by coordinate permutations and global
 sign. When $n=9$ we write $G^*$ for $G^*_9$.
 
-\subsection{Sparse--low and sparse--mid orbits}\label{sec:orbit-classes}
+\subsection{Sparse height-one and height-two orbits}\label{sec:orbit-classes}
 
 Acting on $A_8$ by signed permutation of coordinates, $G^*$ produces
 two finite orbits of the representatives $M$ and $O_6$:
@@ -966,26 +1150,23 @@ By construction $\Lambda_{\mathcal{O}} \subseteq A_8$. The
 columns are vectors of $\mathcal{O}$ spanning $\Lambda_{\mathcal{O}}$
 should all equal $1$ (rank $8$).
 
-\begin{theorem}[$A_8$ saturation]\label{thm:A8-saturation}
+\begin{certprop}[$A_8$ saturation]\label{thm:A8-saturation}
 At $n = 9$,
 \begin{equation*}
    \Lambda_{M} \;=\; \Lambda_{O_6} \;=\; A_8 \;=\; \Vstdn \cap \Z^9.
 \end{equation*}
 Both $\Lambda_M$ and $\Lambda_{O_6}$ have rank $8$ and elementary
 divisors $(1, 1, 1, 1, 1, 1, 1, 1)$.
-\end{theorem}
+\end{certprop}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification]
 For each orbit $\mathcal{O} \in \{\mathrm{orb}(M),\mathrm{orb}(O_6)\}$,
 the entire orbit is used as a (redundant) spanning set: the orbit
 vectors are stacked into the rows of an integer matrix of shape
 $(|\mathcal{O}|, 9)$, namely $(756, 9)$ for $\mathrm{orb}(M)$ and
 $(3024, 9)$ for $\mathrm{orb}(O_6)$. Smith normal form over $\Z$ is
 applied via SymPy. In both cases the elementary divisors are
-$(1,1,1,1,1,1,1,1)$ (eight $1$'s, recorded in fields
-\texttt{outputs.Lambda\_M.elementary\_divisors} and
-\texttt{outputs.Lambda\_O6.elementary\_divisors} of
-\texttt{A8\_saturation.json}), confirming rank $8$ and full
+$(1,1,1,1,1,1,1,1)$ (eight $1$'s), confirming rank $8$ and full
 saturation of $A_8$ inside $\Vstdn$. The implementation is in
 \href{../scripts/legacy/phase_9_18_S9q_beta_lattice.py}{\texttt{phase\_9\_18\_S9q\_beta\_lattice.py}};
 the certified output is \texttt{A8\_saturation.json}.
@@ -995,23 +1176,23 @@ the certified output is \texttt{A8\_saturation.json}.
    \centering
    \includegraphics[width=0.7\textwidth]{fig4_A8_saturation.pdf}
    \caption{Schematic of the saturation $\Lambda_M = \Lambda_{O_6} =
-   A_8$. Both sparse--low and sparse--mid orbits already saturate the
-   ambient root lattice $A_8$ at the level of $\Z$-spans.}
+   A_8$. Both sparse height-one and sparse height-two orbits already
+   saturate the ambient root lattice $A_8$ at the level of $\Z$-spans.}
    \label{fig:A8-saturation}
 \end{figure}
 
 \subsection{\texorpdfstring{The $\{M, O_6\}$ dichotomy at $n = 9$}{The M/O6 dichotomy at n=9}}\label{sec:dichotomy-n9}
 
-Theorem~\ref{thm:A8-saturation} promotes the height taxonomy of
+Certified Proposition~\ref{thm:A8-saturation} promotes the height taxonomy of
 \S\ref{sec:cert-taxonomy} to a structural statement: at $n = 9$, the
 sparse-template odd-rank certificates of $\Egamma$ split into exactly
-two $G^*$-orbits, with representatives $M$ (sparse--low,
-$|\mathrm{orb}| = 756$) and $O_6$ (sparse--mid, $|\mathrm{orb}| =
+two $G^*$-orbits, with representatives $M$ (sparse height-one,
+$|\mathrm{orb}| = 756$) and $O_6$ (sparse height-two, $|\mathrm{orb}| =
 3024$), and both orbits saturate $A_8$. The general-$n$ extension of
 this dichotomy is the content of \S\ref{sec:dichotomy}.
 
 % =====================================================================
-\section{\texorpdfstring{The $M_{19}$ laboratory and Hessian symmetry}{The M19 laboratory and Hessian symmetry}}\label{sec:M19}
+\section{\texorpdfstring{The $M_{19}$ laboratory and affine coset symmetry}{The M19 laboratory and affine coset symmetry}}\label{sec:M19}
 % =====================================================================
 
 The Sudoku grid $M_{19}$ is the laboratory base under which the
@@ -1031,22 +1212,21 @@ The grid itself is
       1 & 8 & 6 & 9 & 4 & 3 & 7 & 2 & 5
    \end{pmatrix}.
 \end{equation}
-This grid is recorded byte-equal in the input field of
-\path{M19_audit.json} and \path{M19_KL_KR_3sq_Q8.json}; it
-emerged from a uniform random search over Sudoku bases, conducted
-as described in \S\ref{sec:methods}, as the candidate with the
+This grid is recorded byte-equal in the certified package; it
+emerged from a seeded Markov-walk search over Sudoku bases, conducted
+as described in \S\ref{sec:methods}, as a candidate with the
 largest observed odd-rank relabeling count among the sampled grids.
 We make no claim that $M_{19}$ is globally maximal in this respect,
 nor that it is unique up to isomorphism among grids with $100$
 odd-rank relabelings; it is fixed here as the laboratory base on
-which the bilateral Hessian symmetry of \S\ref{sec:M19-hessian} is
+which the bilateral affine coset symmetry of \S\ref{sec:M19-affine} is
 most cleanly observed.
 
 \subsection{\texorpdfstring{Exhaustive $S_9$ audit of $M_{19}$}{Exhaustive S9 audit of M19}}\label{sec:M19-audit}
 
 We separate three distinct objects that all live on the laboratory base
-$M_{19}$ and that an earlier draft of this paper conflated into a single
-symbol $\Gamma^*_{M_{19}}$.
+$M_{19}$ and should not be conflated into a single symbol
+$\Gamma^*_{M_{19}}$.
 
 \begin{definition}[Three sets on $M_{19}$]\label{def:M19-three-sets}
 At the laboratory base $M_{19}$ we define:
@@ -1057,18 +1237,21 @@ At the laboratory base $M_{19}$ we define:
    \end{equation*}
    the set of all relabelings that drop the rank of the centered operator
    below the generic value $8$.
-   \item[\rm (b)] The \emph{Hessian-class subset}
+   \item[\rm (b)] The \emph{shared left-kernel subset}
    \begin{equation*}
-      \GMninetn \;:=\; \bigl\{\gamma \in \GrankM :
-         \ker \Egamma \cap \Vstdn \;=\; \mathbb{Z}\langle u^*_9 \rangle \bigr\},
+      \GMninetn \;:=\; \GrankM \cap \Gamma_L(M_{19},\wleftnine)
+      \;=\; \bigl\{\gamma \in \GrankM :
+         \ker(\Egamma^{\!\top}) \cap \Vstdn
+         \;=\; \mathbb{Q}\langle \wleftnine \rangle \bigr\},
    \end{equation*}
-   the relabelings whose centered kernel collapses to a fixed shared
-   primitive direction $u^*_9$ (defined below).
+   equivalently the relabelings satisfying
+   $\wleftnine{}^{\!\top}E_{\gamma,M_{19}}=0$, where $\wleftnine$ is
+   defined below.
    \item[\rm (c)] The \emph{ambient coordinate stabilizer}
    \begin{equation*}
-      \StabUnine \;\subset\; S_9,
+      \StabWnine \;\subset\; S_9,
    \end{equation*}
-   the coordinate stabilizer of $u^*_9$ under the standard action of
+   the coordinate stabilizer of $\wleftnine$ under the standard action of
    $S_9$ on $\mathbb{Z}^9$.
 \end{enumerate}
 The three sets are pairwise distinct as cardinalities and as combinatorial
@@ -1076,7 +1259,7 @@ objects: (a) is a set of permutations, (b) is a proper subset of (a), and
 (c) is a subgroup of $S_9$.
 \end{definition}
 
-Throughout the sequel, $\GMninetn$ always denotes the Hessian-class
+Throughout the sequel, $\GMninetn$ always denotes the shared left-kernel
 subset in Definition~\ref{def:M19-three-sets}(b), not the full
 rank-locus $\GrankM$ in Definition~\ref{def:M19-three-sets}(a). Thus
 $|\GMninetn| = 72$ and $|\GrankM| = 100$ are intentionally distinct
@@ -1087,61 +1270,63 @@ The exhaustive $S_9$-audit of $M_{19}$ yields:
 \begin{enumerate}
    \item[\rm (i)] $|\GrankM| = 100$ out of $|S_9| = 9! = 362{,}880$ (rank
    distribution $\{8 : 362{,}780,\ 7 : 100\}$);
-   \item[\rm (ii)] the Hessian-class subset has size $|\GMninetn| = 72$,
-   with shared primitive kernel direction
+   \item[\rm (ii)] the shared left-kernel subset has size $|\GMninetn| = 72$,
+   with shared primitive left-kernel direction
    \begin{equation*}
-      u^*_9 \;=\; (-2,\, -2,\, -2,\, 1,\, 1,\, 1,\, 1,\, 1,\, 1) \;\in\; A_8;
+      \wleftnine \;=\; (1,\, 1,\, 1,\, -2,\, -2,\, -2,\, 1,\, 1,\, 1) \;\in\; A_8;
    \end{equation*}
-   the $|\GrankM \setminus \GMninetn| = 28$ residual relabelings split
-   into $14$ smaller kernel orbits (full orbit count $|\GrankM|$ in
-   $S_9$ via canonicalization of the kernel template: $15$);
+   the $|\GrankM \setminus \GMninetn| = 28$ residual relabelings are
+   rank-$7$ relabelings but do not satisfy this shared left-kernel condition;
    \item[\rm (iii)] the ambient coordinate stabilizer satisfies
    \begin{equation*}
-      \StabUnine \;\cong\; S_3 \times S_6,
-      \qquad |\StabUnine| \;=\; 3!\cdot 6! \;=\; 4320,
+      \StabWnine \;\cong\; S_3 \times S_6,
+      \qquad |\StabWnine| \;=\; 3!\cdot 6! \;=\; 4320,
    \end{equation*}
-   since $u^*_9$ has value-multiplicities $\{-2 : 3,\ 1 : 6\}$.
+   since $\wleftnine$ has value-multiplicities $\{-2 : 3,\ 1 : 6\}$.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification]
 The rank distribution $\{8: 362{,}780,\ 7: 100\}$ is recomputed by an
-exhaustive two-stage scan: (a) NumPy float rank flag every $\gamma$ with
-$\rank \widehat{E}_{\gamma, M_{19}} < 8$ ($100$ candidates in
-${\sim}15$ s); (b) Sympy exact integer rank verification on every
-candidate, returning rank $7$ for all $100$. The full list of $100$
-permutations is shipped in
-\texttt{M19\_100\_perms\_recovered.json} (sha256 in
-\texttt{MANIFEST.sha256}); the script is
-\texttt{recover\_M19\_100\_perms.py}. Statement (ii) is read from
-\texttt{phase\_9\_18\_S9x\_results.json} via the canonicalization of the
-kernel template, and the $72$-element Hessian class is checked subset of
-the $100$ rank-$7$ list directly. Statement (iii) is the orbit-stabilizer
-calculation: $u^*_9$ has the multiset $\{-2,-2,-2,1,1,1,1,1,1\}$ with
+exhaustive two-stage scan: (a) compute the determinant of the projected
+$8\times 8$ matrix $\widehat{E}_{\gamma,M_{19}}$ modulo the prime
+$1{,}000{,}003$ for every $\gamma\in S_9$ and flag the $100$ zero
+candidates; because a zero rational determinant is zero modulo every
+prime, this modular filter cannot miss a rank-drop relabeling; (b) apply
+Sympy exact integer rank verification to every candidate, returning rank
+$7$ for all $100$. The full list of $100$
+permutations is shipped with a SHA-256 manifest in the certified
+package. Statement (ii) is checked twice: first in the original rank-locus
+audit, and then in the middle-band certificate. The same $72$ relabelings
+are exactly those for which $\wleftnine{}^{\!\top}E_{\gamma,M_{19}}=0$,
+and this $72$-element subset is checked directly to lie inside the $100$
+rank-$7$ relabelings. Statement (iii) is the orbit-stabilizer calculation:
+$\wleftnine$ has the multiset $\{1,1,1,-2,-2,-2,1,1,1\}$ with
 multiplicities $\{-2 : 3,\ 1 : 6\}$, hence its $S_9$-coordinate
-stabilizer is $S_3 \times S_6$ of order $4320$. The orbit of $u^*_9$ in
-$S_9 \cdot u^*_9$ has size $9!/4320 = 84$, of which only one element is
-realized as a kernel direction over the $\GMninetn$ certificates.
+stabilizer is $S_3 \times S_6$ of order $4320$. The orbit of
+$\wleftnine$ in $S_9\cdot\wleftnine$ has size $9!/4320 = 84$; this
+ambient orbit is not the rank locus and is not used to count
+$\GMninetn$.
 \end{proof}
 
 \begin{remark}[The number $4320$ is an ambient stabilizer, not an orbit]
 \label{rem:4320-not-orbit}
 The number $4320$ is the order of the ambient coordinate stabilizer
-$\StabUnine = \mathrm{Stab}_{S_9}(u^*_9) \cong S_3 \times S_6$, an
-algebraic invariant of the kernel direction $u^*_9$. It is \emph{not}
+$\StabWnine = \mathrm{Stab}_{S_9}(\wleftnine) \cong S_3 \times S_6$, an
+algebraic invariant of the shared left-kernel direction $\wleftnine$. It is \emph{not}
 the cardinality of any of $\GrankM$, $\GMninetn$, or any orbit of
 $\KL \times \KR$ on a rank-locus set; indeed
 $|\KL \times \KR| = 72\cdot 72 = 5184$ is not divisible by $4320$
 (ratio $6/5$). The three numbers $|\GrankM| = 100$, $|\GMninetn| = 72$,
-$|\StabUnine| = 4320$ live in distinct categories (rank-locus size,
-Hessian-class size, ambient stabilizer order) and should not be
+$|\StabWnine| = 4320$ live in distinct categories (rank-locus size,
+shared left-kernel subset size, ambient stabilizer order) and should not be
 identified.
 \end{remark}
 
-\subsection{\texorpdfstring{Single-coset structure of the Hessian class $\GMninetn$}{Single-coset structure of the Hessian class}}
+\subsection{\texorpdfstring{Single-coset structure of the shared left-kernel subset $\GMninetn$}{Single-coset structure of the shared left-kernel subset}}
 \label{sec:M19-coset}
 
-We now identify the symmetries of the Hessian-class subset $\GMninetn$.
+We now identify the symmetries of the shared left-kernel subset $\GMninetn$.
 Define
 \begin{align}
    \KL &\;:=\; \bigl\{\pi \in S_9 \;:\; \pi \cdot \GMninetn \;\subseteq\;
@@ -1149,52 +1334,45 @@ Define
    \KR &\;:=\; \bigl\{\pi \in S_9 \;:\; \GMninetn \cdot \pi \;\subseteq\;
       \GMninetn\bigr\}. \label{eq:KR-def}
 \end{align}
-By a direct exhaustive computation in $S_9$ (recorded under fields
-\texttt{K\_L\_size}, \texttt{K\_R\_size},
-\texttt{left\_coset\_test\_PASS}, \texttt{right\_coset\_test\_PASS} of
-\texttt{M19\_audit.json}), both $\KL$ and $\KR$ are subgroups of $S_9$
-of order $72$, and $\GMninetn$ is simultaneously a single left coset of
-$\KL$ and a single right coset of $\KR$.
+By a direct exhaustive computation in $S_9$, recorded in the M19 audit
+certificate, both $\KL$ and $\KR$ are subgroups of $S_9$ of order $72$,
+and $\GMninetn$ is simultaneously a single left coset of $\KL$ and a
+single right coset of $\KR$.
 
-\begin{theorem}[Single-coset structure of $\GMninetn$]
+\begin{certprop}[Single-coset structure of $\GMninetn$]
 \label{thm:M19-coset}
-The Hessian-class subset $\GMninetn$ has cardinality $72$, and there
-exists $\gamma_0 \in \GMninetn$ such that
+The shared left-kernel subset $\GMninetn$ has cardinality $72$, and there
+exists $\pi_0 \in \GMninetn$ such that
 \begin{equation}\label{eq:single-coset}
-   \GMninetn \;=\; \KL \cdot \gamma_0 \;=\; \gamma_0 \cdot \KR,
+   \GMninetn \;=\; \KL \cdot \pi_0 \;=\; \pi_0 \cdot \KR,
 \end{equation}
 with $|\KL| = |\KR| = 72$. The two subgroups intersect trivially,
-$\KL \cap \KR = \{e\}$, but they are conjugate in $S_9$ via $\gamma_0$:
+$\KL \cap \KR = \{e\}$, but they are conjugate in $S_9$ via $\pi_0$:
 \begin{equation}\label{eq:KL-conj-KR}
-   \KL \;=\; \gamma_0\, \KR\, \gamma_0^{-1}.
+   \KL \;=\; \pi_0\, \KR\, \pi_0^{-1}.
 \end{equation}
-Equivalently, the double coset $\KL \cdot \gamma_0 \cdot \KR$ has
+Equivalently, the double coset $\KL \cdot \pi_0 \cdot \KR$ has
 cardinality $72$, which by the standard double-coset formula
 \begin{equation*}
-   |\KL\, \gamma_0\, \KR| \;=\;
-   \frac{|\KL|\cdot|\KR|}{|\KL \cap \gamma_0\, \KR\, \gamma_0^{-1}|}
+   |\KL\, \pi_0\, \KR| \;=\;
+   \frac{|\KL|\cdot|\KR|}{|\KL \cap \pi_0\, \KR\, \pi_0^{-1}|}
 \end{equation*}
-forces $|\KL \cap \gamma_0\, \KR\, \gamma_0^{-1}| = 72 = |\KL| = |\KR|$,
+forces $|\KL \cap \pi_0\, \KR\, \pi_0^{-1}| = 72 = |\KL| = |\KR|$,
 i.e.\ \eqref{eq:KL-conj-KR}.
-\end{theorem}
+\end{certprop}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification]
 The orders $|\KL| = |\KR| = 72$ and the equality
-$\GMninetn = \KL \cdot \gamma_0 = \gamma_0 \cdot \KR$ are read off the
-exhaustive set-stabilizer computation recorded in
-\texttt{M19\_audit.json} (fields \texttt{left\_coset\_test\_PASS},
-\texttt{right\_coset\_test\_PASS}, \texttt{K\_L\_size},
-\texttt{K\_R\_size}). The intersection $\KL \cap \KR$ is computed as a
-finite set in $S_9$ and returns the singleton $\{e\}$; this is recorded
-in \texttt{M19\_KL\_KR\_3sq\_Q8.json} under
-\texttt{K\_L\_inter\_K\_R\_size}. The conjugacy
-$\KL = \gamma_0 \KR \gamma_0^{-1}$ is then forced by the double-coset
-size identity: with $|\KL\,\gamma_0\,\KR| = |\GMninetn| = 72$ and
+$\GMninetn = \KL \cdot \pi_0 = \pi_0 \cdot \KR$ are read off the
+exhaustive set-stabilizer computation recorded in the M19 audit
+certificate. The intersection $\KL \cap \KR$ is computed as a finite
+set in $S_9$ and returns the singleton $\{e\}$. The conjugacy
+$\KL = \pi_0 \KR \pi_0^{-1}$ is then forced by the double-coset
+size identity: with $|\KL\,\pi_0\,\KR| = |\GMninetn| = 72$ and
 $|\KL| = |\KR| = 72$, one gets
-$|\KL \cap \gamma_0 \KR \gamma_0^{-1}| = 72$, hence
-$\KL = \gamma_0 \KR \gamma_0^{-1}$. The corresponding boolean
-\texttt{Y2\_conjugate\_via\_pi0} is recorded \texttt{true} in
-\texttt{M19\_KL\_KR\_3sq\_Q8.json}.
+$|\KL \cap \pi_0 \KR \pi_0^{-1}| = 72$, hence
+$\KL = \pi_0 \KR \pi_0^{-1}$; the affine certificate records the
+same conjugacy check directly.
 \end{proof}
 
 A schematic of the single-coset structure is shown in
@@ -1205,86 +1383,178 @@ Figure~\ref{fig:M19-coset}.
    \includegraphics[width=0.7\textwidth]{fig5_M19_coset_structure.pdf}
    \caption{Schematic of the single-coset structure of $\GMninetn$. The
    left axis is the $|\KL| = 72$ direction; $\GMninetn = \KL \cdot
-   \gamma_0$ is itself a single left $\KL$-coset of cardinality $72$.
-   The structural permutation $\gamma_0 \in \GMninetn$ also satisfies
-   $\GMninetn = \gamma_0 \cdot \KR$; the conjugation
-   $\KL = \gamma_0\, \KR\, \gamma_0^{-1}$ identifies the two Hessian
+   \pi_0$ is itself a single left $\KL$-coset of cardinality $72$.
+   The structural permutation $\pi_0 \in \GMninetn$ also satisfies
+   $\GMninetn = \pi_0 \cdot \KR$; the conjugation
+   $\KL = \pi_0\, \KR\, \pi_0^{-1}$ identifies the two affine
    sides.}
    \label{fig:M19-coset}
 \end{figure}
 
-\subsection{\texorpdfstring{Hessian identification: $\KL \cong \KR \cong 3^2{:}Q_8$}{Hessian identification: KL and KR are 3 squared colon Q8}}
-\label{sec:M19-hessian}
+\subsection{\texorpdfstring{Affine identification: $\KL \cong \KR \cong 3^2{:}D_4$}{Affine identification: KL and KR are 3 squared colon D4}}
+\label{sec:M19-affine}
 
-\begin{theorem}[Hessian symmetry of $M_{19}$]\label{thm:M19-hessian}
-At $L = M_{19}$ and $n = 9$, the left and right Hessian symmetry
+\begin{certprop}[Affine coset symmetry of $M_{19}$]\label{thm:M19-affine}
+At $L = M_{19}$ and $n = 9$, the left and right affine coset-symmetry
 groups satisfy
 \begin{equation*}
-   \KL \;\cong\; \KR \;\cong\; \HesGroup
-   \;=\; \mathrm{SmallGroup}(72, 41).
+   \KL \;\cong\; \KR \;\cong\; \AffDfour.
 \end{equation*}
-Both have order $72$, exponent $6$, derived series of orders
-$(72, 18, 9, 1)$, abelianization $\Z/4$, trivial centre, and
+Equivalently, each has a normal regular translation subgroup
+$T \cong (\Z/3)^2$ and a point stabilizer $H \cong D_4$, so
+$\KL \cong T \rtimes H$ and the same holds for $\KR$. Both groups
+have order $72$, exponent $12$, derived series of orders
+$(72, 18, 9, 1)$, abelianization $(\Z/2)^2$, trivial centre, and
 $9$ conjugacy classes. The element-order distribution is
 $\{1\!:\!1,\ 2\!:\!21,\ 3\!:\!8,\ 4\!:\!18,\ 6\!:\!24\}$.
 $\KL$ and $\KR$ are not equal as subgroups of $S_9$ (their
 intersection is trivial: $\KL \cap \KR = \{e\}$), but they are
 conjugate inside $S_9$ via an external structural permutation
 $\pi_0 \in S_9 \setminus (\KL \cup \KR)$ characterized in
-Remark~\ref{rem:pi0}.
-\end{theorem}
+Remark~\ref{rem:pi0}. Neither $\KL$ nor $\KR$ is contained in the
+ambient coordinate stabilizer $\StabWnine$.
+\end{certprop}
 
-\begin{proof}[Outline of identification]
-The order $|\KL| = 72$ rules out abelian groups and groups of
-exponent $\le 2$. The derived series $(72, 18, 9, 1)$ identifies
-$\KL$ as solvable of derived length $3$. Among the $50$ groups of
-order $72$ classified in
-\cite{ConwaySloaneSPLAG, GAPSmallGroups, ATLASsmallorder}, the
-combination of exponent $6$, abelianization $\Z/4$, trivial centre,
-$9$ conjugacy classes, and the element-order multiset
-$\{1\!:\!1,\ 2\!:\!21,\ 3\!:\!8,\ 4\!:\!18,\ 6\!:\!24\}$
-uniquely picks out $\mathrm{SmallGroup}(72, 41) \cong 3^2 \rtimes Q_8$,
-the unique non-abelian extension of $Q_8$ by $(\Z/3)^2$ of Hessian
-type \cite[Ch.~10]{ConwaySloaneSPLAG}. Uniqueness of the match was
-checked by querying the \texttt{GAP} \texttt{SmallGroups} library
-\cite{GAPSmallGroups} over $k \in \{1,\ldots,50\}$ via the standard
-predicates \texttt{Exponent}, \texttt{AbelianInvariants(DerivedSubgroup)},
-\texttt{Centre}, \texttt{NrConjugacyClasses}, and element-order multiset:
-the conjunction of all five invariants is met by exactly one entry,
-namely $k = 41$. The full identification certificate, including the
-$8$ explicit generator permutations, is recorded in
-\texttt{M19\_KL\_KR\_3sq\_Q8.json}.
+\begin{proof}[Certification of the group identification]
+We describe $\KL$; the computation for $\KR$ is identical. Let
+$T$ be the identity together with the eight elements of $\KL$ of
+order $3$. The certificate verifies that $T$ is closed, abelian,
+normal in $\KL$, and regular on the nine symbols. Its element-order
+distribution is $\{1\!:\!1,3\!:\!8\}$, which excludes $\Z/9$ and hence
+identifies $T \cong (\Z/3)^2$. Let $H \le \KL$ be the stabilizer of the point
+$1$. Then $|H|=8$, and its element-order distribution is
+\begin{equation*}
+   \{1\!:\!1,
+     2\!:\!5,
+     4\!:\!2\},
+\end{equation*}
+which uniquely identifies $H$ with $D_4$ among groups of order $8$.
+Since $T$ is normal, $T \cap H = 1$, and $|T|\,|H| = 9\cdot 8 = 72
+= |\KL|$, we obtain $\KL = T \rtimes H \cong 3^2{:}D_4$. The quotient
+$\KL/T$ has the same $D_4$ order fingerprint. The derived subgroup has
+order $18$, and the quotient by the derived subgroup has order
+distribution $\{1\!:\!1,2\!:\!3\}$, giving abelianization
+$(\Z/2)^2$. The full identification certificate, including the
+$8$ explicit generator permutations and the ambient-stabilizer
+non-containment check, is recorded in
+\texttt{M19\_KL\_KR\_affine\_D4.json}.
 \end{proof}
 
 \begin{remark}[Structural permutation $\pi_0$]\label{rem:pi0}
 The canonical structural permutation conjugating $\KR$ to $\KL$ is
 the lex-minimum element of the bilateral coset $\Gamma^{*}_{M_{19}}
-= \KL \gamma_0 = \gamma_0 \KR$, namely
+= \KL \pi_0 = \pi_0 \KR$, namely
 \begin{equation}\label{eq:pi0-perm}
    \pi_0 \;=\; (1,\, 5,\, 3,\, 9,\, 6,\, 8,\, 7,\, 4,\, 2)
    \;\in\; S_9
    \qquad\text{(one-line notation).}
 \end{equation}
 This $\pi_0$ is \emph{not} an element of $\KL$ nor of $\KR$; in
-particular it is not one of the eight generators listed in
-\texttt{outputs.K\_L\_generators\_perms}. It satisfies
-$\pi_0 \KR \pi_0^{-1} = \KL$ and is the witness implementing the
-output field \texttt{Y2\_conjugate\_via\_pi0 = true}; the entire
-coset $\Gamma^{*}_{M_{19}}$ admits the bilateral factorisation
-$\Gamma^{*}_{M_{19}} = \pi_0 \KR = \KL \pi_0$. The certificate file
-\texttt{M19\_KL\_KR\_3sq\_Q8.json} records both the eight-generator
-presentation of $\KL$ and the explicit value of $\pi_0$ in its
-\texttt{outputs.pi0\_perm} field.
+particular it is not one of the eight generators of $\KL$. It satisfies
+$\pi_0 \KR \pi_0^{-1} = \KL$ and the entire coset
+$\Gamma^{*}_{M_{19}}$ admits the bilateral factorisation
+$\Gamma^{*}_{M_{19}} = \pi_0 \KR = \KL \pi_0$. The affine certificate
+records both the eight-generator presentation of $\KL$ and the explicit
+value of $\pi_0$.
 \end{remark}
 
-\begin{remark}[Hessian groups in $S_9$]\label{rem:hessian-context}
-The group $3^2{:}Q_8$ is the classical \emph{Hessian group} of
-order $72$, identified by Hesse in the context of the inflection
-configuration of a smooth plane cubic curve. Its appearance here is
-not a priori expected: it arises from a purely Sudoku-driven
-construction, with no intervening cubic geometry. The Sudoku
-specificity of this realization is investigated in
-\S\ref{sec:autLM19}.
+\subsection{Middle-band hypergraph realization}\label{sec:M19-hypergraph}
+
+The middle-band balance criterion also has a finite hypergraph
+formulation. Let $\mathcal H_{M_{19}}^{\mathrm{mid}}$ be the reduced
+$3$-uniform hypergraph on the symbol set $\{1,\dots,9\}$ whose edges
+are the distinct unordered triples appearing in rows $4,5,6$ of a
+single column of $M_{19}$. Explicitly,
+\begin{equation*}
+\begin{split}
+\mathcal H_{M_{19}}^{\mathrm{mid}}
+   = \{&\{1,2,4\},\ \{1,5,6\},\ \{2,3,7\},\
+       \{3,6,8\},\ \{4,8,9\},\ \{5,7,9\}\}.
+\end{split}
+\end{equation*}
+The nine columns give these six edges with multiplicities
+$(1,2,2,1,2,1)$ in the displayed order; the reduced hypergraph forgets
+those multiplicities. Let
+\begin{equation*}
+   \mathcal T_{15}
+      := \bigl\{\{a,b,c\} \subset \{1,\dots,9\} : a+b+c=15\bigr\}
+\end{equation*}
+be the $8$-edge magic-triple hypergraph, and let
+\begin{equation*}
+\begin{split}
+\mathcal T^-_{15}
+   = \{&\{1,5,9\},\ \{1,6,8\},\ \{2,4,9\},\
+       \{2,6,7\},\ \{3,4,8\},\ \{3,5,7\}\}
+\end{split}
+\end{equation*}
+be the $6$-edge subhypergraph obtained from $\mathcal T_{15}$ by
+removing $\{2,5,8\}$ and $\{4,5,6\}$.
+
+\begin{certprop}[M19 middle-band hypergraph realization]
+\label{thm:M19-hypergraph}
+With $\pi_0$ as in Remark~\ref{rem:pi0},
+\begin{equation}\label{eq:M19-hypergraph-embeddings}
+   \GMninetn
+   = \bigl\{\gamma\in S_9 :
+        \gamma(e) \in \mathcal T_{15}
+         \text{ for every } e\in \mathcal H_{M_{19}}^{\mathrm{mid}}
+     \bigr\}.
+\end{equation}
+Moreover every relabeling in this set has the same reduced image
+$\mathcal T^-_{15}$, and
+\begin{equation}\label{eq:M19-hypergraph-aut}
+   \Aut(\mathcal H_{M_{19}}^{\mathrm{mid}}) = \KR,
+   \qquad
+   \Aut(\mathcal T^-_{15}) = \KL.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:M19-hypergraph-coset}
+   \GMninetn
+      = \pi_0\,\Aut(\mathcal H_{M_{19}}^{\mathrm{mid}})
+      = \Aut(\mathcal T^-_{15})\,\pi_0.
+\end{equation}
+Both reduced automorphism groups have order $72$. In contrast, the
+full magic-triple hypergraph $\mathcal T_{15}$ has automorphism group
+of order $8$.
+\end{certprop}
+
+\begin{proof}[Certification]
+For a relabeling $\gamma$, the condition
+$\gamma(e)\in\mathcal T_{15}$ for every middle-band edge $e$ says
+exactly that each middle-band column triple
+$(\gamma(M_{4j}),\gamma(M_{5j}),\gamma(M_{6j}))$ has sum $15$.
+By Proposition~\ref{prop:M19-audit}, this is equivalent to
+$\gamma\in\GMninetn$ and to the left-kernel equation
+$\wleftnine{}^{\!\top}E_{\gamma,M_{19}}=0$. The certificate
+\texttt{M19\_middle\_band\_balance.json} exhaustively scans all
+$9!$ relabelings and records the equality of the embedding set with
+$\GMninetn$.
+
+The same certificate computes the reduced source and target
+automorphism groups as finite subgroups of $S_9$. It checks
+$|\Aut(\mathcal H_{M_{19}}^{\mathrm{mid}})|=72$ and identifies this
+group exactly with $\KR$; it also checks
+$|\Aut(\mathcal T^-_{15})|=72$ and identifies this group exactly with
+$\KL$. The permutation $\pi_0$ maps
+$\mathcal H_{M_{19}}^{\mathrm{mid}}$ onto $\mathcal T^-_{15}$, so the
+set of all such isomorphisms is both
+$\pi_0\Aut(\mathcal H_{M_{19}}^{\mathrm{mid}})$ and
+$\Aut(\mathcal T^-_{15})\pi_0$, giving
+\eqref{eq:M19-hypergraph-coset}. Finally, the verifier separately
+computes $|\Aut(\mathcal T_{15})|=8$, so the $72$-element phenomenon is
+not an automorphism group of the full magic-triple hypergraph; it is an
+isomorphism torsor between the M19 middle-band hypergraph and the
+six-edge magic subhypergraph $\mathcal T^-_{15}$.
+\end{proof}
+
+\begin{remark}[No Hessian or SmallGroup claim]\label{rem:hessian-context}
+The certificate for Certified Proposition~\ref{thm:M19-affine} does not assert a
+\texttt{SmallGroup} identifier and does not identify $\KL$ or $\KR$
+with the classical Hessian group $3^2{:}Q_8$. The point-stabilizer
+fingerprint $\{1\!:\!1,2\!:\!5,4\!:\!2\}$ separates $D_4$ from
+$Q_8$, whose order fingerprint is $\{1\!:\!1,2\!:\!1,4\!:\!6\}$.
+The Sudoku specificity of the affine $3^2{:}D_4$ realization is
+investigated in \S\ref{sec:autLM19}.
 \end{remark}
 
 % =====================================================================
@@ -1293,23 +1563,22 @@ specificity of this realization is investigated in
 
 We now lift the $\{M, O_6\}$ structure of \S\ref{sec:dichotomy-n9} to
 a one-parameter family of representatives at general $n$. For
-$n \ge 5$, define the canonical sparse--low and sparse--mid integer
-vectors of $A_{n-1}$ by
+$n \ge 5$, define the canonical sparse height-one and height-two
+integer vectors of $A_{n-1}$ by
 \begin{equation*}
    M_n \;:=\; \bigl(-1,\, -1,\, \underbrace{0,\dots,0}_{n-4},\, 1,\, 1\bigr),
    \qquad
    O_n \;:=\; \bigl(-2,\, -1,\, \underbrace{0,\dots,0}_{n-4},\, 1,\, 2\bigr).
 \end{equation*}
 At $n = 9$, $M_9 = M$ and $O_9 = O_6$ in the notation of
-\S\ref{sec:cert-taxonomy}. The next two results identify the $G^*_n$-stabilizers
-of $M_n$ and $O_n$ analytically at $n \in \{7, 9, 11\}$ and verify
-the orbit-size and stabilizer-order formulas exhaustively for
-$5 \le n \le 13$.
+\S\ref{sec:cert-taxonomy}. The first two results record the finite
+certified evidence base; the third gives the general proof of the
+stabilizer and lattice-saturation dichotomy for all $n \ge 5$.
 
 \subsection{\texorpdfstring{Exhaustive verification at $5 \le n \le 13$}{Exhaustive verification at 5 <= n <= 13}}
 \label{sec:dichotomy-exhaustive}
 
-\begin{proposition}[Exhaustive dichotomy]
+\begin{certprop}[Exhaustive dichotomy]
 \label{prop:dichotomy-exhaustive}
 For every integer $n$ with $5 \le n \le 13$,
 \begin{equation*}
@@ -1327,9 +1596,12 @@ and
 The orbit-distance $d_{M_n}(\mathrm{orb}(O_n)) = 2$, and
 $\Lambda_{M_n} = \Lambda_{O_n} = A_{n-1}$ (saturation, elementary
 divisors all $1$).
-\end{proposition}
+\end{certprop}
 
-The proposition is verified by direct computation in
+Here $d_{M_n}(\mathrm{orb}(O_n))$ denotes the minimum Hamming distance
+from $M_n$ to the signed-coordinate orbit of $O_n$, after identifying
+vectors by their coordinate tuples. The certified proposition is
+verified by direct computation in
 \href{../scripts/legacy/phase_9_18_S9q_gamma1.py}{\texttt{phase\_9\_18\_S9q\_gamma1.py}};
 total wall-time $\approx 31$ seconds. The certified output is
 \texttt{stabilizers\_5\_to\_13.json}.
@@ -1337,7 +1609,7 @@ total wall-time $\approx 31$ seconds. The certified output is
 \subsection{\texorpdfstring{Analytic identification at $n \in \{7, 9, 11\}$}{Analytic identification at n in {7,9,11}}}
 \label{sec:dichotomy-analytic}
 
-\begin{theorem}[Analytic dichotomy at $n \in \{7, 9, 11\}$]
+\begin{certprop}[Certified dichotomy at $n \in \{7, 9, 11\}$]
 \label{thm:dichotomy-analytic}
 For each $n \in \{7, 9, 11\}$,
 \begin{equation*}
@@ -1347,9 +1619,9 @@ For each $n \in \{7, 9, 11\}$,
 \end{equation*}
 and the integer hulls satisfy $\Lambda_{M_n} = \Lambda_{O_n} =
 A_{n-1}$.
-\end{theorem}
+\end{certprop}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification and analytic reduction]
 At each $n \in \{7,9,11\}$, the stabilizer of $M_n$ in $G^*_n$
 admits a canonical short exact sequence
 \begin{equation*}
@@ -1391,9 +1663,9 @@ The full witness fingerprint, including the order-multiset checks
 and the alternative-exclusion list, is in
 \texttt{dichotomy\_n7\_n9\_n11.json}.
 
-\subsection{\texorpdfstring{General-$n$ conjecture}{General-n conjecture}}\label{sec:dichotomy-general}
+\subsection{\texorpdfstring{General-$n$ theorem}{General-n theorem}}\label{sec:dichotomy-general}
 
-\begin{conjecture}[General-$n$ dichotomy]\label{conj:universal-dichotomy}
+\begin{theorem}[General-$n$ dichotomy]\label{thm:universal-dichotomy}
 For every integer $n \ge 5$,
 \begin{equation*}
    \Stab_{G^*_n}(M_n) \;\cong\; D_4 \times S_{n-4},
@@ -1401,28 +1673,60 @@ For every integer $n \ge 5$,
    \Stab_{G^*_n}(O_n) \;\cong\; \Z/2 \times S_{n-4},
 \end{equation*}
 and $\Lambda_{M_n} = \Lambda_{O_n} = A_{n-1}$.
-\end{conjecture}
+\end{theorem}
 
-The evidence base for Conjecture~\ref{conj:universal-dichotomy} is
-the union of Theorem~\ref{thm:dichotomy-analytic} (analytic, $n \in
-\{7,9,11\}$) and Proposition~\ref{prop:dichotomy-exhaustive}
-(exhaustive computational, $5 \le n \le 13$). No further evidence
-is claimed in this paper.
+\begin{proof}
+Recall that $G^*_n = S_n \times \{\pm 1\}$ acts by coordinate
+permutations and global sign. For $M_n$, the coordinates split into
+two entries equal to $-1$, two entries equal to $1$, and an
+$(n-4)$-element zero block. The zero block may be permuted freely,
+giving an $S_{n-4}$ factor. On the four nonzero coordinates, the
+sign-preserving part permutes the two negative entries and the two
+positive entries independently, while multiplication by $-1$ swaps the
+negative pair with the positive pair. Thus the nonzero-coordinate
+factor is $(S_2 \times S_2) \rtimes C_2 \cong D_4$, and it commutes
+with the zero-block factor. Hence
+$\Stab_{G^*_n}(M_n) \cong D_4 \times S_{n-4}$.
 
-The upper bound $n = 13$ on the exhaustive scan reflects the
-computational scope of the present work, not a fundamental obstruction:
-the orbit and elementary-divisor checks for $n = 14, 15$ are
-tractable in principle but require a one- to two-order-of-magnitude
-increase in CPU time and were not run for this paper. We deliberately
-stop the exhaustive ledger at $n = 13$ rather than extend the
-evidence in a piecemeal way.
+For $O_n$, the nonzero entries $-2,-1,1,2$ are all distinct. The
+zero block again gives $S_{n-4}$, and the only nontrivial operation on
+the nonzero coordinates is global sign, which exchanges
+$-2 \leftrightarrow 2$ and $-1 \leftrightarrow 1$. Therefore
+$\Stab_{G^*_n}(O_n) \cong C_2 \times S_{n-4}$.
+
+It remains to prove saturation. Each orbit vector has coordinate sum
+zero, so both orbit lattices are contained in $A_{n-1}$. Conversely,
+fix distinct indices $i$ and $k$. Since $n \ge 5$, choose three
+further indices $j,a,b$ distinct from $i,k$. In the $G^*_n$-orbit of
+$M_n$, compare the two vectors with nonzero support arranged as
+\begin{equation*}
+   -1 \text{ at } i,j,
+   \quad 1 \text{ at } a,b,
+\end{equation*}
+and
+\begin{equation*}
+   -1 \text{ at } k,j,
+   \quad 1 \text{ at } a,b.
+\end{equation*}
+Their difference is $e_k-e_i$. Thus every root $e_k-e_i$ lies in
+$\Lambda_{M_n}$, so $\Lambda_{M_n}=A_{n-1}$. For $O_n$, keep the
+positions of $-2$, $1$, and $2$ fixed at three indices distinct from
+$i,k$, and move only the coordinate carrying $-1$ from $i$ to $k$.
+The difference of the two orbit vectors is again $e_k-e_i$. Hence
+$\Lambda_{O_n}=A_{n-1}$ as well.
+\end{proof}
+
+Certified Proposition~\ref{prop:dichotomy-exhaustive} remains useful as an
+independent finite audit: in addition to the formulas now proved in
+Theorem~\ref{thm:universal-dichotomy}, it checks the orbit-distance
+statement $d_{M_n}(\mathrm{orb}(O_n)) = 2$ for $5 \le n \le 13$.
 
 % =====================================================================
 \section{Sudoku-specificity beyond Latin-square autotopisms}
 \label{sec:autLM19}
 % =====================================================================
 
-The Hessian group $\KL \cong 3^2{:}Q_8$ identified at $M_{19}$ is
+The affine coset-symmetry group $\KL \cong 3^2{:}D_4$ identified at $M_{19}$ is
 not a familiar Latin-square invariant. The classical group attached
 to a Latin square $L$ is its autotopism group $\Aut(L)$,
 i.e.\ the set of triples $(\alpha, \beta, \gamma) \in S_n^3$ that
@@ -1440,60 +1744,141 @@ Let $L_{M_{19}}$ denote the Latin square underlying $M_{19}$; that
 is, the $9 \times 9$ array of \eqref{eq:M19-grid} viewed without
 its Sudoku/box structure.
 
-\begin{theorem}[$\Aut(L_{M_{19}})$ is trivial]\label{thm:aut-LM19-trivial}
+\begin{certprop}[$\Aut(L_{M_{19}})$ is trivial]\label{thm:aut-LM19-trivial}
 The autotopism group of $L_{M_{19}}$ has order $1$:
 \begin{equation*}
    |\Aut(L_{M_{19}})| \;=\; 1.
 \end{equation*}
-\end{theorem}
+\end{certprop}
 
-\begin{proof}[Outline]
+\begin{proof}[Certification]
 The full $9!^3 = 4.79 \times 10^{16}$ triple-search is reduced
 algorithmically: fix $\gamma \in S_9$, and for each fixed
 $\gamma$ search the $9!^2$ pairs $(\alpha, \beta)$ such that
 $L_{\alpha(i),\beta(j)} = \gamma(L_{ij})$ via a constrained
 backtracking that prunes on the first row. The exhaustive scan over
 all $9! = 362{,}880$ values of $\gamma$ yields the trivial autotopism
-$(\mathrm{id}, \mathrm{id}, \mathrm{id})$ and no other; the total
-wall-clock runtime is $68.79$~s on a single thread (Python~3.14,
-Windows~x64), recorded in field \texttt{outputs.elapsed\_s} of
-\texttt{Aut\_LM19\_trivial.json}, and the run is byte-deterministic
-under the fixed seed declared in \texttt{seed} of the same file.
+$(\mathrm{id}, \mathrm{id}, \mathrm{id})$ and no other. The certificate
+\texttt{Aut\_LM19\_trivial.json} records the deterministic run metadata.
 \end{proof}
 
 \begin{corollary}[$\KL$ is not an autotopism group]
 \label{cor:KL-not-autotopism}
-The Hessian symmetry group $\KL$ of $M_{19}$ is not the image of any
+The affine coset-symmetry group $\KL$ of $M_{19}$ is not the image of any
 autotopism subgroup of $L_{M_{19}}$. In particular, $|\KL| = 72 \neq
 1 = |\Aut(L_{M_{19}})|$.
 \end{corollary}
 
 \begin{proof}
 Any homomorphic image of $\Aut(L_{M_{19}})$ in $S_9$ has order
-$\le |\Aut(L_{M_{19}})| = 1$ by Theorem~\ref{thm:aut-LM19-trivial}.
-But $|\KL| = 72$ by Theorem~\ref{thm:M19-hessian}, so $\KL$ cannot
+$\le |\Aut(L_{M_{19}})| = 1$ by Certified Proposition~\ref{thm:aut-LM19-trivial}.
+But $|\KL| = 72$ by Certified Proposition~\ref{thm:M19-affine}, so $\KL$ cannot
 be such an image.
 \end{proof}
 
-\subsection{\texorpdfstring{Box / $A_8$ origin of $\KL$}{Box / A8 origin of KL}}\label{sec:KL-origin}
+\subsection{\texorpdfstring{Middle-band balance and the $A_8$ mechanism for $\KL$}{Middle-band balance and the A8 mechanism for KL}}\label{sec:KL-origin}
 
-Since $\KL$ is not generated by autotopisms of $L_{M_{19}}$, its
-$72$ elements must arise from a Sudoku-grid feature beyond the
-Latin-square structure. The Box Band Lemma
-(Theorem~\ref{thm:box-band}) and the $A_8$ saturation
-(Theorem~\ref{thm:A8-saturation}) together provide the natural
-candidate: the box partition contributes $9$ extra linear
-constraints \eqref{eq:bbl-formal} on $\Egamma$, and the kernel
-certificates lie in $A_8$, on which the Hessian group of order $72$
-acts by classical projective construction
-\cite[Ch.~10]{ConwaySloaneSPLAG}.
+Since $\KL$ is not generated by autotopisms of $L_{M_{19}}$, the
+Latin-square structure alone does not explain this $72$-element
+affine symmetry. In this grid it is detected by the middle row-band
+balance condition.
 
-We do not claim a structural derivation $\KL = $ ``Sudoku
-$\Rightarrow$ $A_8 \Rightarrow$ Hessian'' in this paper.
-Theorem~\ref{thm:aut-LM19-trivial} merely closes the obvious
-alternative: the symmetry is genuinely Sudoku-specific in the sense
-that no Latin-square autotopism produces it. A structural derivation
-is recorded as Open Problem in \S\ref{sec:disc-open}.
+\begin{lemma}[Middle-band balance criterion]
+\label{lem:middle-band-balance}
+Let $L=M_{19}$ and let
+\begin{equation*}
+   w=(1,1,1,-2,-2,-2,1,1,1) \in A_8.
+\end{equation*}
+For $\gamma \in S_9$, the left-kernel condition
+\begin{equation*}
+   w^{\top} E_{\gamma,L}=0
+\end{equation*}
+is equivalent to the column-wise middle-band balance condition
+\begin{equation}\label{eq:middle-band-balance}
+   \sum_{i=4}^{6} \gamma(L_{ij}) = 15
+   \qquad (1 \le j \le 9).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Fix a column $j$ and put
+\begin{equation*}
+   B_j := \sum_{i=4}^{6} \gamma(L_{ij}).
+\end{equation*}
+Because $L$ is a Latin square, the $j$-th column of $\gamma(L)$ is a
+permutation of $\{1,\dots,9\}$ and therefore has total sum $45$. Since
+$\sum_i w_i=0$, centering does not change the weighted column sum:
+\begin{equation*}
+   \bigl(w^{\top}E_{\gamma,L}\bigr)_j
+   = \sum_{i=1}^{9} w_i\,\gamma(L_{ij}).
+\end{equation*}
+The entries outside rows $4,5,6$ have total sum $45-B_j$, while the
+middle-band entries have coefficient $-2$. Hence
+\begin{equation*}
+   \bigl(w^{\top}E_{\gamma,L}\bigr)_j
+   = (45-B_j)-2B_j
+   = 45-3B_j.
+\end{equation*}
+Thus the $j$-th component vanishes if and only if $B_j=15$, and the
+claim follows column by column.
+\end{proof}
+
+\begin{proposition}[Exact middle-band realization of $\GMninetn$]
+\label{prop:M19-middle-band}
+For $L=M_{19}$, the shared left-kernel subset is exactly
+\begin{equation*}
+   \GMninetn
+   =
+   \left\{
+      \gamma\in S_9:
+      \sum_{i=4}^{6}\gamma(L_{ij})=15
+      \text{ for every }j=1,\dots,9
+   \right\}.
+\end{equation*}
+This set has cardinality $72$.
+\end{proposition}
+
+\begin{proof}[Certificate]
+The analytic equivalence between \eqref{eq:middle-band-balance} and
+$w^{\top}E_{\gamma,L}=0$ is Lemma~\ref{lem:middle-band-balance}. The
+certificate \texttt{M19\_middle\_band\_balance.json} exhaustively scans
+all $9! = 362{,}880$ relabelings in $S_9$ and records
+\begin{equation*}
+   \texttt{balanced\_count}=72,
+   \qquad
+   \texttt{left\_kernel\_count}=72,
+   \qquad
+   \texttt{Gamma\_star\_size}=72,
+\end{equation*}
+and the two equality flags are true:
+\begin{equation*}
+\begin{gathered}
+   \texttt{balanced\_equals\_left\_kernel},\\
+   \texttt{balanced\_equals\_Gamma\_star}.
+\end{gathered}
+\end{equation*}
+The same certificate
+lists the eight three-symbol subsets of $\{1,\dots,9\}$ with sum $15$:
+\begin{equation*}
+   \{1,5,9\},
+   \{1,6,8\},
+   \{2,4,9\},
+   \{2,5,8\},
+   \{2,6,7\},
+   \{3,4,8\},
+   \{3,5,7\},
+   \{4,5,6\}.
+\end{equation*}
+\end{proof}
+
+Proposition~\ref{prop:M19-middle-band}, Certified Proposition~\ref{thm:A8-saturation},
+and Certified Proposition~\ref{thm:M19-affine} give the structural chain used here:
+middle-band Sudoku balance cuts out $\GMninetn$; the corresponding
+left-kernel certificate is a structured vector in $A_8$; and the
+left/right coset stabilizers of this class are affine groups
+$3^2{:}D_4$ on the nine symbols. The
+certified claim is this affine $D_4$ realization, not the classical
+Hessian group $3^2{:}Q_8$.
 
 % =====================================================================
 \section{Computational methods and reproducibility}\label{sec:methods}
@@ -1523,7 +1908,7 @@ the convention introduced in
 \cite[\S 8.26]{HAN-DetDivisibility}. The composite tier
 THEOREM(EXHAUSTIVE) denotes an analytic theorem whose hypotheses
 include a finite exhaustive check (e.g.,
-Theorem~\ref{thm:aut-LM19-trivial}). The complete tier ledger is in
+Certified Proposition~\ref{thm:aut-LM19-trivial}). The complete tier ledger is in
 \href{../certified/TIER_LEDGER.md}{\texttt{certified/TIER\_LEDGER.md}}.
 
 \smallskip
@@ -1541,7 +1926,7 @@ universal-distribution claim is made.
 with a certified JSON in
 \href{../certified/}{\texttt{certified/}} containing
 the inputs, outputs, source-data hashes, producer-script hashes,
-seed, UTC timestamp, paper label, and tier. The eleven JSONs are
+seed, UTC timestamp, paper label, and tier. The twelve JSONs are
 pinned by
 \href{../certified/MANIFEST.sha256}{\texttt{MANIFEST.sha256}}.
 The verifier
@@ -1549,8 +1934,26 @@ The verifier
 re-checks the manifest and the claim-level invariants of each JSON;
 the regenerator
 \href{../certified/reproduce_all.py}{\texttt{reproduce\_all.py}}
-rebuilds every JSON from the underlying scripts and seeds, byte-equal
-to the manifest.
+rebuilds every certificate from the pinned source JSONs and the
+certificate builders, byte-equal to the manifest modulo the
+\texttt{produced\_utc} timestamp.  The upstream producer scripts are
+included and hash-checked as provenance; they are not rerun by default.
+
+\smallskip
+\noindent\textbf{Data and code availability.} The public companion
+repository is
+\begin{center}
+\url{https://github.com/aconsciousfractal/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators}.
+\end{center}
+The release artifact separates three levels of reproducibility:
+\texttt{verify\_all.py} checks the manifest, schema, semantic invariants,
+and standalone provenance; \texttt{reproduce\_all.py} rebuilds the twelve
+certificate JSONs byte-for-byte from the pinned source JSONs and builders;
+and the archived producer scripts in \texttt{scripts/legacy/} record the
+exact exhaustive scans from which those source JSONs were obtained. The
+last level is included and hash-checked for provenance, but is not part of
+the default replay because some scans are intentionally more expensive
+than the certificate rebuild.
 
 % =====================================================================
 \section{Discussion and open problems}\label{sec:discussion}
@@ -1562,14 +1965,14 @@ We have analyzed the centered Sudoku operator
 $\Egamma = \gamma(L) - \tfrac{n+1}{2} J_n$ on the standard hyperplane
 $\Vstdn$. The Box Band Lemma (Theorem~\ref{thm:box-band}) is an
 exact linear identity that is Sudoku-specific. The Lift Lemma
-(Theorem~\ref{thm:lift}) anchors odd-rank kernel certificates inside
-the root lattice $A_{n-1}$. At $n = 9$ the sparse-template orbits
-$M$ and $O_6$ saturate $A_8$ (Theorem~\ref{thm:A8-saturation}), and
-on the laboratory grid $M_{19}$ the bilateral Hessian symmetry group
-is $\HesGroup = \mathrm{SmallGroup}(72,41)$
-(Theorem~\ref{thm:M19-hessian}); this symmetry is genuinely
-Sudoku-grid--specific in the sense that the underlying Latin square
-is rigid (Theorem~\ref{thm:aut-LM19-trivial}).
+(Theorem~\ref{thm:lift}) places one-dimensional rational kernel lines
+in the natural primitive-integral certificate framework of the root
+lattice $A_{n-1}$. At $n = 9$ the sparse-template orbits
+$M$ and $O_6$ saturate $A_8$ (Certified Proposition~\ref{thm:A8-saturation}), and
+on the laboratory grid $M_{19}$ the bilateral affine coset-symmetry
+group is $\AffDfour$ (Certified Proposition~\ref{thm:M19-affine}); this symmetry is genuinely
+not explained by Latin-square autotopisms, since the underlying Latin
+square is rigid (Certified Proposition~\ref{thm:aut-LM19-trivial}).
 
 \subsection{Open problems}\label{sec:disc-open}
 
@@ -1581,17 +1984,17 @@ paper's scope.
    normal form of $\Egamma$ at the $22$ odd-rank relabelings of
    \texttt{base1} produces five distinct diagonals
    (\eqref{eq:snf-distribution-base1}); only $10/22$ are torsion-free,
-   the remaining $12$ carry torsion in $\{2, 3, 4, 10\}$. A
+   and the remaining torsion classes include $\Z/2$, $\Z/4$, $\Z/3$,
+   and $\Z/2 \oplus \Z/10$. A
    closed-form classification of which $\gamma \in \Gamma^{*}_{\mathtt{base1}}$
    produces which torsion class is open, as is the analogous
    distribution for $M_{19}$'s $100$ relabelings.
 
-   \item \textbf{Hessian realization at $n = 25$.} Does the
-   abstract group $5^2{:}Q_8$ arise as a Hessian symmetry of some
-   Sudoku grid of order $25$? At the abstract group level, the
-   $m^2{:}Q_8$ family exists for every odd $m$. The Sudoku
-   realization is verified at $m = 3$ in
-   Theorem~\ref{thm:M19-hessian}; it is open at $m = 5$.
+   \item \textbf{Larger affine coset symmetries.} Does an analogue of
+   the certified $3^2{:}D_4$ affine coset symmetry occur for Sudoku
+   grids of larger square order, for example $n = 25$? The present
+   paper verifies only the $n = 9$ instance at the laboratory grid
+   $M_{19}$.
 
    \item \textbf{Canonical-rank distribution at large $n$.} The
    sample histogram of $\rank E_{\mathrm{id}, L}$ at $n = 9$ is
@@ -1604,11 +2007,10 @@ paper's scope.
    relation between $\mathrm{tr}(\Ehat \, \Ehat^{\!\top})$ and the
    cokernel structure is not known.
 
-   \item \textbf{Universal dichotomy
-   (Conjecture~\ref{conj:universal-dichotomy}).} Whether the
-   stabilizer dichotomy persists for every $n \ge 5$ remains open
-   beyond the analytic ($n \in \{7,9,11\}$) and exhaustive
-   ($5 \le n \le 13$) reach.
+   \item \textbf{General orbit-distance formula.} Certified Proposition~\ref{prop:dichotomy-exhaustive}
+   verifies $d_{M_n}(\mathrm{orb}(O_n))=2$ for $5 \le n \le 13$.
+   A conceptual all-$n$ proof of this orbit-distance statement is not
+   included here.
 \end{enumerate}
 
 \subsection{Out-of-scope, briefly}\label{sec:disc-oos}
@@ -1622,12 +2024,10 @@ partition into equal-area boxes), rectangular Sudoku, orthogonal
 Sudoku Latin squares, and constraint-satisfaction problems with
 local symmetry groups. None of these are studied here.
 
-The Hessian group $3^2{:}Q_8$ has classical incarnations in the
-geometry of plane cubics, the projective $A_8$ root lattice, and
-in $4$-dimensional polytope theory (the $600$-cell stabilizer chain
-contains $2 \cdot 3^2{:}Q_8$ as a subgroup of low index).
-These geometric and topological motivations are deferred to companion
-projects and are not used in the present arguments.
+Classical Hesse/Hessian groups, projective models of root lattices,
+and $4$-dimensional polytope constructions are not used in the present
+arguments. In particular, this paper does not identify the certified
+$3^2{:}D_4$ group with the classical Hessian group $3^2{:}Q_8$.
 
 % =====================================================================
 \appendix
@@ -1640,24 +2040,25 @@ S_9$ on \texttt{base1} is contained in the field
 \texttt{outputs.odd\_perms\_full\_list} of
 \texttt{base1\_odd\_rank\_22.json}. Each entry is a permutation of
 $\{1,\dots,9\}$ in one-line notation. By construction, the cardinality
-$22$ matches Theorem~\ref{thm:base1-22}; the four-way exact
+$22$ matches Certified Proposition~\ref{thm:base1-22}; the four-way exact
 certification (rank, kernel, integer SNF, $\mathbb{F}_2$ SNF) is
 recorded in the same JSON under the
 \texttt{outputs.four\_way\_certificates} block. The certificate hash
 is pinned by
 \href{../certified/MANIFEST.sha256}{\texttt{MANIFEST.sha256}}.
 
-\section{\texorpdfstring{$M_{19}$: 72 generators of $\KL$ and presentation of $\HesGroup$}{M19: 72 generators of KL and presentation of 3 squared colon Q8}}
+\section{\texorpdfstring{$M_{19}$: generators of $\KL$ and affine $3^2{:}D_4$ data}{M19: generators of KL and affine 3 squared colon D4 data}}
 \label{app:M19-generators}
 
-The Hessian group $\KL$ at $M_{19}$ is generated by the eight
+The affine coset-symmetry group $\KL$ at $M_{19}$ is generated by the eight
 permutations of $\{1, \dots, 9\}$ recorded in the
 \texttt{outputs.K\_L\_generators\_perms} field of
-\texttt{M19\_KL\_KR\_3sq\_Q8.json}. Their derived series of orders
-is $(72, 18, 9, 1)$, abelianization is $\Z/4$, exponent is $6$, and
+\texttt{M19\_KL\_KR\_affine\_D4.json}. Their derived series of orders
+is $(72, 18, 9, 1)$, abelianization is $(\Z/2)^2$, exponent is $12$, and
 the element-order multiset is $\{1\!:\!1,\ 2\!:\!21,\ 3\!:\!8,\
-4\!:\!18,\ 6\!:\!24\}$. As an abstract group, $\KL \cong 3^2 \rtimes
-Q_8 = \mathrm{SmallGroup}(72, 41)$. The same data hold for $\KR$,
+4\!:\!18,\ 6\!:\!24\}$. The certificate identifies a normal regular
+translation subgroup $3^2$ and a point stabilizer $D_4$, hence
+$\KL \cong 3^2{:}D_4$. The same data hold for $\KR$,
 which is conjugate to $\KL$ via the structural permutation $\pi_0$
 (Remark~\ref{rem:pi0}).
 
@@ -1677,7 +2078,7 @@ verification is $\approx 31$ s.
 
 The reproducibility package consists of:
 \begin{itemize}[leftmargin=*]
-   \item the eleven certified JSONs listed in §3 of
+   \item the twelve certified JSONs listed in §3 of
    \href{../certified/TIER_LEDGER.md}{\texttt{TIER\_LEDGER.md}};
    \item the SHA-256 manifest
    \href{../certified/MANIFEST.sha256}{\texttt{MANIFEST.sha256}};
@@ -1686,16 +2087,16 @@ The reproducibility package consists of:
    (claim-level invariant checks);
    \item the regenerator
    \href{../certified/reproduce_all.py}{\texttt{reproduce\_all.py}}
-   (byte-equal regeneration);
+   (byte-equal certificate regeneration from pinned source JSONs and builders);
    \item the universality discipline document
    \href{../certified/UNIVERSALITY_LOCK.md}{\texttt{UNIVERSALITY\_LOCK.md}};
    \item the sibling-notation reconciliation
    \href{../certified/SIBLING_NOTATION.md}{\texttt{SIBLING\_NOTATION.md}}.
 \end{itemize}
 On the reference machine, \texttt{verify\_all.py} returns
-\texttt{11/11 PASS} in under $30$ seconds, and
-\texttt{reproduce\_all.py} reconstructs all eleven JSONs byte-equal
-to the manifest.
+\texttt{12/12 PASS} in under $30$ seconds, and
+\texttt{reproduce\_all.py} reconstructs all twelve certificates
+byte-equal to the manifest modulo the timestamp field.
 
 % =====================================================================
 % References

@@ -1,6 +1,6 @@
 """fig3_D6_cayley.py
 =====================
-Fig. 3 (paper II §5) — Cayley diagram of the dihedral group $D_6$ of
+This paper ?5 --
 order $12$ inside $B_3 < S_7$, with generators $r$ (rotation, order 6)
 and $s$ (reflection, order 2). Drawn as the standard hexagonal-prism
 Cayley graph.
@@ -82,8 +82,8 @@ def main() -> Path:
     ax.legend(loc="upper right", frameon=False, fontsize=9)
 
     fig.suptitle(
-        r"Fig. 3.  Cayley diagram of $D_6 < B_3 < S_7$"
-        r" (the HV1 dihedral $D_6$ of paper II \S5)",
+        r"Cayley diagram of $D_6 < B_3 < S_7$"
+        r" (the HV1 dihedral $D_6$ of this paper)",
         fontsize=11, y=0.97,
     )
     fig.tight_layout(rect=(0, 0, 1, 0.95))

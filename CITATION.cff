@@ -8,7 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0001-6176-6208"
 repository-code: "https://github.com/aconsciousfractal/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators"
 license: MIT
-date-released: "2026-04-26"
+date-released: "2026-05-11"
 keywords:
   - sudoku
   - latin-squares
@@ -16,7 +16,8 @@ keywords:
   - exhaustive-enumeration
   - root-lattices
   - dihedral-groups
-  - hessian-group
+  - affine-groups
+  - sudoku-symmetries
   - reproducibility
 preferred-citation:
   type: article

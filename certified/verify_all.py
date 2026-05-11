@@ -1,31 +1,41 @@
 """verify_all.py
 ================
-Quick claim-level verifier for paper II certified package.
+Quick claim-level verifier for this certified package certified package.
 
 What it checks (no source-data re-derivation; for that see
 ``reproduce_all.py``):
 
-  1. MANIFEST.sha256 parses and lists exactly 11 entries.
+    1. MANIFEST.sha256 parses and lists exactly 12 entries.
   2. Each certificate JSON is valid, contains the required schema fields
      (``result_id``, ``tier``, ``paper_label``, ``claim``, ``inputs``,
      ``outputs``, ``source``, ``scripts``, ``schema_version``,
      ``produced_utc``), and ``schema_version == 1``.
   3. SHA-256 over canonical bytes (with ``produced_utc`` removed) matches
      the digest in MANIFEST.sha256.
-  4. Lightweight semantic spot-checks on the 11 ``outputs`` payloads:
+    4. Lightweight semantic spot-checks on the 12 ``outputs`` payloads:
        * base1_odd_rank_22: 22 odd perms, all of length 9 over 1..9;
          four_way_certificates count == 22.
        * n6_odd_rank_census: z-stat ~ 4.013706 (tight tol),
          exact two-sided p = erfc(|z|/sqrt(2)) within 1e-9.
        * n7_HV1_D6: |H_V1|=12, dihedral relation verified, subgroup of B_3.
-       * box_band_lemma_witness: holds_on_base1 == True, M19 == True.
-       * lift_lemma_evidence: holds on 22 base1 + 100 M19 + 72 Hessian.
+             * box_band_lemma_witness: square Sudoku cases vanish, cyclic LS-9
+                 standard boxes fail, rectangular Roku-Doku vanishes, and the
+                 non-Cartesian gerechte broken-diagonal witness has zero region sums.
+        * lift_lemma_evidence: holds on 22 base1 + 100 M19 + 72 shared left-kernel.
        * M19_audit: |Gamma_rank|=100, |Gamma_star|=72, residue=28,
-         u9_star=[-2,-2,-2,1,1,1,1,1,1], |K_L|=|K_R|=72,
-         K_L cap K_R = {e}, K_L conjugate to K_R via gamma0,
+            shared_left_kernel_w=[1,1,1,-2,-2,-2,1,1,1], |K_L|=|K_R|=72,
+         K_L cap K_R = {e}, K_L conjugate to K_R via pi_0,
          left/right coset tests PASS, double_coset_size = 72,
-         ambient_stab_S9(u9*) = 4320 = |S_3 x S_6|.
-       * M19_KL_KR_3sq_Q8: |K_L|=|K_R|=72, both 3^2:Q_8 invariants.
+            ambient_stab_S9(w_left) = 4320 = |S_3 x S_6|.
+             * M19_middle_band_balance: Gamma^*_{M19} equals the 72 relabelings
+                 whose middle row-band column sums are all 15, equivalently
+                w^T E=0 for w=(1,1,1,-2,-2,-2,1,1,1); the same 72 are
+                the reduced-hypergraph embeddings from the M19 middle-band
+                hypergraph to a six-edge magic-triple subhypergraph, with
+                Aut(source)=K_R and Aut(target)=K_L.
+             * M19_KL_KR_affine_D4: |K_L|=|K_R|=72, both 3^2:D_4
+                 affine semidirect-product witnesses, abelianization C_2 x C_2,
+                 and not contained in Stab_{S_9}(w_left).
        * A8_saturation: Lambda_M = Lambda_O6 = A_8.
        * dichotomy_n7_n9_n11: n=7,9,11 keys present.
        * stabilizers_5_to_13: keys for n in {5..13}.
@@ -44,6 +54,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -71,7 +82,7 @@ ALLOWED_TIERS = {
     "EMPIRICAL",
     "OBSERVED TEMPLATE",
     "CONJECTURE",
-    "THEOREM_EXHAUSTIVE",
+    "CERTIFIED_EXHAUSTIVE",
 }
 
 
@@ -193,8 +204,23 @@ def chk_box_band(o: Dict[str, Any]) -> Tuple[bool, str]:
         return False, "non-Sudoku counterexample is zero (should be nonzero)"
     if cnt["frobenius_norm_sq"] <= 0:
         return False, f"non-Sudoku Frob^2={cnt['frobenius_norm_sq']}"
+    rect = out.get("rectangular_roku_doku_2x3")
+    if not rect or not rect.get("is_zero"):
+        return False, f"rectangular Roku-Doku check failed: {rect}"
+    if rect.get("box_height") != 2 or rect.get("box_width") != 3:
+        return False, f"rectangular dimensions drifted: {rect}"
+    ger = out.get("gerechte_cyclic_LS9_broken_diagonals")
+    if not ger:
+        return False, "missing gerechte cyclic LS9 witness"
+    if not ger.get("regions_partition_cells") or not ger.get("each_region_symbols_once"):
+        return False, f"invalid gerechte regions: {ger}"
+    if not ger.get("all_region_sums_zero"):
+        return False, f"gerechte region sums nonzero: {ger.get('region_sums_twice_centered')}"
+    if ger.get("all_regions_cartesian_products") or ger.get("any_region_cartesian_product"):
+        return False, "gerechte witness should be non-Cartesian"
     return True, (
-        f"base1=0, M19=0, non-Sudoku Frob^2={cnt['frobenius_norm_sq']}"
+        f"base1=0, M19=0, rectangular 2x3=0, gerechte diagonal=0, "
+        f"standard cyclic boxes Frob^2={cnt['frobenius_norm_sq']}"
     )
 
 
@@ -202,20 +228,20 @@ def chk_lift_lemma(o: Dict[str, Any]) -> Tuple[bool, str]:
     out = o["outputs"]
     b1 = out["base1"]
     m19 = out["M19"]
-    hess = out.get("M19_hessian_class_72")
+    shared = out.get("M19_shared_left_kernel_72") or out.get("M19_shared_kernel_72")
     if not (b1["lift_lemma_holds_on_all_checked"] and b1["n_perms"] == 22):
         return False, f"base1 fail: {b1}"
     if not (m19["lift_lemma_holds_on_all_checked"] and m19["n_perms"] == 100):
         return False, f"M19 fail (need 100): {m19}"
-    if hess is None or not (hess["lift_lemma_holds_on_all_checked"] and hess["n_perms"] == 72):
-        return False, f"Hessian-class fail: {hess}"
+    if shared is None or not (shared["lift_lemma_holds_on_all_checked"] and shared["n_perms"] == 72):
+        return False, f"shared left-kernel subset fail: {shared}"
     if b1["n_full_lift_check"] != 22:
         return False, f"base1 not full-checked: {b1['n_full_lift_check']}"
     if m19["n_full_lift_check"] != 100:
         return False, f"M19 not full-checked: {m19['n_full_lift_check']}"
-    if hess["n_full_lift_check"] != 72:
-        return False, f"Hessian not full-checked: {hess['n_full_lift_check']}"
-    return True, "Lift Lemma holds on 22 base1 + 100 M19 + 72 Hessian"
+    if shared["n_full_lift_check"] != 72:
+        return False, f"shared left-kernel subset not full-checked: {shared['n_full_lift_check']}"
+    return True, "Lift Lemma holds on 22 base1 + 100 M19 + 72 shared left-kernel"
 
 
 def chk_M19_audit(o: Dict[str, Any]) -> Tuple[bool, str]:
@@ -231,21 +257,106 @@ def chk_M19_audit(o: Dict[str, Any]) -> Tuple[bool, str]:
     if out.get("K_L_inter_K_R_size") != 1:
         return False, f"K_L cap K_R={out.get('K_L_inter_K_R_size')}"
     if not out.get("K_L_conjugate_to_K_R_via_pi0"):
-        return False, "K_L not conjugate to K_R via gamma0"
+        return False, "K_L not conjugate to K_R via pi_0"
     if not out.get("left_coset_test_PASS") or not out.get("right_coset_test_PASS"):
         return False, "coset tests not PASS/PASS"
-    if out.get("double_coset_size_K_L_gamma0_K_R") != 72:
-        return False, f"|K_L gamma0 K_R|={out.get('double_coset_size_K_L_gamma0_K_R')}"
-    if out.get("ambient_coordinate_stabilizer_S_9_of_u9_star_size") != 4320:
-        return False, f"ambient_stab={out.get('ambient_coordinate_stabilizer_S_9_of_u9_star_size')}"
+    if out.get("double_coset_size_K_L_pi0_K_R") != 72:
+        return False, f"|K_L pi_0 K_R|={out.get('double_coset_size_K_L_pi0_K_R')}"
+    ambient_stab = out.get("ambient_coordinate_stabilizer_S_9_of_shared_left_kernel_size")
+    if ambient_stab != 4320:
+        return False, f"ambient_stab={ambient_stab}"
     if out.get("ambient_stab_iso") != "S_3 x S_6":
         return False, f"ambient_stab_iso={out.get('ambient_stab_iso')}"
-    u9 = out.get("u9_star")
-    if u9 != [-2, -2, -2, 1, 1, 1, 1, 1, 1]:
-        return False, f"u9_star={u9} (expected [-2,-2,-2,1,1,1,1,1,1])"
+    w_left = out.get("shared_left_kernel_w")
+    if w_left != [1, 1, 1, -2, -2, -2, 1, 1, 1]:
+        return False, f"shared_left_kernel_w={w_left} (expected [1,1,1,-2,-2,-2,1,1,1])"
+    legacy = out.get("legacy_value_template_from_source")
+    if legacy is not None and legacy != [-2, -2, -2, 1, 1, 1, 1, 1, 1]:
+        return False, f"legacy value template drifted: {legacy}"
     return True, (
         "|Gamma_rank|=100, |Gamma_star|=72, residue=28, |K_L|=|K_R|=72, "
-        "K_L cap K_R={e}, K_L=gamma0 K_R gamma0^{-1}, ambient_stab=4320=|S_3xS_6|"
+        "K_L cap K_R={e}, K_L=pi_0 K_R pi_0^{-1}, shared-left ambient_stab=4320=|S_3xS_6|"
+    )
+
+
+def chk_M19_middle_band_balance(o: Dict[str, Any]) -> Tuple[bool, str]:
+    inp = o["inputs"]
+    out = o["outputs"]
+    if inp.get("scan_space") != "S_9" or inp.get("scan_space_size") != 362880:
+        return False, f"scan space mismatch: {inp.get('scan_space')} {inp.get('scan_space_size')}"
+    if inp.get("middle_band_rows") != [4, 5, 6]:
+        return False, f"middle_band_rows={inp.get('middle_band_rows')}"
+    if inp.get("target_sum") != 15:
+        return False, f"target_sum={inp.get('target_sum')}"
+    if inp.get("w_left") != [1, 1, 1, -2, -2, -2, 1, 1, 1]:
+        return False, f"w_left={inp.get('w_left')}"
+    if out.get("balanced_count") != 72 or out.get("left_kernel_count") != 72:
+        return False, f"balanced={out.get('balanced_count')}, left_kernel={out.get('left_kernel_count')}"
+    if out.get("Gamma_star_size") != 72:
+        return False, f"Gamma_star_size={out.get('Gamma_star_size')}"
+    if not out.get("balanced_equals_left_kernel"):
+        return False, "balanced set differs from left-kernel set"
+    if not out.get("balanced_equals_Gamma_star"):
+        return False, "balanced set differs from Gamma^*_{M19}"
+    perms = out.get("balanced_perms", [])
+    if len(perms) != 72:
+        return False, f"balanced_perms length={len(perms)}"
+    for p in perms:
+        if not isinstance(p, list) or sorted(p) != list(range(1, 10)):
+            return False, f"bad balanced permutation: {p}"
+    triples = out.get("magic_triples_sum_15", [])
+    if out.get("magic_triples_count") != 8 or len(triples) != 8:
+        return False, f"magic triple count={out.get('magic_triples_count')} len={len(triples)}"
+    for tri in triples:
+        if len(tri) != 3 or len(set(tri)) != 3 or sum(tri) != 15:
+            return False, f"bad magic triple: {tri}"
+    hsrc = out.get("middle_band_hypergraph", {})
+    if len(hsrc.get("distinct_edges", [])) != 6:
+        return False, f"middle-band distinct edges={hsrc.get('distinct_edges')}"
+    multiplicities = sorted(item.get("multiplicity") for item in hsrc.get("edge_multiplicities", []))
+    if multiplicities != [1, 1, 1, 2, 2, 2]:
+        return False, f"middle-band edge multiplicities={multiplicities}"
+    if set(hsrc.get("multidegree_by_symbol", {}).values()) != {3}:
+        return False, f"middle-band multidegrees={hsrc.get('multidegree_by_symbol')}"
+    target = out.get("target_magic_subhypergraph", {})
+    if len(target.get("edges", [])) != 6 or len(target.get("missing_magic_triples", [])) != 2:
+        return False, f"target magic subhypergraph malformed: {target}"
+    for tri in target.get("edges", []) + target.get("missing_magic_triples", []):
+        if len(tri) != 3 or sum(tri) != 15:
+            return False, f"bad target/missing magic triple: {tri}"
+    magic_h = out.get("magic_triple_hypergraph", {})
+    if magic_h.get("automorphism_count") != 8:
+        return False, f"full magic-triple aut count={magic_h.get('automorphism_count')}"
+    hg = out.get("hypergraph_realization", {})
+    expected_flags = [
+        "embeddings_equal_balanced_perms",
+        "embeddings_equal_Gamma_star",
+        "source_reduced_automorphism_equals_K_R",
+        "target_reduced_automorphism_equals_K_L",
+        "all_embeddings_have_same_target_subhypergraph",
+        "embeddings_equal_pi0_K_R",
+        "embeddings_equal_K_L_pi0",
+        "target_aut_conjugate_to_source_aut_via_pi0",
+    ]
+    for flag in expected_flags:
+        if not hg.get(flag):
+            return False, f"hypergraph realization flag failed: {flag}={hg.get(flag)}"
+    if hg.get("embedding_count") != 72:
+        return False, f"hypergraph embedding count={hg.get('embedding_count')}"
+    if hg.get("source_reduced_automorphism_count") != 72 or hg.get("target_reduced_automorphism_count") != 72:
+        return False, (
+            f"reduced hypergraph aut counts source={hg.get('source_reduced_automorphism_count')} "
+            f"target={hg.get('target_reduced_automorphism_count')}"
+        )
+    if hg.get("source_multihypergraph_automorphism_count") != 36:
+        return False, f"source multihypergraph aut count={hg.get('source_multihypergraph_automorphism_count')}"
+    if hg.get("target_multihypergraph_automorphism_count_for_pi0") != 36:
+        return False, f"target multihypergraph aut count={hg.get('target_multihypergraph_automorphism_count_for_pi0')}"
+    if hg.get("pi0_perm") != [1, 5, 3, 9, 6, 8, 7, 4, 2]:
+        return False, f"hypergraph pi0={hg.get('pi0_perm')}"
+    return True, (
+        "Gamma^*_{M19}=72 middle-band balanced relabelings; reduced hypergraph "
+        "embeddings source->magic-subgraph equal Gamma^*, Aut(source)=K_R, Aut(target)=K_L"
     )
 
 
@@ -254,14 +365,65 @@ def chk_M19_KL_KR(o: Dict[str, Any]) -> Tuple[bool, str]:
     KL, KR = out["K_L"], out["K_R"]
     if KL["order"] != 72 or KR["order"] != 72:
         return False, f"|K_L|={KL['order']}, |K_R|={KR['order']}"
-    if KL["exponent"] != 6 or KR["exponent"] != 6:
+    if KL["exponent"] != 12 or KR["exponent"] != 12:
         return False, f"exponent K_L={KL['exponent']}, K_R={KR['exponent']}"
+    for side, grp in (("K_L", KL), ("K_R", KR)):
+        expected_exp = 1
+        for order, count in grp.get("order_distribution", {}).items():
+            if int(count) > 0:
+                expected_exp = math.lcm(expected_exp, int(order))
+        if grp["exponent"] != expected_exp:
+            return False, f"{side} exponent inconsistent with order distribution"
     if KL["derived_series_orders"] != [72, 18, 9, 1]:
         return False, f"derived series K_L={KL['derived_series_orders']}"
     if KL["abelianization_order"] != 4 or KL["center_order"] != 1:
         return False, "K_L abelianization/centre mismatch"
     if KL["n_conjugacy_classes"] != 9:
         return False, f"|cc(K_L)|={KL['n_conjugacy_classes']}"
+    if out.get("abstract_group_name") != "3^2 : D_4":
+        return False, f"abstract_group_name={out.get('abstract_group_name')}"
+    if out.get("abstract_group_id") is not None:
+        return False, "SmallGroup identifier must not be asserted without a certified GAP witness"
+    d4_fingerprint = {"1": 1, "2": 5, "4": 2}
+    c3sq_fingerprint = {"1": 1, "3": 8}
+    c2sq_fingerprint = {"1": 1, "2": 3}
+    for side in ("K_L", "K_R"):
+        aff = out.get(f"{side}_affine_structure")
+        if not isinstance(aff, dict):
+            return False, f"missing {side}_affine_structure"
+        if aff.get("abstract_group_name") != "3^2 : D_4":
+            return False, f"{side} affine name={aff.get('abstract_group_name')}"
+        trans = aff.get("translation_subgroup", {})
+        if trans.get("abstract_group_name") != "C_3 x C_3" or trans.get("order") != 9:
+            return False, f"{side} translation subgroup mismatch: {trans}"
+        if trans.get("order_distribution") != c3sq_fingerprint:
+            return False, f"{side} translation order distribution={trans.get('order_distribution')}"
+        if not (trans.get("is_closed") and trans.get("is_abelian") and trans.get("is_normal")):
+            return False, f"{side} translation subgroup lacks closed/abelian/normal witness"
+        if not trans.get("is_regular_on_points"):
+            return False, f"{side} translation subgroup is not regular on 9 points"
+        point = aff.get("point_stabilizer_1", {})
+        if point.get("abstract_group_name") != "D_4" or point.get("order") != 8:
+            return False, f"{side} point stabilizer mismatch: {point}"
+        if point.get("order_distribution") != d4_fingerprint:
+            return False, f"{side} point stabilizer order distribution={point.get('order_distribution')}"
+        quotient = aff.get("quotient_by_translation_subgroup", {})
+        if quotient.get("abstract_group_name") != "D_4" or quotient.get("order") != 8:
+            return False, f"{side} quotient mismatch: {quotient}"
+        if quotient.get("order_distribution") != d4_fingerprint:
+            return False, f"{side} quotient order distribution={quotient.get('order_distribution')}"
+        ab = aff.get("abelianization", {})
+        if ab.get("abstract_group_name") != "C_2 x C_2" or ab.get("order") != 4:
+            return False, f"{side} abelianization mismatch: {ab}"
+        if ab.get("order_distribution") != c2sq_fingerprint:
+            return False, f"{side} abelianization order distribution={ab.get('order_distribution')}"
+        if not aff.get("semidirect_product_certified"):
+            return False, f"{side} semidirect product witness failed"
+        if aff.get("is_subgroup_of_ambient_coordinate_stabilizer"):
+            return False, f"{side} incorrectly certified inside Stab_S9(w_left)"
+        block_count = aff.get("ambient_shared_left_kernel_block_preservation_count")
+        if block_count in (None, 72):
+            return False, f"{side} ambient block-preservation guard failed"
     if out.get("K_L_inter_K_R_size") != 1:
         return False, f"K_L cap K_R={out.get('K_L_inter_K_R_size')}"
     # pi_0 must be present, must be a permutation of {1..9}, must NOT lie
@@ -279,12 +441,13 @@ def chk_M19_KL_KR(o: Dict[str, Any]) -> Tuple[bool, str]:
     if not out.get("Y2_conjugate_via_pi0", False):
         return False, "pi_0 conjugacy K_L = pi_0 K_R pi_0^{-1} not certified"
     if out.get("K_L_eq_K_R", True):
-        return False, "K_L_eq_K_R must be False (paper Theorem 8.5)"
+        return False, "K_L_eq_K_R must be False (paper Certified Proposition 8.5)"
     gens = out.get("K_L_generators_perms", [])
     if pi0 in gens:
         return False, "pi_0 must NOT be one of the K_L generators"
     return True, (
-        "K_L=K_R: order 72, exp 6, deriv 72->18->9->1, ab Z/4, 9 cc; "
+        "K_L,K_R: order 72, exp 12, deriv 72->18->9->1, affine 3^2:D4, "
+        "ab C2xC2, not inside Stab_S9(w_left); "
         f"pi_0={pi0} external; Y2 conj via pi_0"
     )
 
@@ -348,7 +511,8 @@ SEMANTIC: Dict[str, Any] = {
     "box_band_lemma_witness.json": chk_box_band,
     "lift_lemma_evidence.json":   chk_lift_lemma,
     "M19_audit.json":             chk_M19_audit,
-    "M19_KL_KR_3sq_Q8.json":      chk_M19_KL_KR,
+    "M19_middle_band_balance.json": chk_M19_middle_band_balance,
+    "M19_KL_KR_affine_D4.json":    chk_M19_KL_KR,
     "A8_saturation.json":         chk_A8_saturation,
     "dichotomy_n7_n9_n11.json":   chk_dichotomy,
     "stabilizers_5_to_13.json":   chk_stabilizers,
@@ -368,8 +532,8 @@ def main() -> int:
     log = (lambda *a, **kw: None) if args.quiet else print
 
     entries = parse_manifest()
-    if len(entries) != 11:
-        print(f"FAIL  MANIFEST has {len(entries)} entries, expected 11")
+    if len(entries) != 12:
+        print(f"FAIL  MANIFEST has {len(entries)} entries, expected 12")
         return 1
 
     seen = set()
