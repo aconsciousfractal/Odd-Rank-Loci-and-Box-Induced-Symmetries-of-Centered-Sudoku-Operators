@@ -148,6 +148,20 @@ research log. Their meaningful purpose is documented in
 package never depends on the names directly: every dependency is
 recorded as a sha256-stamped provenance entry.
 
+## Claim Boundary
+
+Companion claim-discipline docs were added on 2026-07-08 (after
+publication; the paper and certificates are unchanged):
+
+- `CLAIM_LEDGER.md` — thin index over the authoritative per-result tier
+  table in `certified/README.md` (analytic results A1-A3, certified finite
+  F1-F5).
+- `PUBLIC_CLAIM_BOUNDARY.md` — what may and may not be quoted; finite
+  censuses are exhaustive at their stated orders/bases only, and the M19
+  symmetry results are base-specific.
+- `README_REVIEWER.md` — 10/30-minute reviewer paths
+  (`certified/verify_all.py` passed ALL CHECKS on 2026-07-08).
+
 ## License
 
 MIT. See [`LICENSE`](LICENSE).
