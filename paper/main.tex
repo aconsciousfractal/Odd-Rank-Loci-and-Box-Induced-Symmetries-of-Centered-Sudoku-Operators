@@ -598,6 +598,21 @@ certified file \texttt{box\_band\_lemma\_witness.json}; the Sudoku
 hypothesis cannot be replaced by the Latin-square hypothesis without
 breaking~\eqref{eq:bbl-formal}.
 
+Figure~\ref{fig:sudoku-projectors} visualizes the identity: the row-band
+projector $\Prb$ and the column-stack projector $\Pcs$, overlaid on a basis
+adapted to the $3\times3$ box decomposition, on which
+$\Prb\Egamma\Pcs^{\!\top}=0$.
+
+\begin{figure}[t]
+   \centering
+   \includegraphics[width=0.7\textwidth]{fig1_sudoku_projectors.pdf}
+   \caption{Row-band ($\Prb$) and column-stack ($\Pcs$) projector overlays
+   on a basis adapted to the $3\times3$ box decomposition, illustrating the
+   Box Band Lemma identity $\Prb\Egamma\Pcs^{\!\top}=0$
+   (Theorem~\ref{thm:box-band}).}
+   \label{fig:sudoku-projectors}
+\end{figure}
+
 \subsection{Rectangular and gerechte variants}\label{sec:bbl-corollaries}
 
 The proof of Theorem~\ref{thm:box-band} does not use equality of box
@@ -1904,8 +1919,7 @@ artefacts.
 \noindent\textbf{Tier discipline.} Every numerical or structural
 claim in this paper is labeled with one of five tiers --- THEOREM,
 EXHAUSTIVE, EMPIRICAL, OBSERVED TEMPLATE, CONJECTURE --- following
-the convention introduced in
-\cite[\S 8.26]{HAN-DetDivisibility}. The composite tier
+a tier convention defined for this paper (recorded in the tier ledger below). The composite tier
 THEOREM(EXHAUSTIVE) denotes an analytic theorem whose hypotheses
 include a finite exhaustive check (e.g.,
 Certified Proposition~\ref{thm:aut-LM19-trivial}). The complete tier ledger is in
