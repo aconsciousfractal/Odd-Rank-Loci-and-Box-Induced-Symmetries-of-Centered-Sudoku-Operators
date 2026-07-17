@@ -31,6 +31,16 @@ The full list is `certified/README.md`. Highlights:
 | F4 | Γ*_M19 = exactly the 72 shared-left-kernel / middle-band balanced relabelings = the 72 reduced-hypergraph embeddings into the six-edge magic subhypergraph. | `M19_middle_band_balance.json` |
 | F5 | Λ_M = Λ_{O6} = A8 saturation; n=6 auxiliary full-rank F2 census (Sudoku 6.62% vs LS 6.12%); H_{V1} ≅ D6 inside C2 wr S3. | `A8_saturation.json`, `n6_odd_rank_census.json`, `n7_HV1_D6.json` |
 
+## Downstream link — FCIG grammar X05 (added 2026-07-17)
+
+The order-72 group of this repository is the affine symmetry group **3²:D₄ = C₃²⋊D₄ < AGL(2,3)** of the
+natural 3×3 (Lo Shu) arrangement of the values 1..9. In the FCIG grammar paper it is the **X05**
+exhibit's `G₀`: the census-mined `G₀` is a fixed reference copy, and the certified left/right
+stabilizers of **F3** (`K_L`, `K_R`, with `K_L = π₀ K_R π₀⁻¹`, `K_L ≠ K_R`) are its two conjugate
+realizations at the base M19. **Claim-level note:** F3 (single base, `K_L ≠ K_R`) is CL3-certified here;
+the grammar paper's *cross-grid "single universal `G₀`"* statement is CL1 (computational evidence) until
+a certified set-equality over the full census is minted. [LEDGER A-3 / E-2, resolved IDENTITY 2026-07-17.]
+
 ## Verification Trail
 
 - `certified/verify_all.py` — ALL CHECKS PASSED (12 certificates, 18
