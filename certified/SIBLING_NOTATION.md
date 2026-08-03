@@ -1,10 +1,8 @@
 # SIBLING_NOTATION.md — notational reconciliation with the determinant-divisibility paper
 
 > **Purpose.** One-page consistency check between the notation of this paper
-> (this folder) and that of the sibling working draft
-> `Determinant Divisibility of Centered Latin Squares`.
-> This standalone note supersedes the internal pre-draft task file used
-> during manuscript preparation.
+> and that of the public companion repository
+> [Determinant Divisibility of Centered Latin Squares](https://github.com/aconsciousfractal/Determinant-Divisibility-of-Centered-Latin-Squares).
 >
 > **Acceptance.** Every symbol that appears in both papers must denote
 > the same mathematical object up to (a) trivially equivalent indexing
@@ -101,4 +99,4 @@
 - [x] Disambiguation of $K_L, K_R$ vs $\Aut(L)$ explicit; cross-link
    to Certified Proposition G of this paper.
 
-Last refreshed: 2026-04-26 (P1.3 closure).
+Last refreshed: 2026-08-03 for release `v1.0.1`.

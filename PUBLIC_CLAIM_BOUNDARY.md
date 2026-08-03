@@ -1,7 +1,6 @@
 # Public Claim Boundary
 
-Companion documentation added 2026-07-08, after publication; it does not
-modify the paper.
+This boundary accompanies release `v1.0.1`.
 
 ## Can Say
 
@@ -30,3 +29,4 @@ modify the paper.
   restricted to the standard hyperplane, per the paper.
 - `certified/verify_all.py` includes a forbidden-phrase grep over the
   paper — run it after any wording change.
+- The complete verifier and 12-certificate replay passed on 2026-08-03.

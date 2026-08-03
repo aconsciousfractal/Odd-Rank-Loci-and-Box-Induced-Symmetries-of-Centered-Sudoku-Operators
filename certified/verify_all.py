@@ -85,6 +85,10 @@ ALLOWED_TIERS = {
     "CERTIFIED_EXHAUSTIVE",
 }
 
+TEXT_HASH_SUFFIXES = {
+    ".bib", ".cff", ".json", ".md", ".py", ".sha256", ".tex", ".txt"
+}
+
 
 def canonical_bytes(obj: Dict[str, Any]) -> bytes:
     return json.dumps(
@@ -95,6 +99,14 @@ def canonical_bytes(obj: Dict[str, Any]) -> bytes:
 def manifest_hash(obj: Dict[str, Any]) -> str:
     obj2 = {k: v for k, v in obj.items() if k != "produced_utc"}
     return hashlib.sha256(canonical_bytes(obj2)).hexdigest()
+
+
+def provenance_hash(path: Path) -> str:
+    """Hash tracked text with LF normalization; hash binary files verbatim."""
+    payload = path.read_bytes()
+    if path.suffix.lower() in TEXT_HASH_SUFFIXES:
+        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def parse_manifest() -> List[Tuple[str, str]]:
@@ -615,11 +627,7 @@ def main() -> int:
             standalone_failures += 1
             continue
         if expected_sha and expected_sha not in ("MISSING", "self"):
-            h = hashlib.sha256()
-            with target.open("rb") as f:
-                for chunk in iter(lambda: f.read(1 << 16), b""):
-                    h.update(chunk)
-            got = h.hexdigest()
+            got = provenance_hash(target)
             if got != expected_sha:
                 print(f"FAIL  standalone: script sha256 mismatch: {rel}")
                 print(f"        expected {expected_sha}")
@@ -634,11 +642,7 @@ def main() -> int:
             standalone_failures += 1
             continue
         if expected_sha and expected_sha != "MISSING":
-            h = hashlib.sha256()
-            with target.open("rb") as f:
-                for chunk in iter(lambda: f.read(1 << 16), b""):
-                    h.update(chunk)
-            got = h.hexdigest()
+            got = provenance_hash(target)
             if got != expected_sha:
                 print(f"FAIL  standalone: source sha256 mismatch: {rel}")
                 print(f"        expected {expected_sha}")

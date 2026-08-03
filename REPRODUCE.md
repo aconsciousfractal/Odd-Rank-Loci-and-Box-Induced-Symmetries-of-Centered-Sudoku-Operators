@@ -88,7 +88,7 @@ on-disk certificate. A passing run prints
 [reproduce_all] ALL 12 CERTIFICATES REPRODUCE
 ```
 
-Runtime is machine-dependent; on the audit machine this is about 30-35 seconds, dominated by the middle-band balance certificate.
+Runtime is machine-dependent; on the audit machine this is about 46 seconds, dominated by the middle-band balance certificate.
 
 ### 4. Recover the perm lists from upstream data (optional)
 
@@ -116,10 +116,11 @@ python fig4_A8_saturation.py
 python fig5_M19_coset_structure.py
 ```
 
-Each script writes the corresponding `.pdf` next to itself. Figure
-regeneration uses `matplotlib>=3.7` from `requirements.txt`; the
-scripts freeze PDF `CreationDate` and `ModDate` metadata so repeated
-runs are byte-stable.
+Each script writes the corresponding `.pdf` and `.png` next to itself.
+The scripts freeze PDF `CreationDate` and `ModDate` metadata, so repeated
+runs are byte-stable within a fixed dependency environment. Matplotlib
+renderer changes across supported versions can change the binary output;
+use the tracked figures as the release baseline.
 
 ### 6. Compile the paper
 
@@ -134,7 +135,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 cp main.pdf Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf
 ```
 
-Output: `paper/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf` (currently 22 pages). The intermediate `paper/main.pdf` is a local LaTeX build product and is ignored by git.
+Output: `paper/Odd-Rank-Loci-and-Box-Induced-Symmetries-of-Centered-Sudoku-Operators.pdf` (27 pages in release `v1.0.1`). The intermediate `paper/main.pdf` is a local LaTeX build product and is ignored by git.
 
 ## Standalone test
 
@@ -161,6 +162,9 @@ All checks should pass with output identical to the in-place run.
   phase-numbered filenames so that the cross-imports inside the
   research log keep working without renaming. Their meaningful purpose
   is documented in [`scripts/SCRIPT_INDEX.md`](scripts/SCRIPT_INDEX.md).
+- Provenance SHA-256 values for tracked text files are computed after
+  CRLF/CR line endings are normalized to LF; `.gitattributes` enforces the
+  same public representation. Binary files are hashed verbatim.
 - The certificate JSONs themselves are the canonical paper-facing
   artifact: every numerical claim in the paper points to the `result_id`
   of one of the 12 entries in `certified/MANIFEST.sha256`.

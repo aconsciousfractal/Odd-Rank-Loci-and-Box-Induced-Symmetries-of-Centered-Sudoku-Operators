@@ -426,13 +426,13 @@
     ]
   },
   "paper_label": "Certified Proposition F",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "dichotomy_n7_n9_n11",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_18_S9q_gamma1.py",
-      "sha256": "161902567e2d80d7ec51f958daa610ed1eebe1c392b0c39c82f3965991460c3d"
+      "sha256": "ef2f2f18cc3638d7389ef14346f74d45f086387567c15ae2221650e7de632f7c"
     }
   ],
   "seed": null,
@@ -442,7 +442,7 @@
         "results[n in {7,9,11}]"
       ],
       "file": "data/phase_9_18_S9q_gamma1.json",
-      "sha256": "64c3f45158e0491f469a6dcf9602b90f7d722d454a8740d25923da78c1c69751"
+      "sha256": "eed746d126453458924936d8f7f7372a52badec0937289fd1e6a304ec777b08f"
     }
   ],
   "tier": "CERTIFIED_EXHAUSTIVE"

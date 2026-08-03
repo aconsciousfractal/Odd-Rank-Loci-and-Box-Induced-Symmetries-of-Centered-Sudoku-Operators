@@ -53,13 +53,13 @@
     }
   },
   "paper_label": "Theorem C",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "lift_lemma_evidence",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_18_S9c.py",
-      "sha256": "940bae8fb99fde54688b40253aa1492e5eeaf8f6d5bf279776332c85598fb1b9"
+      "sha256": "0b135de73e7b7e245e908e394416b735e2b69f707ec5336fbe96e700272b0542"
     },
     {
       "path": "certified/build_certified.py",
@@ -67,7 +67,7 @@
     },
     {
       "path": "certified/recover_M19_100_perms.py",
-      "sha256": "489ed7017b80f3bd08c0e6e6f4b8a8e86db7a2b8b138f9375711b2f26427c6bb"
+      "sha256": "40bbd465f22d69ff048005e42a1a7acd5e673a314ab561d3c176ce2f310f0194"
     }
   ],
   "seed": null,
@@ -77,7 +77,7 @@
         "phase_9_13_c.odd_examples"
       ],
       "file": "data/phase_9_13_results.json",
-      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+      "sha256": "e37107b73cb23433f144512822371a0f9ead4863d08b4f0c804f8dfb62382f53"
     },
     {
       "extracted_keys": [
@@ -85,7 +85,7 @@
         "M19_grid"
       ],
       "file": "data/phase_9_18_S9x_results.json",
-      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+      "sha256": "60a903833a8d29dbebbef7b5d7f6b313a16920d7d9f6ef797922af10dcc79e83"
     },
     {
       "extracted_keys": [
@@ -94,7 +94,7 @@
       ],
       "file": "certified/M19_100_perms_recovered.json",
       "note": "Recovered via certified/recover_M19_100_perms.py; exhaustive S_9 modular determinant rescan of M_{19} followed by Sympy exact rank verification on every candidate.",
-      "sha256": "58fdc073763549e1ed9d65f2b9e177c1ce5418c942db95d65dc04ecc304a3ef8"
+      "sha256": "c2cfc491fb3a93e0e7a18bd7ae1ecd26a8c43da73e2be025071aa8444dca7e3f"
     }
   ],
   "tier": "THEOREM"

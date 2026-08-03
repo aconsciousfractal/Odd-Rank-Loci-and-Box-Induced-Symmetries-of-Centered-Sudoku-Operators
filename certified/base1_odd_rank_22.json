@@ -1532,29 +1532,29 @@
     }
   },
   "paper_label": "Certified Proposition P1",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "base1_odd_rank_22",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase13b_exhaustive.py",
-      "sha256": "4022ee4aa21b21321fcaabc01a76ad6d51b16a45979e0a2d2368f23012279511"
+      "sha256": "a972635b7714af6dab02738aace12ab69d364415e415b21960490d8cdf1c1d68"
     },
     {
       "path": "scripts/legacy/phase_9_13.py",
-      "sha256": "b51e1a025de3db49ec12a9099363daeec885cc063249a1ef0d7989627095d421"
+      "sha256": "c7244c6796925eba979c870f271c5d2ab8130fb0e5df0efb15fd391e2501b6be"
     },
     {
       "path": "scripts/legacy/phase_9_13f_certificate.py",
-      "sha256": "3cbd343002878e3d464cfba68eb0f183040dff05c3b2612f5980c6609c1bd3a8"
+      "sha256": "ec379cdd87686606d7966e999a6766818aca88d38609da2ca937df9643e29b17"
     },
     {
       "path": "certified/recover_base1_22_perms.py",
-      "sha256": "54e71d48b8fbde5a98606edc599911db5d014a6560e65eb7e306468dfe6e4517"
+      "sha256": "3e9c90e0bceaeabbdeeefa27433ac430b41222c09778cc090d8918918d4dfcf6"
     },
     {
       "path": "certified/four_way_base1_22.py",
-      "sha256": "8699ef458630ae0d7c3a0d7cfdbf4986780e89ef01d9e9b6d8bfbe6140029972"
+      "sha256": "4a75bfdf8271255b44bb6c16077676576e248523b814b7f73b604958ecb658b9"
     }
   ],
   "seed": null,
@@ -1564,14 +1564,14 @@
         "phase_9_13_c"
       ],
       "file": "data/phase_9_13_results.json",
-      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+      "sha256": "e37107b73cb23433f144512822371a0f9ead4863d08b4f0c804f8dfb62382f53"
     },
     {
       "extracted_keys": [
         "certificates"
       ],
       "file": "data/phase_9_13f_certificate.json",
-      "sha256": "cd046656f9102b28ec7f5633f97063d3f5b0010a32cf5a346391fc6b8bc97600"
+      "sha256": "2da77eafb7ecffb817164ddcbab6b5c257d1b617a7f0d2b58ed305db63e3209a"
     },
     {
       "extracted_keys": [
@@ -1580,7 +1580,7 @@
       ],
       "file": "certified/base1_22_perms_recovered.json",
       "note": "Recovered via certified/recover_base1_22_perms.py; exhaustive S_9 rescan of base1 in ~16s.",
-      "sha256": "d8abc10440a8e443f7a573488a4749748c7842f2fca70df91aafd8a6d259d817"
+      "sha256": "a9e4b9eb3b07a5bf3fa2639066a23174994952d03bb6e1ee3c8dc277f1f648d1"
     },
     {
       "extracted_keys": [
@@ -1588,7 +1588,7 @@
       ],
       "file": "certified/four_way_base1_22.json",
       "note": "Generated via certified/four_way_base1_22.py; exact Sympy computation of (rank Z, primitive V_std kernel, integer SNF, F_2 SNF) for every one of the 22 perms.",
-      "sha256": "fed364c7f8200332c200c9ce94f26018405dec0157b6a57a8680e4f752a3aed1"
+      "sha256": "832d7c519167b13358544f63ffbc9085afa011d2beb2e332a72f1f37fb9d8a0d"
     }
   ],
   "tier": "EXHAUSTIVE"

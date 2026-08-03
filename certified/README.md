@@ -56,6 +56,14 @@ assembled. The
 `json.dumps(cert, sort_keys=True, indent=2, ensure_ascii=False)` with
 the `produced_utc` field removed.
 
+SHA-256 values inside each certificate use LF-normalized UTF-8 bytes for
+tracked text files, as enforced by the repository `.gitattributes`; binary
+files are hashed verbatim. The verifier applies the identical rule.
+Derived floating-point summary statistics are serialized to 15 significant
+digits so their last binary digit cannot drift between standard math-library
+implementations; exact combinatorial and algebraic outputs remain integers or
+exact symbolic data.
+
 ## Reproducibility entry-points
 
 ```

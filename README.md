@@ -136,22 +136,24 @@ that, for every certificate, checks:
    certificate is a real file inside this repository, with sha256
    matching the recorded provenance.
 
+Provenance hashes for tracked text files use UTF-8 bytes with line endings
+normalized to LF, matching `.gitattributes`; binary artifacts are hashed
+verbatim. This keeps verification stable across Windows, Linux, and Git
+archives.
+
 A passing run prints
 `ALL CHECKS PASSED (12 certificates, N scripts, M sources)`.
 
-## Cryptic legacy script names
+## Historical producer filenames
 
-The historical producer scripts under `scripts/legacy/` carry phase
-labels (`phase_9_13.py`, `phase_9_18_S9x.py`, …) inherited from the
-research log. Their meaningful purpose is documented in
-[`scripts/SCRIPT_INDEX.md`](scripts/SCRIPT_INDEX.md). The certificate
-package never depends on the names directly: every dependency is
-recorded as a sha256-stamped provenance entry.
+The certificate provenance preserves the original filenames of producer
+scripts under `scripts/legacy/`. Their mathematical purpose and canonical
+outputs are translated in [`scripts/SCRIPT_INDEX.md`](scripts/SCRIPT_INDEX.md);
+ordinary verification uses only the three `certified/` entry points above.
 
 ## Claim Boundary
 
-Companion claim-discipline docs were added on 2026-07-08 (after
-publication; the paper and certificates are unchanged):
+The public claim-discipline documents for release `v1.0.1` are:
 
 - `CLAIM_LEDGER.md` — thin index over the authoritative per-result tier
   table in `certified/README.md` (analytic results A1-A3, certified finite
@@ -159,8 +161,8 @@ publication; the paper and certificates are unchanged):
 - `PUBLIC_CLAIM_BOUNDARY.md` — what may and may not be quoted; finite
   censuses are exhaustive at their stated orders/bases only, and the M19
   symmetry results are base-specific.
-- `README_REVIEWER.md` — 10/30-minute reviewer paths
-  (`certified/verify_all.py` passed ALL CHECKS on 2026-07-08).
+- `README_REVIEWER.md` — 10/30-minute reviewer paths and the current
+  verification record.
 
 ## License
 

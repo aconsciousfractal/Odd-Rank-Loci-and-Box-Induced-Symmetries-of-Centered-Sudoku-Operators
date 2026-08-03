@@ -73,13 +73,13 @@
     }
   },
   "paper_label": "Certified Proposition D",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "A8_saturation",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_18_S9q_beta_lattice.py",
-      "sha256": "9cec8e2ef41fd7c3e37100a79a28ed9bcc4853e98a19fb64b4e2ef9fc0da8082"
+      "sha256": "3439d46a2430bb1f132055511a378fa210bcae9a2a625faa3df0556b45422505"
     }
   ],
   "seed": null,
@@ -89,7 +89,7 @@
         "*"
       ],
       "file": "data/phase_9_18_S9q_beta_lattice.json",
-      "sha256": "4e809fe5166b1963e0b98f816b42ae0782e93d1369935e53f001bc64503209fe"
+      "sha256": "6c949bbfe1c8937322143588c69be17f04b76a8d56a6c9c0ced31dce0b1823ce"
     }
   ],
   "tier": "CERTIFIED_EXHAUSTIVE"

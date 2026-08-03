@@ -358,17 +358,17 @@
     ]
   },
   "paper_label": "Certified Proposition E",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "M19_KL_KR_affine_D4",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_18_S9x.py",
-      "sha256": "ee8ee2c1fe304bcc19905e60b4942901e1d1046548c9746200e80429817201f5"
+      "sha256": "31050b72ab3e5e4d1b6cc6fc3d161a7a41f41af070c10369de934aef2039e4fc"
     },
     {
       "path": "scripts/legacy/phase_9_18_S9x_bis.py",
-      "sha256": "7c59bb60dd60451b5e574a909559a1f4f4b7127f3f11d759c4e81b0f2aa86397"
+      "sha256": "07c5e420b957bcefafba32b9b105427f601e986f774c48aaed88fcb85c046c66"
     }
   ],
   "seed": null,
@@ -380,7 +380,7 @@
         "Gamma_star_perms"
       ],
       "file": "data/phase_9_18_S9x_results.json",
-      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+      "sha256": "60a903833a8d29dbebbef7b5d7f6b313a16920d7d9f6ef797922af10dcc79e83"
     },
     {
       "extracted_keys": [
@@ -392,7 +392,7 @@
         "K_R_block_systems"
       ],
       "file": "data/phase_9_18_S9x_bis_results.json",
-      "sha256": "c0b281c1191b7dfee76d4b432000e1709a379646997c711f1dc90a6767f6c179"
+      "sha256": "99bdb2557eaa48a1b7e61e4c4e4b8276312831a8fa2dc712cae0616ea08e46e7"
     }
   ],
   "tier": "CERTIFIED_EXHAUSTIVE"

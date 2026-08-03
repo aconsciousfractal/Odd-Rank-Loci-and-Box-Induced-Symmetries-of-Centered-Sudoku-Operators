@@ -1258,17 +1258,17 @@
     }
   },
   "paper_label": "Certified Proposition P5",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "M19_middle_band_balance",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_18_S9x.py",
-      "sha256": "ee8ee2c1fe304bcc19905e60b4942901e1d1046548c9746200e80429817201f5"
+      "sha256": "31050b72ab3e5e4d1b6cc6fc3d161a7a41f41af070c10369de934aef2039e4fc"
     },
     {
       "path": "certified/build_certified.py",
-      "sha256": "910960122e52a2aa571bef2a6dccca732787f8c0a04728069a8ffb887b8e05c6"
+      "sha256": "4e098e004a6ca92afd71b7bdfaa335e579bfce07fab895b11d2911758948d009"
     }
   ],
   "seed": null,
@@ -1281,7 +1281,7 @@
         "K_R_elements"
       ],
       "file": "data/phase_9_18_S9x_results.json",
-      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+      "sha256": "60a903833a8d29dbebbef7b5d7f6b313a16920d7d9f6ef797922af10dcc79e83"
     }
   ],
   "tier": "CERTIFIED_EXHAUSTIVE"

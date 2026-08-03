@@ -1,7 +1,7 @@
 # Runtime dependencies for Odd-Rank Loci and Box-Induced Symmetries of
 # Centered Sudoku Operators.
 # Lower bounds reflect the APIs actually used; upper bounds are a
-# conservative ceiling on the family tested for the 2026-04-26 release.
+# conservative ceiling on the family re-tested for release v1.0.1 (2026-08-03).
 # Tested with Python 3.11/3.12/3.14 on Windows 10/11 and Ubuntu 22.04.
 
 numpy>=1.24,<3.0        # array algebra, exhaustive S_9 / B_3 scans

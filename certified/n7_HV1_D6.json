@@ -53,21 +53,21 @@
     "order_distribution_unique_to_D6_among_order_12": true
   },
   "paper_label": "Certified Proposition B",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "n7_HV1_D6",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_15A_identify_HV1.py",
-      "sha256": "52c572f327198799ec18289e9f214ac6c478a7aef53fb899f44b3d310aca202c"
+      "sha256": "3580eefa332ce2ab0bb49d34c13667d9927f1585b44f2a53cc354020053dbfa5"
     },
     {
       "path": "scripts/legacy/check_b3_subgroup.py",
-      "sha256": "ff3023833ce87fc9333db212f8c74682b16bf269bb40d98934ac49a6b0b6847f"
+      "sha256": "f9415cd79b1897bf4f2f07b1ae4f7537b24019083673c9e60ad7c85c0ba3878a"
     },
     {
       "path": "scripts/legacy/phase_9_15.py",
-      "sha256": "576c8384138742938cfd9a971ddec84a7f27b4bbaa244c742f7914f43479b203"
+      "sha256": "490ebd9048483679ea664008afcd9abfdbc9e4993495f6b12cf0afb93c4681a1"
     }
   ],
   "seed": null,
@@ -77,14 +77,14 @@
         "*"
       ],
       "file": "data/phase_9_15A_H_V1_identification.json",
-      "sha256": "17c72d8e83b8decba723acdf65737ea1111cdf058469d80b459c1e4c0d4bae6c"
+      "sha256": "cf8df29d31183b1f61cf6ea6079eef333463e8ec79a6827b1e67aa96d1f792e5"
     },
     {
       "extracted_keys": [
         "B3_enrichment.L_V1"
       ],
       "file": "data/phase_9_15_results.json",
-      "sha256": "fb0814a5fb93dd945e29b25c8e13b4df4aa522f8b081b6e526b75ff7ba9d977e"
+      "sha256": "4cc5d2f452bed17b2a456bd371f2d66c72a83c832ba4ebe8c54ac7e5e4362cd6"
     }
   ],
   "tier": "CERTIFIED_EXHAUSTIVE"

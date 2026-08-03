@@ -477,7 +477,7 @@
     }
   },
   "paper_label": "Theorem A",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "box_band_lemma_witness",
   "schema_version": 1,
   "scripts": [
@@ -487,11 +487,11 @@
     },
     {
       "path": "scripts/legacy/phase_9_13.py",
-      "sha256": "b51e1a025de3db49ec12a9099363daeec885cc063249a1ef0d7989627095d421"
+      "sha256": "c7244c6796925eba979c870f271c5d2ab8130fb0e5df0efb15fd391e2501b6be"
     },
     {
       "path": "scripts/legacy/phase_9_14.py",
-      "sha256": "fafdf2ed9f03588420ebd85ec418779e6dde8928f97fa93ca9da6988f0be19eb"
+      "sha256": "13b82a5b16d5b0bfda13b3dd6dce9dead3ee71effc50c6e9932cc836bbb61995"
     },
     {
       "path": "certified/build_certified.py",
@@ -505,21 +505,21 @@
         "phase_9_13_c.base_grid"
       ],
       "file": "data/phase_9_13_results.json",
-      "sha256": "f7475b8263fe7ba56ce7fb4667b9bf7afee8660ffeb0920e1d0ba7e6b7e97c29"
+      "sha256": "e37107b73cb23433f144512822371a0f9ead4863d08b4f0c804f8dfb62382f53"
     },
     {
       "extracted_keys": [
         "M19_grid"
       ],
       "file": "data/phase_9_18_S9x_results.json",
-      "sha256": "6849261c94eb106a5f5290ce15f0cc8c6c581553c861174a86f534f28b49feed"
+      "sha256": "60a903833a8d29dbebbef7b5d7f6b313a16920d7d9f6ef797922af10dcc79e83"
     },
     {
       "extracted_keys": [
         "sudoku6_firstrow_fixed.bad_examples[0]"
       ],
       "file": "data/phase_9_14_results.json",
-      "sha256": "8dc095aecb5f34b74c66f4ff06b97a2a1bf66d77a8a4e0127f62224c006f729a"
+      "sha256": "fcfdc397243ea2b8d2a085782367ea62b2bd32197a83bd5acf114d27ab88984d"
     }
   ],
   "tier": "THEOREM"

@@ -63,12 +63,21 @@ NOW = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 # ----------------------------------------------------------------------------
 # Helpers
 # ----------------------------------------------------------------------------
+TEXT_HASH_SUFFIXES = {
+    ".bib", ".cff", ".json", ".md", ".py", ".sha256", ".tex", ".txt"
+}
+
+
+def provenance_bytes(p: Path) -> bytes:
+    """Return platform-stable bytes for a tracked provenance artifact."""
+    payload = p.read_bytes()
+    if p.suffix.lower() in TEXT_HASH_SUFFIXES:
+        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return payload
+
+
 def sha256_file(p: Path) -> str:
-    h = hashlib.sha256()
-    with p.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 16), b""):
-            h.update(chunk)
-    return h.hexdigest()
+    return hashlib.sha256(provenance_bytes(p)).hexdigest()
 
 
 def canonical_bytes(obj: Dict[str, Any]) -> bytes:
@@ -679,10 +688,12 @@ def cert_n6_odd_rank_census() -> Dict[str, Any]:
     p2, n2 = ls["full_rank_count"] / ls["n_total"], ls["n_total"]
     p_pool = (sud["full_rank_count"] + ls["full_rank_count"]) / (n1 + n2)
     se = math.sqrt(p_pool * (1 - p_pool) * (1 / n1 + 1 / n2))
-    z = (p1 - p2) / se
+    # Canonicalize derived floating-point statistics before serialization.
+    # libm implementations may otherwise differ in the final binary digit.
+    z = float(f"{((p1 - p2) / se):.15g}")
     # Exact two-sided descriptive erfc statistic (no scipy):
     # value = erfc(|z| / sqrt(2)).
-    p_two = math.erfc(abs(z) / math.sqrt(2.0))
+    p_two = float(f"{math.erfc(abs(z) / math.sqrt(2.0)):.15g}")
 
     return {
         "result_id": "n6_odd_rank_census",
@@ -1656,7 +1667,9 @@ def main() -> int:
         manifest_lines.append(f"{digest}  {fname}")
         print(f"[OK] {fname}  {digest[:16]}...")
 
-    (HERE / "MANIFEST.sha256").write_text("\n".join(manifest_lines) + "\n", encoding="utf-8")
+    (HERE / "MANIFEST.sha256").write_bytes(
+        ("\n".join(manifest_lines) + "\n").encode("utf-8")
+    )
     print(f"[OK] MANIFEST.sha256 ({len(BUILDERS)} entries)")
     return 0
 

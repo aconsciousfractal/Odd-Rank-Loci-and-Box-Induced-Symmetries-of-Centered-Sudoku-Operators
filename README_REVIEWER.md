@@ -1,11 +1,10 @@
 # Reviewer Guide
 
-Companion documentation added 2026-07-08, after publication; it does not
-modify the paper.
+This guide accompanies release `v1.0.1`.
 
 ## Ten-Minute Path
 
-1. Read the abstract in `paper/main.tex` — note the explicit split between
+1. Read the abstract in the canonical paper PDF — note the explicit split between
    "the analytic part" (proved lemmas) and "the certified finite part"
    (exhaustive selected orders).
 2. Read `certified/README.md` — one canonical JSON per main result, each
@@ -14,7 +13,7 @@ modify the paper.
 3. Run the verifier:
    `PYTHONUTF8=1 python certified/verify_all.py`
    (expects "ALL CHECKS PASSED (12 certificates, 18 scripts, 13 sources)";
-   verified 2026-07-08, ~1 min).
+   verified 2026-08-03).
 
 ## Thirty-Minute Path
 
@@ -41,5 +40,5 @@ modify the paper.
   no cross-order generalization is claimed.
 - Tier fields in the certificate JSONs are the claim-strength authority;
   EMPIRICAL/OBSERVED TEMPLATE/CONJECTURE rows are not theorems.
-- `reproduce_all.py` was not fully re-run in the 2026-07-08 retrofit;
-  `verify_all.py` (manifest + semantic checks) was run and passed.
+- `reproduce_all.py` and `verify_all.py` both passed in full on
+  2026-08-03; the 12 certificates reproduced byte-equally.

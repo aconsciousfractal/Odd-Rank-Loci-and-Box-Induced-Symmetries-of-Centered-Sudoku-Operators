@@ -34,18 +34,18 @@
       "5": 2592
     },
     "two_proportion_pvalue_decimal_string": "5.977282e-05",
-    "two_proportion_pvalue_exact": 5.977282073558851e-05,
+    "two_proportion_pvalue_exact": 5.97728207355879e-05,
     "two_proportion_pvalue_formula": "erfc(|z| / sqrt(2))",
-    "two_proportion_z": 4.013705876038688
+    "two_proportion_z": 4.01370587603869
   },
   "paper_label": "Proposition P2",
-  "produced_utc": "2026-05-11T08:48:31Z",
+  "produced_utc": "2026-08-03T11:58:16Z",
   "result_id": "n6_odd_rank_census",
   "schema_version": 1,
   "scripts": [
     {
       "path": "scripts/legacy/phase_9_14.py",
-      "sha256": "fafdf2ed9f03588420ebd85ec418779e6dde8928f97fa93ca9da6988f0be19eb"
+      "sha256": "13b82a5b16d5b0bfda13b3dd6dce9dead3ee71effc50c6e9932cc836bbb61995"
     }
   ],
   "seed": null,
@@ -56,7 +56,7 @@
         "ls6_firstrow_fixed"
       ],
       "file": "data/phase_9_14_results.json",
-      "sha256": "8dc095aecb5f34b74c66f4ff06b97a2a1bf66d77a8a4e0127f62224c006f729a"
+      "sha256": "fcfdc397243ea2b8d2a085782367ea62b2bd32197a83bd5acf114d27ab88984d"
     }
   ],
   "tier": "EXHAUSTIVE"
